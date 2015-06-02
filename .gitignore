@@ -20,6 +20,8 @@
 *.la
 *.a
 *.lib
+# ...except the GLFW file:
+!platforms/osx/libglfw3.a
 
 # Executables
 *.exe
