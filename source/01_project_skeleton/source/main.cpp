@@ -53,13 +53,7 @@ LightingTechnique* lightingEffect;
 DirectionalLight directionalLight;
 
 GLuint LightID1;
-GLuint LightID2;
-GLuint LightID3;
-GLuint LightID4;
 glm::vec3 lightPos1;
-glm::vec3 lightPos2;
-glm::vec3 lightPos3;
-glm::vec3 lightPos4;
 
 Camera camera;
 double gScrollY = 0.0;
@@ -67,10 +61,6 @@ GLfloat gDegreesRotated = 0.0f;
 
 
 Mesh mesh;
-Mesh mesh2;
-Mesh mesh3;
-Mesh mesh4;
-Mesh mesh5;
 
 void cleanUp(){
     glDeleteProgram(programID);
@@ -88,10 +78,6 @@ void setupMesh(){
     glBindVertexArray(VertexArrayID);
     
     mesh =  Mesh();
-    mesh2 =  Mesh();
-    mesh3 = Mesh();
-    mesh4 = Mesh();
-    mesh5 = Mesh();
     
     const char * model = str.c_str();
     mesh.loadModel(model);
@@ -101,23 +87,6 @@ void setupMesh(){
     mesh.translate(glm::vec3(0,-1,-1));
     float rot = 270 * (M_PI/180);
     mesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-
-    mesh2.translate(glm::vec3(0,2,-2));
-    mesh2.scale(glm::vec3(0.1f, 0.1f, 0.1f));
-    
-    const char * model2 = str2.c_str();
-    mesh3.loadModel(model2);
-    mesh3.bindBuffers();
-    
-    mesh3.translate(glm::vec3(3.0f, 1.0f, 1.0));
-    mesh3.scale(glm::vec3(0.1f, 0.1f, 0.1f));
-    
-    mesh4.translate(glm::vec3(-3.0f, 1.0f, 1.0));
-    mesh4.scale(glm::vec3(0.1f, 0.1f, 0.1f));
-    
-    mesh5.translate(glm::vec3(1.0f, 1.0f, 1.0));
-    mesh5.scale(glm::vec3(0.1f, 0.1f, 0.1f));
-    
 }
 
 
@@ -179,17 +148,7 @@ void drawLevel(){
     pl[0].Position = glm::vec3(-3.0f, 1.0f, 1.0);
     pl[0].Attenuation.Linear = 0.1f;
     
-    pl[1].DiffuseIntensity = 2.0f;
-    pl[1].Color = glm::vec3(0.0f, 0.0f, 1.0f);
-    pl[1].Position = glm::vec3(3.0f, 1.0f, 1.0);
-    pl[1].Attenuation.Linear = 0.1f;
-    
-    pl[2].DiffuseIntensity = 2.0f;
-    pl[2].Color = glm::vec3(0.0f, 1.0f, 0.0f);
-    pl[2].Position = glm::vec3(1.0f, 1.0f, 1.0);
-    pl[2].Attenuation.Linear = 0.1f;
-    
-    lightingEffect->SetPointLights(3, pl);
+    lightingEffect->SetPointLights(1, pl);
     
     
     SpotLight sl[2];
@@ -200,14 +159,7 @@ void drawLevel(){
     sl[0].Attenuation.Linear = 0.1f;
     sl[0].Cutoff = 10.f;
     
-    sl[1].DiffuseIntensity = 2.9f;
-    sl[1].Color = glm::vec3(1.0f, 0.0f, 0.0f);
-    sl[1].Position = glm::vec3(0.0f, 1.0f, 0.0f);
-    sl[1].Direction = glm::vec3(0.0f, 0.0f, -1.0f);
-    sl[1].Attenuation.Linear = 0.1f;
-    sl[1].Cutoff = 20.0f;
-    lightingEffect->SetSpotLights(2, sl);
-    
+    lightingEffect->SetSpotLights(1, sl);
     
     lightingEffect->SetMatSpecularIntensity(2.0f);
     lightingEffect->SetMatSpecularPower(128);
@@ -235,65 +187,7 @@ void drawLevel(){
     
     Rederer(&mesh);
     
-    //mesh
-    Model = mesh2.getModelMatrix();
-    Projection = camera.projection();
-    View = camera.view();
-    MVP = Projection * View * Model;
-    
-    lightingEffect->SetMatrix(MVP);
-    
-    lightingEffect->SetViewMatrix(View);
-    
-    lightingEffect->SetModeldMatrix(Model);
-    
-    Rederer(&mesh);
-    
     mesh.disableRender();
-    
-    
-    mesh3.enableRender();
-    //LIGHT
-    Model = mesh3.getModelMatrix();
-    Projection = camera.projection();
-    View = camera.view();
-    MVP = Projection * View * Model;
-    
-    lightingEffect->SetMatrix(MVP);
-    
-    lightingEffect->SetViewMatrix(View);
-    
-    lightingEffect->SetModeldMatrix(Model);
-    
-    Rederer(&mesh3);
-    
-    Model = mesh4.getModelMatrix();
-    Projection = camera.projection();
-    View = camera.view();
-    MVP = Projection * View * Model;
-    
-    lightingEffect->SetMatrix(MVP);
-    
-    lightingEffect->SetViewMatrix(View);
-    
-    lightingEffect->SetModeldMatrix(Model);
-    
-    Rederer(&mesh3);
-    
-    Model = mesh5.getModelMatrix();
-    Projection = camera.projection();
-    View = camera.view();
-    MVP = Projection * View * Model;
-    
-    lightingEffect->SetMatrix(MVP);
-    
-    lightingEffect->SetViewMatrix(View);
-    
-    lightingEffect->SetModeldMatrix(Model);
-    
-    Rederer(&mesh3);
-    
-    mesh3.disableRender();
     
     glfwSwapBuffers(window);
     glfwPollEvents();
