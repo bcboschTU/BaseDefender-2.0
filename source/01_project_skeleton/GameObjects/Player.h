@@ -23,7 +23,7 @@ public:
            float _height,
            float _angle,
            int _level);
-    void draw();
+    Mesh draw();
     void updatePlayer();
     void shootPrimary(float dirXPos, float dirYPos);
     void shootSecondary(float dirXPos, float dirYPos);
@@ -65,6 +65,7 @@ private:
     //time
     double lastTimePrimary;
     double lastTimeSecondary;
+    Mesh mesh;
 };
 
 #endif /* defined(__BaseDefender__Player__) */

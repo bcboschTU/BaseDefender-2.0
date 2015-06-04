@@ -43,31 +43,32 @@ Enemie::Enemie(std::string _name,
     
 }
 
-void Enemie::draw(){
-    if(hp>0){
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
-        glPushMatrix();
-        glTranslatef(getXPos(), getYPos(), 0);
-        glRotated(getAngle()+90, 0.0, 0.0, 1.0);
-        glTranslatef(-getXPos(), -getYPos(), 0);
-        
-        glTranslatef(getXPos(), getYPos(), 0);
-        
-        glBegin(GL_QUADS);              // Each set of 4 vertices form a quad
-        glColor4f(1.0f, 1.0f, 1.0f,1.0f);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex2f(-getWidth(), - getHeight());    // x, y
-        glTexCoord2f(0.0f, 0.0f);
-        glVertex2f(getWidth(),- getHeight());
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex2f(getWidth(), getHeight());
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex2f(- getWidth(), getHeight());
-        glEnd();
-        
-        glPopMatrix();
-    }
+Mesh Enemie::draw(){
+//    if(hp>0){
+//        glMatrixMode(GL_MODELVIEW);
+//        glLoadIdentity();
+//        glPushMatrix();
+//        glTranslatef(getXPos(), getYPos(), 0);
+//        glRotated(getAngle()+90, 0.0, 0.0, 1.0);
+//        glTranslatef(-getXPos(), -getYPos(), 0);
+//        
+//        glTranslatef(getXPos(), getYPos(), 0);
+//        
+//        glBegin(GL_QUADS);              // Each set of 4 vertices form a quad
+//        glColor4f(1.0f, 1.0f, 1.0f,1.0f);
+//        glTexCoord2f(0.0f, 1.0f);
+//        glVertex2f(-getWidth(), - getHeight());    // x, y
+//        glTexCoord2f(0.0f, 0.0f);
+//        glVertex2f(getWidth(),- getHeight());
+//        glTexCoord2f(1.0f, 0.0f);
+//        glVertex2f(getWidth(), getHeight());
+//        glTexCoord2f(1.0f, 1.0f);
+//        glVertex2f(- getWidth(), getHeight());
+//        glEnd();
+//        
+//        glPopMatrix();
+//    }
+    return mesh;
 }
 
 void Enemie::updateEnemie(){

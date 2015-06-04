@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include <vector>
+#include "LightingTechnique.h"
+#include "Renderer.h"
 #include <GLUT/glut.h>
 #include <pthread.h>
 
@@ -22,13 +24,16 @@
 #include "Background.h"
 #include "Explosion.h"
 #include "texture.hpp"
+#include "Mesh.h"
+#include "Camera.hpp"
 
 class Level{
 public:
     Level();
     Level(int type, int width, int height);
     void loadLevel();
-    void drawLevel();
+    void drawLevel(Camera *camera, LightingTechnique *lightingEffect);
+    void drawMesh(Mesh mesh, Camera *camera, LightingTechnique *lightingEffect, glm::mat4 _Model);
     void drawHud();
     void updateLevel();
     void getBullets();
@@ -57,6 +62,7 @@ public:
     void setHeight(int _height);
     
     void roundStart(int round);
+    void cleanUp();
 private:
     int type;
 
@@ -68,11 +74,6 @@ private:
     std::vector<Explosion> explosions;
     Background background = Background(0,0,20,20);
     
-    GLuint texture1;
-    GLuint texture2;
-    GLuint texture3;
-    GLuint texture4;
-    GLuint texture5;
     std::vector<GLuint> textures;
     std::vector<std::string> textureNamesPosition;
     
@@ -96,6 +97,21 @@ private:
     int height;
 
     std::vector<float> normals;
+    
+    Mesh explosionMesh;
+    Mesh bulletMesh;
+    Mesh turretMesh;
+    Mesh playerMesh;
+    Mesh baseMesh;
+    Mesh enemyMesh;
+    
+    glm::mat4 Projection;
+    glm::mat4 View;
+    glm::mat4 Model;
+    glm::mat4 MVP;
+    glm::mat3 ModelView3x3Matrix;
+    
+    GLuint VertexArrayID;
     
 };
 

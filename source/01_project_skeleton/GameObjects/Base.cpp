@@ -19,24 +19,26 @@ Base::Base(std::string _name,
 }
 
 
-void Base::draw(){
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glPushMatrix();
+Mesh Base::draw(){
+//    glMatrixMode(GL_MODELVIEW);
+//    glLoadIdentity();
+//    glPushMatrix();
+//    
+//    glBegin(GL_QUADS);              // Each set of 4 vertices form a quad
+//        glColor4f(1.0f, 1.0f, 1.0f,1.0f);
+//        glTexCoord2f(0.0f, 1.0f);
+//        glVertex2f(getXPos() - getWidth(), getYPos() - getHeight());    // x, y
+//        glTexCoord2f(0.0f, 0.0f);
+//        glVertex2f(getXPos() + getWidth(), getYPos() - getHeight());
+//        glTexCoord2f(1.0f, 0.0f);
+//        glVertex2f(getXPos() + getWidth(), getYPos() + getHeight());
+//        glTexCoord2f(1.0f, 1.0f);
+//        glVertex2f(getXPos() - getWidth(), getYPos() + getHeight());
+//    glEnd();
+//    
+//    glPopMatrix();
     
-    glBegin(GL_QUADS);              // Each set of 4 vertices form a quad
-        glColor4f(1.0f, 1.0f, 1.0f,1.0f);
-        glTexCoord2f(0.0f, 1.0f);
-        glVertex2f(getXPos() - getWidth(), getYPos() - getHeight());    // x, y
-        glTexCoord2f(0.0f, 0.0f);
-        glVertex2f(getXPos() + getWidth(), getYPos() - getHeight());
-        glTexCoord2f(1.0f, 0.0f);
-        glVertex2f(getXPos() + getWidth(), getYPos() + getHeight());
-        glTexCoord2f(1.0f, 1.0f);
-        glVertex2f(getXPos() - getWidth(), getYPos() + getHeight());
-    glEnd();
-    
-    glPopMatrix();
+    return mesh;
 }
 
 bool Base::getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidth, int dmg){

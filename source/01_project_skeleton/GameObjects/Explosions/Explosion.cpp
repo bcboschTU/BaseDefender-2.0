@@ -64,49 +64,50 @@ void Explosion::explosionSetup(){
 }
 
 
-void Explosion::draw(){
-    checkIfAlive();
-    
-    if(!destroyed){
-        for (int i = 0; i < amountOfExplosions; i++) {
-            //draw explosion;
-            glMatrixMode(GL_MODELVIEW);
-            glLoadIdentity();
-            glPushMatrix();
-            glTranslatef(xPos + offSetsX[i], yPos + offSetsY[i], 0);
-            
-            
-            glBegin(GL_POLYGON);
-            glColor4f(1.0f, 0.0f, 0.0f,0.2);
-            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
-                glVertex3f(cos(i) * width, sin(i) * height, 0.0);
-            }
-            glEnd();
-            
-            
-            glBegin(GL_POLYGON);
-            glColor4f(1.0f, 1.0f, 0.0f,0.2);
-            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
-                glVertex3f(cos(i) * (width/4)*3, sin(i) * (height/4)*3, 0.0);
-            }
-            glEnd();
-            
-            glBegin(GL_POLYGON);
-            glColor4f(0.0f, 1.0f, 1.0f,0.2);
-            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
-                glVertex3f(cos(i) * (width/8)*3, sin(i) * (height/8)*3, 0.0);
-            }
-            
-            glBegin(GL_POLYGON);
-            glColor4f(1.0f, 1.0f, 1.0f,0.2);
-            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
-                glVertex3f(cos(i) * (width/12)*3, sin(i) * (height/12)*3, 0.0);
-            }
-            
-            glEnd();
-            glPopMatrix();
-        }
-    }
+Mesh Explosion::draw(){
+//    checkIfAlive();
+//    
+//    if(!destroyed){
+//        for (int i = 0; i < amountOfExplosions; i++) {
+//            //draw explosion;
+//            glMatrixMode(GL_MODELVIEW);
+//            glLoadIdentity();
+//            glPushMatrix();
+//            glTranslatef(xPos + offSetsX[i], yPos + offSetsY[i], 0);
+//            
+//            
+//            glBegin(GL_POLYGON);
+//            glColor4f(1.0f, 0.0f, 0.0f,0.2);
+//            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
+//                glVertex3f(cos(i) * width, sin(i) * height, 0.0);
+//            }
+//            glEnd();
+//            
+//            
+//            glBegin(GL_POLYGON);
+//            glColor4f(1.0f, 1.0f, 0.0f,0.2);
+//            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
+//                glVertex3f(cos(i) * (width/4)*3, sin(i) * (height/4)*3, 0.0);
+//            }
+//            glEnd();
+//            
+//            glBegin(GL_POLYGON);
+//            glColor4f(0.0f, 1.0f, 1.0f,0.2);
+//            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
+//                glVertex3f(cos(i) * (width/8)*3, sin(i) * (height/8)*3, 0.0);
+//            }
+//            
+//            glBegin(GL_POLYGON);
+//            glColor4f(1.0f, 1.0f, 1.0f,0.2);
+//            for(double i = 0; i < 2 * PI; i += PI / 32){ //<-- Change this Value
+//                glVertex3f(cos(i) * (width/12)*3, sin(i) * (height/12)*3, 0.0);
+//            }
+//            
+//            glEnd();
+//            glPopMatrix();
+//        }
+//    }
+    return mesh;
 }
 
 void Explosion::updateExplosion(){

@@ -16,6 +16,7 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <cmath>
+#include "Mesh.h"
 
 #include "Bullet.h"
 
@@ -29,7 +30,7 @@ public:
                float _height,
                float _angle,
                int _level);
-    virtual void draw();
+    virtual Mesh draw();
     
     
     //getters and setters

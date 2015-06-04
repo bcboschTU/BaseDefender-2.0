@@ -132,3 +132,45 @@ void Camera::normalizeAngles() {
     else if(_verticalAngle < -MaxVerticalAngle)
         _verticalAngle = -MaxVerticalAngle;
 }
+
+
+// update the scene based on the time elapsed since last update
+void Camera::updateCamera(float secondsElapsed, GLFWwindow* window) {
+    //rotate the cube
+    const GLfloat degreesPerSecond = 180.0f;
+    gDegreesRotated += secondsElapsed * degreesPerSecond;
+    while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
+    
+    //move position of camera based on WASD keys, and XZ keys for up and down
+    const float moveSpeed = 2.0; //units per second
+    if(glfwGetKey(window, 'S')){
+        offsetPosition(secondsElapsed * moveSpeed * -forward());
+    } else if(glfwGetKey(window, 'W')){
+        offsetPosition(secondsElapsed * moveSpeed * forward());
+    }
+    if(glfwGetKey(window, 'A')){
+        offsetPosition(secondsElapsed * moveSpeed * -right());
+    } else if(glfwGetKey(window, 'D')){
+        offsetPosition(secondsElapsed * moveSpeed * right());
+    }
+    if(glfwGetKey(window, 'Z')){
+        offsetPosition(secondsElapsed * moveSpeed * -glm::vec3(0,1,0));
+    } else if(glfwGetKey(window, 'X')){
+        offsetPosition(secondsElapsed * moveSpeed * glm::vec3(0,1,0));
+    }
+    
+    //rotate camera based on mouse movement
+    const float mouseSensitivity = 0.1f;
+    double mouseX, mouseY;
+    glfwGetCursorPos(window, &mouseX, &mouseY);
+    offsetOrientation(mouseSensitivity * (float)mouseY, mouseSensitivity * (float)mouseX);
+    glfwSetCursorPos(window, 0, 0); //reset the mouse, so it doesn't go out of the window
+    
+    //increase or decrease field of view based on mouse wheel
+    const float zoomSensitivity = -0.2f;
+    float fieldOfView = fieldOfView + zoomSensitivity * (float)gScrollY;
+    if(fieldOfView < 5.0f) fieldOfView = 5.0f;
+    if(fieldOfView > 130.0f) fieldOfView = 130.0f;
+    setFieldOfView(fieldOfView);
+    gScrollY = 0;
+}

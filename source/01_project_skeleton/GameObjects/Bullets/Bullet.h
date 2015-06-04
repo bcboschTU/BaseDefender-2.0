@@ -14,6 +14,7 @@
 #include <GLFW/glfw3.h>
 #include <math.h>
 #include <iostream>
+#include "Mesh.h"
 
 enum WeaponType{
     NORMAL = 1,
@@ -27,7 +28,7 @@ class Bullet{
 public:
     Bullet(float _xPos, float _yPos, float _angle, WeaponType _bulletType, std::string _owner);
     void bulletSetup();
-    void draw();
+    Mesh draw();
     void updateBullet();
     
     void explodeBullet();
@@ -61,6 +62,7 @@ private:
     //explosive:
     bool exploding;
     double explodingTime;
+    Mesh mesh;
 };
 
 #endif /* defined(__BaseDefender__Bullet__) */

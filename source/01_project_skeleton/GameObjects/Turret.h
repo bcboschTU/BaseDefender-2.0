@@ -25,7 +25,7 @@ public:
            float _rangeBegin,
            float _rangeEnd,
            WeaponType _weaponType);
-    void draw();
+    Mesh draw();
     void updateTurret();
     void shoot(float dirXPos, float dirYPos);
     void levelUpWeapon();
@@ -47,6 +47,7 @@ private:
     float rangeBegin;
     float rangeEnd;
     float lastTime;
+    Mesh mesh;
 };
 
 

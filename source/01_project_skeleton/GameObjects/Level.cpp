@@ -64,62 +64,73 @@ void Level::loadLevel(){
     loadModels();
 }
 
-void Level::drawLevel(){
+void Level::drawLevel(Camera *camera, LightingTechnique *lightingEffect){
     if(!pause){
         //update all the vector array elements first
         updateLevel();
     }
-    
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, texture3);
     background.drawBackGround();
     
-    
-    
-    glBindTexture(GL_TEXTURE_2D, texture2);
     for (int i = 0; i<turrets.size(); i++) {
         Turret * turret = &turrets[i];
         turret->draw();
     }
-    
-    glBindTexture(GL_TEXTURE_2D, texture1);
     for (int i = 0; i<bases.size(); i++) {
         Base * base = &bases[i];
         base->draw();
-        //base->drawObj(shapes, materials);
     }
     
     //draw all the elements of all the vector arrays
-    glBindTexture(GL_TEXTURE_2D, texture4);
-
-    glEnable(GL_DEPTH_TEST);
-    glEnable(GL_LIGHTING);
     for (int i = 0; i<players.size(); i++) {
+        playerMesh.enableRender();
         Player * player = &players[i];
-        player->draw();
-        //player->drawObj(shapes, materials,normals);
+        Model = player->draw().getModelMatrix();
+        drawMesh(playerMesh, camera, lightingEffect, Model);
     }
     
-    glBindTexture(GL_TEXTURE_2D, texture4);
     for (int i = 0; i<enemies.size(); i++) {
+        enemyMesh.enableRender();
         Enemie * enemie = &enemies[i];
-        enemie->draw();
-        //enemie->drawObj(shapes, materials,normals);
+        
+        Model = enemie->draw().getModelMatrix();
+        drawMesh(enemyMesh, camera, lightingEffect, Model);
     }
-    glDisable(GL_LIGHTING);
-    glDisable(GL_DEPTH_TEST);
-    glDisable(GL_TEXTURE_2D);
     
     for (int i = 0; i<bullets.size(); i++) {
+        bulletMesh.enableRender();
         Bullet *bullet = bullets[i];
-        bullet->draw();
+        
+        Model = bullet->draw().getModelMatrix();
+        drawMesh(bulletMesh, camera, lightingEffect, Model);
     }
     
     for (int i = 0; i<explosions.size(); i++) {
+        explosionMesh.enableRender();
         Explosion *explosion = &explosions[i];
-        explosion->draw();
+        
+        Model = explosion->draw().getModelMatrix();
+        drawMesh(explosionMesh, camera, lightingEffect, Model);
     }
     
+    // Clear the screen
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    
+    glClearColor(0.2f, 0.2f, 0.4f, 0.0f);
+}
+
+void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffect, glm::mat4 _Model) {
+    Projection = camera->projection();
+    View = camera->view();
+    MVP = Projection * View * _Model;
+    lightingEffect->SetMatrix(MVP);
+    
+    lightingEffect->SetViewMatrix(View);
+    
+    lightingEffect->SetModeldMatrix(_Model);
+    
+    Rederer(&mesh);
+    
+    mesh.disableRender();
 }
 
 void Level::drawHud(){
@@ -415,13 +426,18 @@ void Level::resetLevel(){
     turrets.clear();
     enemies.clear();
     explosions.clear();
-    glDeleteTextures(1, &texture1);
-    glDeleteTextures(1, &texture2);
-    glDeleteTextures(1, &texture3);
-    glDeleteTextures(1, &texture4);
-    glDeleteTextures(1, &texture5);
+//    cleanUp();
     loadLevel();
 }
+
+//void cleanUp(){
+////    glDeleteProgram(programID);
+//    glDeleteVertexArrays(1, &VertexArrayID);
+//    
+//    glDeleteTextures(1, &DiffuseTexture);
+//    //glDeleteTextures(1, &NormalTexture);
+//    //glDeleteTextures(1, &SpecularTexture);
+//}
 
 void Level::loadTextures(){
 //    texture1 = loadPng("base.png");
@@ -481,12 +497,21 @@ void Level::roundStart(int _round){
 
 
 void Level::loadModels(){
-    //std::string inputfile = "t-54.obj";
-    //std::string inputfile = "hydra flak.obj";
-    //std::string inputfile = "lancer tank.obj";
-    //std::string inputfile = "T-90N.obj";
-    //std::string inputfile = "Su-34_Fullback.obj";
-    std::string inputfile = "B-2_Spirit.obj";
+    std::string str = "B-2_Spirit.obj";
+    std::string str2 = "sphere.obj";
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
+    
+    playerMesh = Mesh();
+    
+    const char * model = str.c_str();
+    playerMesh.loadModel(model);
+    playerMesh.bindBuffers();
+    
+    playerMesh.scale(glm::vec3(0.3f, 0.3f, 0.3f));
+    playerMesh.translate(glm::vec3(0,-1,-1));
+    float rot = 270 * (M_PI/180);
+    playerMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
 }
 
 void Level::CrossProduct(float *a, float *b, float *normal)

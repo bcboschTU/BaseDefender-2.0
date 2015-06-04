@@ -18,6 +18,8 @@
 
 #pragma once
 
+#include <GLFW/glfw3.h>
+#include <OpenGL/gl3.h>
 #include "glm/glm.hpp"
 
 
@@ -144,6 +146,8 @@ public:
     
     glm::vec3 getTarget() const;
     
+    void updateCamera(float secondsElapsed, GLFWwindow* window);
+    
 private:
     glm::vec3 _position;
     float _horizontalAngle;
@@ -152,6 +156,9 @@ private:
     float _nearPlane;
     float _farPlane;
     float _viewportAspectRatio;
+    
+    double gScrollY = 0.0;
+    GLfloat gDegreesRotated = 0.0f;
     
     void normalizeAngles();
 };

@@ -22,6 +22,8 @@
 #include "Mesh.h"
 #include "Renderer.h"
 #include "LightingTechnique.h"
+#include "Level.h"
+#include "GameState.h"
 
 
 const glm::vec2 SCREEN_SIZE(1024, 768);
@@ -40,7 +42,6 @@ GLuint ModelMatrixID;
 GLFWwindow* window;
 
 //buffers
-GLuint VertexArrayID;
 
 float rotate = 0;
 
@@ -56,37 +57,15 @@ GLuint LightID1;
 glm::vec3 lightPos1;
 
 Camera camera;
-double gScrollY = 0.0;
-GLfloat gDegreesRotated = 0.0f;
 
+GameState gamestate;
+Level level;
+int width = 1100;
+int height = 700;
 
 Mesh mesh;
 
-void cleanUp(){
-    glDeleteProgram(programID);
-    glDeleteVertexArrays(1, &VertexArrayID);
-    
-    glDeleteTextures(1, &DiffuseTexture);
-    //glDeleteTextures(1, &NormalTexture);
-    //glDeleteTextures(1, &SpecularTexture);
-}
-
 void setupMesh(){
-    std::string str = "B-2_Spirit.obj";
-    std::string str2 = "sphere.obj";
-    glGenVertexArrays(1, &VertexArrayID);
-    glBindVertexArray(VertexArrayID);
-    
-    mesh =  Mesh();
-    
-    const char * model = str.c_str();
-    mesh.loadModel(model);
-    mesh.bindBuffers();
-    
-    mesh.scale(glm::vec3(0.3f, 0.3f, 0.3f));
-    mesh.translate(glm::vec3(0,-1,-1));
-    float rot = 270 * (M_PI/180);
-    mesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
 }
 
 
@@ -101,6 +80,9 @@ void loadTextures(){
 }
 
 void initApp(){
+    level = Level(0, width, height);
+    gamestate.setGameState(1);
+    
     lightingEffect = NULL;
     
     lightingEffect = new LightingTechnique();
@@ -120,7 +102,6 @@ void initApp(){
     
     lightingEffect->SetTextureUnit(0);
     
-    return true;
     
     // Create and compile our GLSL program from the shaders
     //programID = LoadShaders( "lighting.vs", "lighting.fs" );
@@ -129,14 +110,7 @@ void initApp(){
     //MatrixID = glGetUniformLocation(programID, "MVP");
     //ViewMatrixID = glGetUniformLocation(programID, "V");
     //ModelMatrixID = glGetUniformLocation(programID, "M");
-}
-
-
-void drawLevel(){
-    // Clear the screen
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
-    glClearColor(0.2f, 0.2f, 0.4f, 0.0f);
     
     lightingEffect->Enable();
     
@@ -164,79 +138,21 @@ void drawLevel(){
     lightingEffect->SetMatSpecularIntensity(2.0f);
     lightingEffect->SetMatSpecularPower(128);
     
-    
-    mesh.enableRender();
-    
-    // MESH
-    Model = mesh.getModelMatrix();
-    Projection = camera.projection();
-    View = camera.view();
-    MVP = Projection * View * Model;
-    /*
-    glUniformMatrix4fv(MatrixID, 1, GL_FALSE, &MVP[0][0]);
-    glUniformMatrix4fv(ModelMatrixID, 1, GL_FALSE, &Model[0][0]);
-    glUniformMatrix4fv(ViewMatrixID, 1, GL_FALSE, &View[0][0]);
-    */
-    
-    lightingEffect->SetMatrix(MVP);
-    
-    lightingEffect->SetViewMatrix(View);
-    
-    lightingEffect->SetModeldMatrix(Model);
-    
-    
-    Rederer(&mesh);
-    
-    mesh.disableRender();
-    
+    return true;
+}
+
+
+void drawScene(){
+    level.drawLevel(&camera, lightingEffect);
     glfwSwapBuffers(window);
     glfwPollEvents();
+//    drawHud();
 }
 
 
 // update the scene based on the time elapsed since last update
 void updateCamera(float secondsElapsed) {
-    //rotate the cube
-    const GLfloat degreesPerSecond = 180.0f;
-    gDegreesRotated += secondsElapsed * degreesPerSecond;
-    while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
-    
-    //move position of camera based on WASD keys, and XZ keys for up and down
-    const float moveSpeed = 2.0; //units per second
-    if(glfwGetKey(window, 'S')){
-        camera.offsetPosition(secondsElapsed * moveSpeed * -camera.forward());
-    } else if(glfwGetKey(window, 'W')){
-        camera.offsetPosition(secondsElapsed * moveSpeed * camera.forward());
-    }
-    if(glfwGetKey(window, 'A')){
-        camera.offsetPosition(secondsElapsed * moveSpeed * -camera.right());
-    } else if(glfwGetKey(window, 'D')){
-        camera.offsetPosition(secondsElapsed * moveSpeed * camera.right());
-    }
-    if(glfwGetKey(window, 'Z')){
-        camera.offsetPosition(secondsElapsed * moveSpeed * -glm::vec3(0,1,0));
-    } else if(glfwGetKey(window, 'X')){
-        camera.offsetPosition(secondsElapsed * moveSpeed * glm::vec3(0,1,0));
-    }
-    
-    //rotate camera based on mouse movement
-    const float mouseSensitivity = 0.1f;
-    double mouseX, mouseY;
-    glfwGetCursorPos(window, &mouseX, &mouseY);
-    camera.offsetOrientation(mouseSensitivity * (float)mouseY, mouseSensitivity * (float)mouseX);
-    glfwSetCursorPos(window, 0, 0); //reset the mouse, so it doesn't go out of the window
-    
-    //increase or decrease field of view based on mouse wheel
-    const float zoomSensitivity = -0.2f;
-    float fieldOfView = camera.fieldOfView() + zoomSensitivity * (float)gScrollY;
-    if(fieldOfView < 5.0f) fieldOfView = 5.0f;
-    if(fieldOfView > 130.0f) fieldOfView = 130.0f;
-    camera.setFieldOfView(fieldOfView);
-    gScrollY = 0;
-}
-
-void OnScroll(GLFWwindow* window, double deltaX, double deltaY) {
-    gScrollY += deltaY;
+    camera.updateCamera(secondsElapsed, window);
 }
 
 void AppMain() {
@@ -246,6 +162,8 @@ void AppMain() {
     // Ensure we can capture the escape key being pressed below
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
     setupMesh();
+    
+    camera = Camera();
     
     initApp();
     
@@ -259,14 +177,11 @@ void AppMain() {
         updateCamera((float)(thisTime - lastTime));
         lastTime = thisTime;
         
-        drawLevel();
+        drawScene();
         drawFps(window);
     } // Check if the ESC key was pressed or the window was closed
     while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
           glfwWindowShouldClose(window) == 0 );
-    
-    // Cleanup VBO and shader
-    cleanUp();
     
     // Close OpenGL window and terminate GLFW
     glfwTerminate();

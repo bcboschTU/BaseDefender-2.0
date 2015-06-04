@@ -11,6 +11,7 @@
 #define PI 3.1415926535897932384626433832795
 
 #include <stdio.h>
+#include "Mesh.h"
 #include <GLFW/glfw3.h>
 #include <math.h>
 #include <iostream>
@@ -26,7 +27,7 @@ class Explosion{
 public:
     Explosion(float _xPos, float _yPos, ExplosionType type);
     void explosionSetup();
-    void draw();
+    Mesh draw();
     void updateExplosion();
     void checkIfAlive();
     bool getDestroyed();
@@ -50,6 +51,8 @@ private:
     float lifeStart;
     float lifetime;
     bool destroyed;
+    
+    Mesh mesh;
     
 };
 

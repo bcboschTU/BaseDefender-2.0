@@ -10,6 +10,7 @@
 #define __BaseDefender__Enemie__
 
 #include <stdio.h>
+#include "Mesh.h"
 #include "Player.h"
 #include "Base.h"
 
@@ -23,7 +24,7 @@ public:
            float _height,
            float _angle,
            int _level);
-    void draw();
+    Mesh draw();
     void updateEnemie();
     int gotHit(std::vector<Bullet*> bullets);
     void calculateNewPos();
@@ -78,6 +79,8 @@ private:
     float maxSpeed;
     float acceleration;
     float deceleration;
+    
+    Mesh mesh;
     
 };
 

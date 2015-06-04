@@ -27,7 +27,7 @@ GameObject::GameObject(std::string _name,
     level = _level;
 }
 
-void GameObject::draw(){
+Mesh GameObject::draw(){
     std::cout << "draw, not overwritten\n";
 }
 

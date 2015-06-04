@@ -22,12 +22,13 @@ public:
           float _height,
           float _angle,
           int _level);
-    void draw();
+    Mesh draw();
     float getXPos();
     float getYPos();
     int getHp();
     bool getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidth, int dmg);
 private:
+    Mesh mesh;
     
 };
 
