@@ -41,20 +41,28 @@ void Level::loadLevel(){
     initLightingEffect();
     
     
-    Player player1 = Player("Player1", 200, 3, 1, 40, 40, 0, 1);
+    Player player1 = Player("Player1", 200, 3, 1, 0.4, 0.4, 0, 1);
     
-    Mesh tempMesh;
-    tempMesh.scale(glm::vec3(0.1f, 0.1f, 0.1f));
-    tempMesh.translate(glm::vec3(40,40,-200));
+    //player init
+    Mesh playertempMesh;
+    playertempMesh.translate(glm::vec3(30 , 10,-200));
+    playertempMesh.scale(glm::vec3(0.3f, 0.3f, 0.3f));
     float rot = 0 * (M_PI/180);
-    tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    player1.setMesh(tempMesh);
-    
+    playertempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    player1.setMesh(playertempMesh);
     players.push_back(player1);
     
     
+    //base1 init
     Base base1 = Base("Base1", 500, 0, 0, 0.8, 0.8, 0, 1);
+    Mesh base1tempMesh;
+    base1tempMesh.translate(glm::vec3(0,0,-200));
+    base1tempMesh.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+    rot = 0 * (M_PI/180);
+    base1tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    base1.setMesh(base1tempMesh);
     bases.push_back(base1);
+    
     
     Turret turret11 = Turret("Turret1Base1", 100, 0.7, 0.7, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
     turret11.levelUpWeapon();
@@ -81,7 +89,7 @@ void Level::updateCamera(float secondsElapsed, GLFWwindow* window) {
     while(gDegreesRotated > 360.0f) gDegreesRotated -= 360.0f;
     
     //move position of camera based on WASD keys, and XZ keys for up and down
-    const float moveSpeed = 2.0; //units per second
+    const float moveSpeed = 20.0; //units per second
     if(glfwGetKey(window, 'S')){
         camera.offsetPosition(secondsElapsed * moveSpeed * -camera.forward());
     } else if(glfwGetKey(window, 'W')){
@@ -135,15 +143,29 @@ void Level::drawLevel(){
     
     updateLighting();
     
+    //turrets rendering
+    playerMesh.enableRender();
+    for (int i = 0; i<turrets.size(); i++) {
+        Turret * turret = &turrets[i];
+    }
+    playerMesh.disableRender();
+    baseMesh.enableRender();
+    for (int i = 0; i< bases.size(); i++) {
+        Base * base = &bases[i];
+        Mesh tempMesh = base->getMesh();
+        drawMesh(baseMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+    }
+    baseMesh.disableRender();
+    
     //player rendering
     playerMesh.enableRender();
+    //playerMesh.bindBuffers();
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
         Mesh tempMesh = player->getMesh();
-        //Model = tempMesh.getModelMatrix();
         drawMesh(playerMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
     }
-    
+    playerMesh.disableRender();
     
 }
 
@@ -166,12 +188,17 @@ void Level::setupMeshes(){
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
+    //playermesh
     playerMesh =  Mesh();
-    
     const char * model = str.c_str();
     playerMesh.loadModel(model);
     playerMesh.bindBuffers();
     
+    
+    baseMesh =  Mesh();
+    model = str2.c_str();
+    baseMesh.loadModel(model);
+    baseMesh.bindBuffers();
     
     //TODO other models:
 }
