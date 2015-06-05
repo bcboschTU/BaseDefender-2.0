@@ -57,7 +57,7 @@ void Level::loadLevel(){
     Base base1 = Base("Base1", 500, 0, 0, 0.8, 0.8, 0, 1);
     Mesh base1tempMesh;
     base1tempMesh.translate(glm::vec3(0,0,-200));
-    base1tempMesh.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+    base1tempMesh.scale(glm::vec3(10.0f, 10.0f, 10.0f));
     rot = 0 * (M_PI/180);
     base1tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     base1.setMesh(base1tempMesh);
@@ -66,16 +66,40 @@ void Level::loadLevel(){
     
     Turret turret11 = Turret("Turret1Base1", 100, 0.7, 0.7, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
     turret11.levelUpWeapon();
+    Mesh turret11tempMesh;
+    turret11tempMesh.translate(glm::vec3(10,10,-200));
+    turret11tempMesh.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+    rot = 0 * (M_PI/180);
+    turret11tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    turret11.setMesh(turret11tempMesh);
     turrets.push_back(turret11);
     
     Turret turret12 = Turret("Turret2Base1", 100, -0.7, -0.7, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
+    Mesh turret12tempMesh;
+    turret12tempMesh.translate(glm::vec3(-10,-10,-200));
+    turret12tempMesh.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+    rot = 0 * (M_PI/180);
+    turret12tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    turret12.setMesh(turret12tempMesh);
     turrets.push_back(turret12);
     
     
     Turret turret13 = Turret("Turret3Base1", 100, -0.7, 0.7, 0.15, 0.15, 135, 1, 100, 170, NORMAL);
+    Mesh turret13tempMesh;
+    turret13tempMesh.translate(glm::vec3(-10,10,-200));
+    turret13tempMesh.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+    rot = 0 * (M_PI/180);
+    turret13tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    turret13.setMesh(turret13tempMesh);
     turrets.push_back(turret13);
     
     Turret turret14 = Turret("Turret4Base1", 100, 0.7, -0.7, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
+    Mesh turret14tempMesh;
+    turret14tempMesh.translate(glm::vec3(10,-10,-200));
+    turret14tempMesh.scale(glm::vec3(5.0f, 5.0f, 5.0f));
+    rot = 0 * (M_PI/180);
+    turret14tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    turret14.setMesh(turret14tempMesh);
     turrets.push_back(turret14);
     
 }
@@ -144,11 +168,15 @@ void Level::drawLevel(){
     updateLighting();
     
     //turrets rendering
-    playerMesh.enableRender();
+    turretMesh.enableRender();
     for (int i = 0; i<turrets.size(); i++) {
         Turret * turret = &turrets[i];
+        Mesh tempMesh = turret->getMesh();
+        drawMesh(turretMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
     }
-    playerMesh.disableRender();
+    turretMesh.disableRender();
+    
+    //renderBase
     baseMesh.enableRender();
     for (int i = 0; i< bases.size(); i++) {
         Base * base = &bases[i];
@@ -157,9 +185,9 @@ void Level::drawLevel(){
     }
     baseMesh.disableRender();
     
+    
     //player rendering
     playerMesh.enableRender();
-    //playerMesh.bindBuffers();
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
         Mesh tempMesh = player->getMesh();
@@ -167,6 +195,32 @@ void Level::drawLevel(){
     }
     playerMesh.disableRender();
     
+    
+    enemyMesh.enableRender();
+    for (int i = 0; i<enemies.size(); i++) {
+        Enemie * enemie = &enemies[i];
+        Mesh tempMesh = enemie->getMesh();
+        drawMesh(enemyMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+    }
+    enemyMesh.disableRender();
+    
+    
+    bulletMesh.enableRender();
+    for (int i = 0; i<bullets.size(); i++) {
+        Bullet *bullet = bullets[i];
+        Mesh tempMesh = bullet->getMesh();
+        drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+    }
+    bulletMesh.disableRender();
+    
+    
+    explosionMesh.enableRender();
+    for (int i = 0; i<explosions.size(); i++) {
+        Explosion *explosion = &explosions[i];
+        Mesh tempMesh = explosion->getMesh();
+        drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+    }
+    explosionMesh.disableRender();
 }
 
 void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffect, glm::mat4 _Model) {
@@ -183,24 +237,46 @@ void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffec
 }
 
 void Level::setupMeshes(){
-    std::string str = "B-2_Spirit.obj";
-    std::string str2 = "sphere.obj";
+    std::string playerStr = "B-2_Spirit.obj";
+    std::string baseStr = "sphere.obj";
+    std::string turretstr = "sphere.obj";
+    std::string enemystr = "sphere.obj";
+    std::string bulletstr = "sphere.obj";
+    std::string explosionstr = "sphere.obj";
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
     //playermesh
     playerMesh =  Mesh();
-    const char * model = str.c_str();
+    const char * model = playerStr.c_str();
     playerMesh.loadModel(model);
     playerMesh.bindBuffers();
     
     
     baseMesh =  Mesh();
-    model = str2.c_str();
+    model = baseStr.c_str();
     baseMesh.loadModel(model);
     baseMesh.bindBuffers();
     
-    //TODO other models:
+    turretMesh =  Mesh();
+    model = turretstr.c_str();
+    turretMesh.loadModel(model);
+    turretMesh.bindBuffers();
+    
+    enemyMesh =  Mesh();
+    model = enemystr.c_str();
+    enemyMesh.loadModel(model);
+    enemyMesh.bindBuffers();
+    
+    bulletMesh =  Mesh();
+    model = bulletstr.c_str();
+    bulletMesh.loadModel(model);
+    bulletMesh.bindBuffers();
+    
+    explosionMesh =  Mesh();
+    model = explosionstr.c_str();
+    explosionMesh.loadModel(model);
+    explosionMesh.bindBuffers();
 }
 
 void Level::cleanup(){
