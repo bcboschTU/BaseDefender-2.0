@@ -29,7 +29,8 @@
 *.app
 
 # XCode crap
-
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
 build/
 
 # Mac OS X
