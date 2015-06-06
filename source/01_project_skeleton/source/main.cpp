@@ -44,6 +44,7 @@ glm::vec3 lightPos4;
 
 Level level;
 
+int cameraMode = 2;
 
 void initApp(){
     
@@ -74,7 +75,18 @@ void AppMain() {
     double lastTime = glfwGetTime();
     do{
         double thisTime = glfwGetTime();
-        level.updateCamera((float)(thisTime - lastTime), window);
+        
+        
+        
+        
+        if(cameraMode == 1){
+            //camera.computeInputs(window, &level, &gamestate);             //TODO:input for game
+            //camera.computeInputsMouse(window, &level, &gamestate);        //TODO:input for game
+        }
+        else{
+            level.updateCamera((float)(thisTime - lastTime), window);
+        }
+        
         lastTime = thisTime;
         
         drawLevel();

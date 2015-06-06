@@ -67,8 +67,12 @@ void Player::updatePlayer(){
     nextXpos = getXPos() + movementXdir * (movementSpeed);
     nextYpos = getYPos() + movementYdir * (movementSpeed);
     
+    updateModelMatrix(getXPos() - nextXpos,getYPos() - nextYpos);
+    
     setXPos(nextXpos);
     setYPos(nextYpos);
+    
+    
 }
 
 void Player::shootPrimary(float dirXPos, float dirYPos){
@@ -167,4 +171,9 @@ bool Player::getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidt
         return true;
     }
     return false;
+}
+
+void Player::updateModelMatrix(float _nextXpos, float _nextYpos){
+    glm::vec3 temp = glm::vec3(_nextXpos,_nextYpos, 0);
+    mesh.translate(temp);
 }

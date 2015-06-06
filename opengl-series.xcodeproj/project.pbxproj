@@ -17,6 +17,8 @@
 		D3120AAA1B21E93E009247B3 /* Turret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120AA81B21E93E009247B3 /* Turret.cpp */; };
 		D3120AAD1B21E98A009247B3 /* Enemie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120AAB1B21E98A009247B3 /* Enemie.cpp */; };
 		D3120AB11B21ED45009247B3 /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120AAF1B21ED45009247B3 /* Explosion.cpp */; };
+		D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */ = {isa = PBXBuildFile; fileRef = D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */; };
+		D33BC13D1B22ECBC003683B6 /* Su-34_Fullback_P01.png in Resources */ = {isa = PBXBuildFile; fileRef = D33BC13C1B22ECBC003683B6 /* Su-34_Fullback_P01.png */; };
 		D399F4531AC013D900FE2DE9 /* city.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D399F4521AC013D900FE2DE9 /* city.bmp */; };
 		D399F4661AC0260100FE2DE9 /* lighting.fs in Resources */ = {isa = PBXBuildFile; fileRef = D399F4641AC0260100FE2DE9 /* lighting.fs */; };
 		D399F4671AC0260100FE2DE9 /* lighting.vs in Resources */ = {isa = PBXBuildFile; fileRef = D399F4651AC0260100FE2DE9 /* lighting.vs */; };
@@ -67,6 +69,8 @@
 		D3120AAC1B21E98A009247B3 /* Enemie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemie.h; path = GameObjects/Enemie.h; sourceTree = "<group>"; };
 		D3120AAF1B21ED45009247B3 /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosion.cpp; path = GameObjects/Explosions/Explosion.cpp; sourceTree = "<group>"; };
 		D3120AB01B21ED45009247B3 /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = GameObjects/Explosions/Explosion.h; sourceTree = "<group>"; };
+		D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Su-34_Fullback.obj"; sourceTree = "<group>"; };
+		D33BC13C1B22ECBC003683B6 /* Su-34_Fullback_P01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Su-34_Fullback_P01.png"; sourceTree = "<group>"; };
 		D399F4521AC013D900FE2DE9 /* city.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = city.bmp; sourceTree = "<group>"; };
 		D399F4641AC0260100FE2DE9 /* lighting.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting.fs; sourceTree = "<group>"; };
 		D399F4651AC0260100FE2DE9 /* lighting.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting.vs; sourceTree = "<group>"; };
@@ -203,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				D399F4831AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp */,
+				D33BC13C1B22ECBC003683B6 /* Su-34_Fullback_P01.png */,
 				D399F4521AC013D900FE2DE9 /* city.bmp */,
 				D399F4A91AC2BAE500FE2DE9 /* metal.bmp */,
 			);
@@ -214,6 +219,7 @@
 			children = (
 				D399F4A71AC2B79C00FE2DE9 /* sphere.obj */,
 				D399F4811AC1AA3700FE2DE9 /* B-2_Spirit.obj */,
+				D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -397,11 +403,13 @@
 			files = (
 				D399F4AA1AC2BAE500FE2DE9 /* metal.bmp in Resources */,
 				D399F4671AC0260100FE2DE9 /* lighting.vs in Resources */,
+				D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */,
 				D399F4661AC0260100FE2DE9 /* lighting.fs in Resources */,
 				D399F4A81AC2B79C00FE2DE9 /* sphere.obj in Resources */,
 				D399F4821AC1AA3700FE2DE9 /* B-2_Spirit.obj in Resources */,
 				D399F4531AC013D900FE2DE9 /* city.bmp in Resources */,
 				D31081351AB766E50079E6AC /* shader.fs in Resources */,
+				D33BC13D1B22ECBC003683B6 /* Su-34_Fullback_P01.png in Resources */,
 				D31081361AB766E50079E6AC /* shader.vs in Resources */,
 				D399F4841AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp in Resources */,
 			);
