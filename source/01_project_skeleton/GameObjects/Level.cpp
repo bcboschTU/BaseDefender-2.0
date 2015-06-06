@@ -6,7 +6,7 @@
 //
 //
 
-
+#include <fstream>
 
 #include "Level.h"
 
@@ -22,6 +22,17 @@ Level::Level(int _type, int _width, int _height){
     lastTimeLevel = glfwGetTime();
     lastTimePause = glfwGetTime();
     
+    width = _width;
+    height =_height;
+}
+
+Level::Level(int _type, int _width, int _height, const char *filename){
+    type = _type;
+    loadLevelFromFile(filename);
+    loadLevel(); // TODO: remove when finished
+    pause = false;
+    lastTimeLevel = glfwGetTime();
+    lastTimePause = glfwGetTime();
     
     width = _width;
     height =_height;
@@ -108,6 +119,34 @@ void Level::loadLevel(){
     turret14.setMesh(turret14tempMesh);
     turrets.push_back(turret14);
       */
+}
+
+
+void Level::loadLevelFromFile(const char *filename) {
+    printf("Loading Level file %s...\n", filename);
+    
+    std::ifstream file(filename);
+    std::string word;
+    
+    while(file >> word) {
+        if(word.compare("player") == 0){
+            std:string _name;
+            int _hp, _level;
+            float _xPos, _yPos, _width, _height, _angle;
+            file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
+            
+            printf("name   = %s\n", _name.c_str());
+            printf("hp     = %i\n", _hp);
+            printf("xPos   = %f\n", _xPos);
+            printf("yPos   = %f\n", _yPos);
+            printf("width  = %f\n", _width);
+            printf("height = %f\n", _height);
+            printf("angle  = %f\n", _angle);
+            printf("level  = %i\n", _level);
+        }
+    }
+    
+    printf("Loading done.\n");
 }
 
 
