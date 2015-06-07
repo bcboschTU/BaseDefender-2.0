@@ -54,6 +54,9 @@ public:
     void setTargetPlayer(Player *_target);
     void setTargetBase(Base *_target);
     float calculateDistance(float x1, float x2, float y1, float y2);
+    
+    //update model Matrix
+    void updateModelMatrix(float _xpos, float _ypos, float _rot);
 private:
     std::string name;
     int hp;

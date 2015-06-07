@@ -43,6 +43,9 @@ public:
     float getWidth();
     int getDmg();
     WeaponType getType();
+    
+    //update model Matrix
+    void updateModelMatrix(float _xpos, float _ypos, float _rot);
 private:
     float xPos;
     float yPos;

@@ -221,15 +221,14 @@ void Level::drawLevel(){
     enemyMesh.disableRender();
     */
     
-    /*
+    
     bulletMesh.enableRender();
     for (int i = 0; i<bullets.size(); i++) {
         Bullet *bullet = bullets[i];
         Mesh tempMesh = bullet->getMesh();
         drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
     }
-    bulletMesh.disableRender();
-    */
+    bulletMesh.disableRender();    
     
     /*
     explosionMesh.enableRender();
@@ -563,7 +562,7 @@ Player* Level::getPlayer(int i){
 float Level::rand_FloatRange(float a, float b, bool between){
     float randomValue = ((b-a)*((float)rand()/RAND_MAX))+a;
     if (between) {
-        if(randomValue > 10 || randomValue < -10){
+        if(randomValue > 100 || randomValue < -100){
             return randomValue;
         }
         else{
@@ -581,8 +580,8 @@ void Level::generateEnemies(){
         float deltaTime = float(currentTime - lastTimeLevel);
         if(deltaTime > enemySpawnRate && enemyAmount > 0){
             for(int i = 0; i< enemySpawnLoop; i++){
-                float xPos = rand_FloatRange(-14,14, true);
-                float yPos = rand_FloatRange(-14,14, false);
+                float xPos = rand_FloatRange(-140,140, true);
+                float yPos = rand_FloatRange(-140,140, false);
                 Enemie enemie = Enemie("enemie", 50, xPos, yPos, 0.2, 0.2, 0, 1);
                 enemie.setTargetPlayer(&players[0]);
                 //enemie.setTargetBase(&bases[0]);

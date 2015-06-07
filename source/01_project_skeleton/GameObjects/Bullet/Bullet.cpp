@@ -29,7 +29,7 @@ void Bullet::bulletSetup(){
         case NORMAL:
             width = 0.1;
             height = 0.1;
-            speed = 0.2;
+            speed = 8;
             dmg = 10;
             break;
         case EXPLOSIVE:
@@ -95,6 +95,7 @@ void Bullet::updateBullet(){
         
         xPos = xPosNew + xdif*speed;
         yPos = yPosNew + ydif*speed;
+        updateModelMatrix(xPos, yPos, 0);
     }
 }
 
@@ -160,4 +161,14 @@ void Bullet::setDestroyed(bool _destroyed){
     else{
         destroyed = _destroyed;
     }
+}
+
+void Bullet::updateModelMatrix(float _xpos, float _ypos, float _rot){
+    Mesh meshTemp;
+    glm::vec3 temp = glm::vec3(_xpos,_ypos, -200);
+    meshTemp.translate(temp);
+    _rot = _rot /180 *PI;
+    meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    mesh = meshTemp;
+    
 }
