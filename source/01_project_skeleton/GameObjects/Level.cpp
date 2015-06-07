@@ -126,15 +126,18 @@ void Level::loadLevelFromFile(const char *filename) {
     printf("Loading Level file %s...\n", filename);
     
     std::ifstream file(filename);
-    std::string word;
+    std::string word, _name;
+    
+    int _hp, _level;
+    float _xPos, _yPos, _width, _height, _angle;
     
     while(file >> word) {
         if(word.compare("player") == 0){
             std:string _name;
-            int _hp, _level;
-            float _xPos, _yPos, _width, _height, _angle;
+            
             file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
             
+            printf("======== Player ========\n");
             printf("name   = %s\n", _name.c_str());
             printf("hp     = %i\n", _hp);
             printf("xPos   = %f\n", _xPos);
@@ -143,6 +146,21 @@ void Level::loadLevelFromFile(const char *filename) {
             printf("height = %f\n", _height);
             printf("angle  = %f\n", _angle);
             printf("level  = %i\n", _level);
+            printf("========================\n");
+
+        } else if(word.compare("base") == 0) {
+            file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
+            
+            printf("========= Base =========\n");
+            printf("name   = %s\n", _name.c_str());
+            printf("hp     = %i\n", _hp);
+            printf("xPos   = %f\n", _xPos);
+            printf("yPos   = %f\n", _yPos);
+            printf("width  = %f\n", _width);
+            printf("height = %f\n", _height);
+            printf("angle  = %f\n", _angle);
+            printf("level  = %i\n", _level);
+            printf("=======================\n");
         }
     }
     
