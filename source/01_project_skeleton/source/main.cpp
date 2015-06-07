@@ -22,9 +22,8 @@
 #include "Renderer.h"
 #include "LightingTechnique.h"
 #include "Level.h"
-
-
-
+#include "GameControlles.h"
+#include "GameState.h"
 
 
 const glm::vec2 SCREEN_SIZE(1024, 768);
@@ -43,11 +42,14 @@ glm::vec3 lightPos3;
 glm::vec3 lightPos4;
 
 Level level;
+GameControlles gameController;
+GameState gamestate;
 
-int cameraMode = 2;
+int cameraMode = 1;
 
 void initApp(){
-    
+    level = Level(0, SCREEN_SIZE[0],SCREEN_SIZE[1]);
+    gamestate.setGameState(1);
 }
 
 
@@ -68,20 +70,15 @@ void AppMain() {
     // Ensure we can capture the escape key being pressed below
     glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
     
-    level = Level(0, SCREEN_SIZE[0],SCREEN_SIZE[1]);
-    
     initApp();
     
     double lastTime = glfwGetTime();
     do{
         double thisTime = glfwGetTime();
-        
-        
-        
-        
+
         if(cameraMode == 1){
-            //camera.computeInputs(window, &level, &gamestate);             //TODO:input for game
-            //camera.computeInputsMouse(window, &level, &gamestate);        //TODO:input for game
+            gameController.computeInputs(window, &level, &gamestate);             //TODO:input for game
+            gameController.computeInputsMouse(window, &level, &gamestate);        //TODO:input for game
         }
         else{
             level.updateCamera((float)(thisTime - lastTime), window);

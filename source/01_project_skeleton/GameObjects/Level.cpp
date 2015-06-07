@@ -68,7 +68,7 @@ void Level::loadLevel(){
     turret11.levelUpWeapon();
     Mesh turret11tempMesh;
     turret11tempMesh.translate(glm::vec3(11,11,-200));
-    turret11tempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
+    turret11tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     rot = 0 * (M_PI/180);
     turret11tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret11.setMesh(turret11tempMesh);
@@ -77,7 +77,7 @@ void Level::loadLevel(){
     Turret turret12 = Turret("Turret2Base1", 100, -0.7, -0.7, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
     Mesh turret12tempMesh;
     turret12tempMesh.translate(glm::vec3(-11,-11,-200));
-    turret12tempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
+    turret12tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     rot = 0 * (M_PI/180);
     turret12tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret12.setMesh(turret12tempMesh);
@@ -87,7 +87,7 @@ void Level::loadLevel(){
     Turret turret13 = Turret("Turret3Base1", 100, -0.7, 0.7, 0.15, 0.15, 135, 1, 100, 170, NORMAL);
     Mesh turret13tempMesh;
     turret13tempMesh.translate(glm::vec3(-11,11,-200));
-    turret13tempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
+    turret13tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     rot = 0 * (M_PI/180);
     turret13tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret13.setMesh(turret13tempMesh);
@@ -96,7 +96,7 @@ void Level::loadLevel(){
     Turret turret14 = Turret("Turret4Base1", 100, 0.7, -0.7, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
     Mesh turret14tempMesh;
     turret14tempMesh.translate(glm::vec3(11,-11,-200));
-    turret14tempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
+    turret14tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     rot = 0 * (M_PI/180);
     turret14tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret14.setMesh(turret14tempMesh);
@@ -106,7 +106,7 @@ void Level::loadLevel(){
     Turret turret15 = Turret("Turret5Base1", 100, 0.7, -0.7, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
     Mesh turret15tempMesh;
     turret15tempMesh.translate(glm::vec3(11,0,-200));
-    turret15tempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
+    turret15tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     rot = 0 * (M_PI/180);
     turret15tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret15.setMesh(turret15tempMesh);
@@ -158,7 +158,6 @@ void Level::updateCamera(float secondsElapsed, GLFWwindow* window) {
 void Level::OnScroll(GLFWwindow* window, double deltaX, double deltaY) {
     gScrollY += deltaY;
 }
-
 
 void Level::drawLevel(){
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

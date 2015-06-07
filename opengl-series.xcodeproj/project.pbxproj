@@ -19,6 +19,8 @@
 		D3120AB11B21ED45009247B3 /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120AAF1B21ED45009247B3 /* Explosion.cpp */; };
 		D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */ = {isa = PBXBuildFile; fileRef = D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */; };
 		D33BC13D1B22ECBC003683B6 /* Su-34_Fullback_P01.png in Resources */ = {isa = PBXBuildFile; fileRef = D33BC13C1B22ECBC003683B6 /* Su-34_Fullback_P01.png */; };
+		D33BC1401B246768003683B6 /* GameControlles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D33BC13E1B246768003683B6 /* GameControlles.cpp */; };
+		D33BC1431B2467FE003683B6 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D33BC1411B2467FE003683B6 /* GameState.cpp */; };
 		D399F4531AC013D900FE2DE9 /* city.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D399F4521AC013D900FE2DE9 /* city.bmp */; };
 		D399F4661AC0260100FE2DE9 /* lighting.fs in Resources */ = {isa = PBXBuildFile; fileRef = D399F4641AC0260100FE2DE9 /* lighting.fs */; };
 		D399F4671AC0260100FE2DE9 /* lighting.vs in Resources */ = {isa = PBXBuildFile; fileRef = D399F4651AC0260100FE2DE9 /* lighting.vs */; };
@@ -71,6 +73,10 @@
 		D3120AB01B21ED45009247B3 /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = GameObjects/Explosions/Explosion.h; sourceTree = "<group>"; };
 		D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Su-34_Fullback.obj"; sourceTree = "<group>"; };
 		D33BC13C1B22ECBC003683B6 /* Su-34_Fullback_P01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Su-34_Fullback_P01.png"; sourceTree = "<group>"; };
+		D33BC13E1B246768003683B6 /* GameControlles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameControlles.cpp; path = common/controlles/GameControlles.cpp; sourceTree = "<group>"; };
+		D33BC13F1B246768003683B6 /* GameControlles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameControlles.h; path = common/controlles/GameControlles.h; sourceTree = "<group>"; };
+		D33BC1411B2467FE003683B6 /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameState.cpp; path = common/GameState.cpp; sourceTree = "<group>"; };
+		D33BC1421B2467FE003683B6 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameState.h; path = common/GameState.h; sourceTree = "<group>"; };
 		D399F4521AC013D900FE2DE9 /* city.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = city.bmp; sourceTree = "<group>"; };
 		D399F4641AC0260100FE2DE9 /* lighting.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting.fs; sourceTree = "<group>"; };
 		D399F4651AC0260100FE2DE9 /* lighting.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = lighting.vs; sourceTree = "<group>"; };
@@ -149,6 +155,8 @@
 				D399F49C1AC1B28700FE2DE9 /* Util.h */,
 				D399F49E1AC1B31900FE2DE9 /* UtilFunctions.cpp */,
 				D399F49F1AC1B31900FE2DE9 /* UtilFunctions.h */,
+				D33BC1411B2467FE003683B6 /* GameState.cpp */,
+				D33BC1421B2467FE003683B6 /* GameState.h */,
 			);
 			name = common;
 			sourceTree = "<group>";
@@ -231,6 +239,8 @@
 				D399F46C1AC1A94900FE2DE9 /* Camera.hpp */,
 				D399F46D1AC1A94900FE2DE9 /* controls.cpp */,
 				D399F46E1AC1A94900FE2DE9 /* controls.hpp */,
+				D33BC13E1B246768003683B6 /* GameControlles.cpp */,
+				D33BC13F1B246768003683B6 /* GameControlles.h */,
 			);
 			name = controlles;
 			sourceTree = "<group>";
@@ -429,6 +439,7 @@
 				D399F48C1AC1B13D00FE2DE9 /* GLFWBackend.cpp in Sources */,
 				D3120AA01B21DC66009247B3 /* GameObject.cpp in Sources */,
 				D399F47D1AC1A94900FE2DE9 /* objloader.cpp in Sources */,
+				D33BC1431B2467FE003683B6 /* GameState.cpp in Sources */,
 				D399F4A01AC1B31900FE2DE9 /* UtilFunctions.cpp in Sources */,
 				D399F47F1AC1A94900FE2DE9 /* vboindexer.cpp in Sources */,
 				D399F47B1AC1A94900FE2DE9 /* shader.cpp in Sources */,
@@ -441,6 +452,7 @@
 				D3120AAA1B21E93E009247B3 /* Turret.cpp in Sources */,
 				D3120AA71B21E866009247B3 /* Base.cpp in Sources */,
 				D399F47C1AC1A94900FE2DE9 /* texture.cpp in Sources */,
+				D33BC1401B246768003683B6 /* GameControlles.cpp in Sources */,
 				D399F4971AC1B25E00FE2DE9 /* Mesh.cpp in Sources */,
 				D3120AA41B21E83E009247B3 /* Bullet.cpp in Sources */,
 				E2639AE3190D156500B6251A /* main.cpp in Sources */,
