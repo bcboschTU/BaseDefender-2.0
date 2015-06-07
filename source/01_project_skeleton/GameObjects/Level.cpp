@@ -225,8 +225,11 @@ void Level::drawLevel(){
     bulletMesh.enableRender();
     for (int i = 0; i<bullets.size(); i++) {
         Bullet *bullet = bullets[i];
-        Mesh tempMesh = bullet->getMesh();
-        drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        bool drawable = bullet->getDrawAble();
+        if(drawable){
+            Mesh tempMesh = bullet->getMesh();
+            drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        }
     }
     bulletMesh.disableRender();    
     

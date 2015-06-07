@@ -67,6 +67,16 @@ void Bullet::bulletSetup(){
 Mesh Bullet::getMesh(){
     return mesh;
 }
+
+bool Bullet::getDrawAble(){
+    if(!destroyed){
+        return true;
+    }
+    else{
+        return false;
+    }
+    
+}
 void Bullet::setMesh(Mesh _mesh){
     mesh = _mesh;
 }

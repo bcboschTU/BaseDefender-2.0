@@ -28,6 +28,8 @@ class Bullet{
 public:
     Bullet(float _xPos, float _yPos, float _angle, WeaponType _bulletType, std::string _owner);
     Mesh getMesh();
+    bool getDrawAble();
+    
     void setMesh(Mesh _mesh);
     void bulletSetup();
     void updateBullet();
