@@ -1,3 +1,5 @@
 player SomeName 100 40 30 15 10 45 11
 player OtherName 200 80 60 30 20 90 22
 base SomeBase 150 150 150 40 40 30 15
+turret Turret1 100 300 150 50 50 30 15 10 20 NORMAL
+turret Turret2 100 400 150 50 50 30 15 10 20 NUKE
