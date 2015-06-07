@@ -192,6 +192,20 @@ void Level::loadLevelFromFile(const char *filename) {
             printf("weaponType = %s (%i)\n", _weaponType.c_str(), _type);
             printf("=======================\n");
             
+        } else if(word.compare("enemie") == 0){
+            file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
+            
+            printf("======== Enemie ========\n");
+            printf("name       = %s\n", _name.c_str());
+            printf("hp         = %i\n", _hp);
+            printf("xPos       = %f\n", _xPos);
+            printf("yPos       = %f\n", _yPos);
+            printf("width      = %f\n", _width);
+            printf("height     = %f\n", _height);
+            printf("angle      = %f\n", _angle);
+            printf("level      = %i\n", _level);
+            printf("========================\n");
+            
         }
     }
     
