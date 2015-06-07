@@ -112,10 +112,10 @@ void Player::shootSecondary(float dirXPos, float dirYPos){
 }
 
 void Player::updateAngleMousePos(float dirXPos, float dirYPos){
-    float xdif = getXPos() - dirXPos;
-    float ydif = getYPos() - dirYPos;
+    float xdif = getXPos() - (dirXPos*1000);
+    float ydif = getYPos() - (dirYPos*1000);
     
-    float angle = (atan2(ydif, xdif) * 180.0 / PI) + 180;  
+    float angle = (atan2(ydif, xdif) * 180.0 / PI) + 90;
 
     setAngle(angle);
 }
