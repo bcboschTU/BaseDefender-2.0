@@ -30,13 +30,13 @@ Enemie::Enemie(std::string _name,
     dmg = 10;
     
     //movement:
-    agility = 0.03;
+    agility = 0.3;
     movementSpeed = 0;
     movementXdir = 0;
     movementYdir = 0;
-    maxSpeed = 1;
-    acceleration = 0.1;
-    deceleration = 0.01;
+    maxSpeed = 12;
+    acceleration = 1.5;
+    deceleration = 0.5;
     
     //target
     targetType = -1;
@@ -83,7 +83,7 @@ void Enemie::updateEnemie(){
     setXPos(nextXpos);
     setYPos(nextYpos);
     
-    updateModelMatrix(nextXpos, nextYpos,getAngle());
+    updateModelMatrix(nextXpos, nextYpos,getAngle() -90);
 }
 
 
@@ -231,6 +231,7 @@ void Enemie::updateModelMatrix(float _xpos, float _ypos, float _rot){
     meshTemp.translate(temp);
     _rot = _rot /180 *PI;
     meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    meshTemp.scale(glm::vec3(1.5f, 1.5f, 1.5f));
     mesh = meshTemp;
     
 }

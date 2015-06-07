@@ -31,7 +31,7 @@ void Level::loadLevel(){
     multiplierBaseScore = 0;
     multiplier = 1;
     round = 1;
-    //roundStart(1);
+    roundStart(1);
     roundStartShowText = true;
     roundStartShowTextTimer = glfwGetTime();
     roundStartShowTextTime = 2.0;
@@ -211,15 +211,17 @@ void Level::drawLevel(){
     }
     playerMesh.disableRender();
     
-    /*
+    
     enemyMesh.enableRender();
     for (int i = 0; i<enemies.size(); i++) {
         Enemie * enemie = &enemies[i];
-        Mesh tempMesh = enemie->getMesh();
-        drawMesh(enemyMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        if(!(enemie->getHp() <= 0)){
+            Mesh tempMesh = enemie->getMesh();
+            drawMesh(enemyMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        }
     }
     enemyMesh.disableRender();
-    */
+    
     
     
     bulletMesh.enableRender();
@@ -259,9 +261,9 @@ void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffec
 
 void Level::setupMeshes(){
     std::string playerStr = "SU-34_Fullback.obj";
-    std::string baseStr = "sphere.obj";
+    std::string baseStr = "blox.obj";
     std::string turretstr = "B-2_Spirit.obj";
-    std::string enemystr = "sphere.obj";
+    std::string enemystr = "blox.obj";
     std::string bulletstr = "blox.obj";
     std::string explosionstr = "sphere.obj";
     glGenVertexArrays(1, &VertexArrayID);
@@ -585,7 +587,7 @@ void Level::generateEnemies(){
             for(int i = 0; i< enemySpawnLoop; i++){
                 float xPos = rand_FloatRange(-140,140, true);
                 float yPos = rand_FloatRange(-140,140, false);
-                Enemie enemie = Enemie("enemie", 50, xPos, yPos, 0.2, 0.2, 0, 1);
+                Enemie enemie = Enemie("enemie", 50, xPos, yPos, 5, 5, 0, 1);
                 enemie.setTargetPlayer(&players[0]);
                 //enemie.setTargetBase(&bases[0]);
                 enemies.push_back(enemie);
@@ -675,7 +677,7 @@ void Level::setHeight(int _height){
 }
 
 void Level::roundStart(int _round){
-    int amountOfEnemy = 2;
+    int amountOfEnemy = 6;
     enemyAmount = amountOfEnemy * _round;
     int rate = (int)sqrt(_round);
     enemySpawnRate = 0.4 - (round/100)*2;
