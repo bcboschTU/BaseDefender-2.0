@@ -41,7 +41,7 @@ void Level::loadLevel(){
     initLightingEffect();
     
     
-    Player player1 = Player("Player1", 200, 30, 10, 0.4, 0.4, 0, 1);
+    Player player1 = Player("Player1", 200, 30, 10, 4, 4, 0, 1);
     
     //player init
     Mesh playertempMesh;
