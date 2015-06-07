@@ -7,13 +7,14 @@
 //
 
 #include "GameControlles.h"
-float translateSpeed = 2.5f;
+float translateSpeed = 15.0f;
 float zoomSpeed = .2f;
 
 GameControlles::GameControlles() :
-_position(0.0f, 0.0f, 1.0f),
+_position(0.0f, 0.0f, 4.0f),
 _minZoom(0.05),
-_maxZoom(4)
+_maxZoom(4),
+_inputBool(true)
 {}
 
 const glm::vec3& GameControlles::getPosition() const {
@@ -80,6 +81,9 @@ void GameControlles::computeInputsGame(GLFWwindow* window,Level *level,GameState
     if (glfwGetKey(window, GLFW_KEY_ESCAPE ) == GLFW_PRESS){
         level->pauseGame();
     }
+    if (glfwGetKey(window, GLFW_KEY_P ) == GLFW_PRESS){
+        _inputBool = !_inputBool;
+    }
     
     
     player->setNewPos(newXPos, newYPos);
@@ -141,5 +145,13 @@ glm::vec3 GameControlles::getMouseWorldPos(GLFWwindow* window){
     return v;
 }
 
+bool GameControlles::getInputTrue(){
+    return _inputBool;
+}
+
+
+void GameControlles::setInputTrue(bool input){
+    _inputBool = input;
+}
 
 

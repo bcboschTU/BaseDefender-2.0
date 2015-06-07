@@ -48,8 +48,7 @@ public:
     bool getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidth, int dmg);
     
     //update model Matrix
-    void updateModelMatrix(float _nextXpos, float _nextYpos);
-
+    void updateModelMatrix(float _xpos, float _ypos, float _rot);
 private:
     std::vector<Bullet> bullets;
     float fireRatePrimary;

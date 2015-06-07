@@ -34,12 +34,17 @@ public:
     
     glm::vec3 getMouseWorldPos(GLFWwindow* window);
     
+    bool getInputTrue();
+    void setInputTrue(bool input);
+    
 private:
     glm::vec3 _position;
     float _minZoom;
     float _maxZoom;
     int width = 1100;
     int height = 700;
+    
+    bool _inputBool = true;
 };
 
 #endif /* defined(__opengl_series__Camera2__) */

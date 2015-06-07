@@ -41,14 +41,14 @@ void Level::loadLevel(){
     initLightingEffect();
     
     
-    Player player1 = Player("Player1", 200, 3, 1, 0.4, 0.4, 0, 1);
+    Player player1 = Player("Player1", 200, 30, 10, 0.4, 0.4, 0, 1);
     
     //player init
     Mesh playertempMesh;
     playertempMesh.translate(glm::vec3(30 , 10,-200));
     playertempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
     float rot = 0 * (M_PI/180);
-    playertempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    playertempMesh.rotate(glm::vec3(0.f, 0.f, 1.f),rot);
     player1.setMesh(playertempMesh);
     players.push_back(player1);
     
@@ -138,6 +138,9 @@ void Level::updateCamera(float secondsElapsed, GLFWwindow* window) {
     } else if(glfwGetKey(window, 'X')){
         camera.offsetPosition(secondsElapsed * moveSpeed * glm::vec3(0,1,0));
     }
+    else if(glfwGetKey(window, 'P')){
+        camera.setInputTrue(!camera.getInputTrue());
+    }
     
     //rotate camera based on mouse movement
     const float mouseSensitivity = 0.1f;
@@ -157,6 +160,10 @@ void Level::updateCamera(float secondsElapsed, GLFWwindow* window) {
 
 void Level::OnScroll(GLFWwindow* window, double deltaX, double deltaY) {
     gScrollY += deltaY;
+}
+
+Camera Level::getCamera(){
+    return camera;
 }
 
 void Level::drawLevel(){

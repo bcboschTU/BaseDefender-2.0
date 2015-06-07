@@ -67,12 +67,10 @@ void Player::updatePlayer(){
     nextXpos = getXPos() + movementXdir * (movementSpeed);
     nextYpos = getYPos() + movementYdir * (movementSpeed);
     
-    updateModelMatrix(getXPos() - nextXpos,getYPos() - nextYpos);
-    
     setXPos(nextXpos);
     setYPos(nextYpos);
     
-    
+    updateModelMatrix(nextXpos, nextYpos,getAngle());
 }
 
 void Player::shootPrimary(float dirXPos, float dirYPos){
@@ -117,7 +115,8 @@ void Player::updateAngleMousePos(float dirXPos, float dirYPos){
     float xdif = getXPos() - dirXPos;
     float ydif = getYPos() - dirYPos;
     
-    float angle = (atan2(ydif, xdif) * 180.0 / PI) + 180;
+    float angle = (atan2(ydif, xdif) * 180.0 / PI) + 180;  
+
     setAngle(angle);
 }
 
@@ -173,7 +172,12 @@ bool Player::getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidt
     return false;
 }
 
-void Player::updateModelMatrix(float _nextXpos, float _nextYpos){
-    glm::vec3 temp = glm::vec3(_nextXpos,_nextYpos, 0);
-    mesh.translate(temp);
+void Player::updateModelMatrix(float _xpos, float _ypos, float _rot){
+    Mesh meshTemp;
+    glm::vec3 temp = glm::vec3(_xpos,_ypos, -200);
+    meshTemp.translate(temp);
+    _rot = _rot /180 *PI;
+    meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    mesh = meshTemp;
+    
 }

@@ -50,6 +50,7 @@ int cameraMode = 1;
 void initApp(){
     level = Level(0, SCREEN_SIZE[0],SCREEN_SIZE[1]);
     gamestate.setGameState(1);
+    gameController.setPosition(level.getCamera().position());
 }
 
 
@@ -68,20 +69,34 @@ void AppMain() {
     window = GLFWBackendInit(window, SCREEN_SIZE);
     
     // Ensure we can capture the escape key being pressed below
-    glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+    //glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     
     initApp();
     
     double lastTime = glfwGetTime();
     do{
         double thisTime = glfwGetTime();
+        
+
 
         if(cameraMode == 1){
-            gameController.computeInputs(window, &level, &gamestate);             //TODO:input for game
             gameController.computeInputsMouse(window, &level, &gamestate);        //TODO:input for game
+            gameController.computeInputs(window, &level, &gamestate);             //TODO:input for game
+            if(!gameController.getInputTrue()){
+                cameraMode = 2;
+                level.getCamera().setInputTrue(true);
+                glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+            }
+            
         }
         else{
             level.updateCamera((float)(thisTime - lastTime), window);
+            if(!level.getCamera().getInputTrue()){
+                cameraMode = 1;
+                gameController.setInputTrue(true);
+                glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+            }
         }
         
         lastTime = thisTime;

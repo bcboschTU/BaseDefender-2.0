@@ -132,3 +132,12 @@ void Camera::normalizeAngles() {
     else if(_verticalAngle < -MaxVerticalAngle)
         _verticalAngle = -MaxVerticalAngle;
 }
+
+bool Camera::getInputTrue(){
+    return inputBool;
+}
+
+
+void Camera::setInputTrue(bool input){
+    inputBool = input;
+}

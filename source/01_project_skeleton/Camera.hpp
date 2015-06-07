@@ -144,6 +144,8 @@ public:
     
     glm::vec3 getTarget() const;
     
+    bool getInputTrue();
+    void setInputTrue(bool input);
 private:
     glm::vec3 _position;
     float _horizontalAngle;
@@ -154,5 +156,7 @@ private:
     float _viewportAspectRatio;
     
     void normalizeAngles();
+    
+    bool inputBool = true;
 };
 

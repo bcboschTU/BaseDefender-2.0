@@ -82,6 +82,7 @@ public:
     //camera temp
     void updateCamera(float secondsElapsed,GLFWwindow* window);
     void OnScroll(GLFWwindow* window, double deltaX, double deltaY);
+    Camera getCamera();
 private:
     
     std::vector<Player> players;
