@@ -64,7 +64,7 @@ void Level::loadLevel(){
     bases.push_back(base1);
     
     
-    Turret turret11 = Turret("Turret1Base1", 100, 0.7, 0.7, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
+    Turret turret11 = Turret("Turret1Base1", 100, 11, 11, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
     turret11.levelUpWeapon();
     Mesh turret11tempMesh;
     turret11tempMesh.translate(glm::vec3(11,11,-200));
@@ -74,7 +74,7 @@ void Level::loadLevel(){
     turret11.setMesh(turret11tempMesh);
     turrets.push_back(turret11);
     
-    Turret turret12 = Turret("Turret2Base1", 100, -0.7, -0.7, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
+    Turret turret12 = Turret("Turret2Base1", 100, -11, -11, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
     Mesh turret12tempMesh;
     turret12tempMesh.translate(glm::vec3(-11,-11,-200));
     turret12tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
@@ -84,7 +84,7 @@ void Level::loadLevel(){
     turrets.push_back(turret12);
     
     
-    Turret turret13 = Turret("Turret3Base1", 100, -0.7, 0.7, 0.15, 0.15, 135, 1, 100, 170, NORMAL);
+    Turret turret13 = Turret("Turret3Base1", 100, -11, 11, 0.15, 0.15, 135, 1, 100, 170, NORMAL);
     Mesh turret13tempMesh;
     turret13tempMesh.translate(glm::vec3(-11,11,-200));
     turret13tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
@@ -93,7 +93,7 @@ void Level::loadLevel(){
     turret13.setMesh(turret13tempMesh);
     turrets.push_back(turret13);
     
-    Turret turret14 = Turret("Turret4Base1", 100, 0.7, -0.7, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
+    Turret turret14 = Turret("Turret4Base1", 100, 11, -11, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
     Mesh turret14tempMesh;
     turret14tempMesh.translate(glm::vec3(11,-11,-200));
     turret14tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
@@ -101,16 +101,6 @@ void Level::loadLevel(){
     turret14tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret14.setMesh(turret14tempMesh);
     turrets.push_back(turret14);
-    
-    
-    Turret turret15 = Turret("Turret5Base1", 100, 0.7, -0.7, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
-    Mesh turret15tempMesh;
-    turret15tempMesh.translate(glm::vec3(11,0,-200));
-    turret15tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret15tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret15.setMesh(turret15tempMesh);
-    turrets.push_back(turret15);
 }
 
 
@@ -167,6 +157,7 @@ Camera Level::getCamera(){
 }
 
 void Level::drawLevel(){
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glClearColor(0.2f, 0.2f, 0.4f, 0.0f);
@@ -191,7 +182,7 @@ void Level::drawLevel(){
     }
     turretMesh.disableRender();
     
-     
+    
     //renderBase
     baseMesh.enableRender();
     for (int i = 0; i< bases.size(); i++) {
@@ -223,15 +214,18 @@ void Level::drawLevel(){
     enemyMesh.disableRender();
     
     
-    
+    //TODO HIER ZIT NOG EEN ERROR!!
+    //waarschijnlijk in getMesh();
     bulletMesh.enableRender();
     for (int i = 0; i<bullets.size(); i++) {
         Bullet *bullet = bullets[i];
         bool drawable = bullet->getDrawAble();
+        printf("shoot1\n");
         if(drawable){
             Mesh tempMesh = bullet->getMesh();
             drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
         }
+        printf("shoot2\n");
     }
     bulletMesh.disableRender();    
     
@@ -244,6 +238,7 @@ void Level::drawLevel(){
     }
     explosionMesh.disableRender();
      */
+    
 }
 
 void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffect, glm::mat4 _Model) {
@@ -393,6 +388,13 @@ void Level::updateLevel(){
     bullets.clear();
     //quadtree.empty();
     //get all bullets:
+    
+    //update the turrets targets
+    for (int i = 0; i< turrets.size(); i++){
+        Turret *turret = &turrets[i];
+        turret->setTarget(&enemies);
+    }
+    
     getBullets();
     
     
@@ -418,11 +420,6 @@ void Level::updateLevel(){
         enemie->updateEnemie();
     }
     
-    //update the turrets targets
-    for (int i = 0; i< turrets.size(); i++){
-        Turret *turret = &turrets[i];
-        turret->setTarget(&enemies);
-    }
     
     for(int i = 0; i<explosions.size(); i++){
         Explosion * explosion = &explosions[i];
@@ -439,7 +436,7 @@ void Level::getBullets(){
             //quadtree.AddObject(&tempBullets->at(j));
         }
     }
-    
+
     for (int i = 0; i<turrets.size(); i++) {
         Turret * turret = &turrets[i];
         std::vector<Bullet> *tempBullets = turret->getBullets();
@@ -448,7 +445,7 @@ void Level::getBullets(){
             //quadtree.AddObject(&tempBullets->at(j));
         }
     }
-    
+   
 }
 
 void Level::checkIfBulletsHit(){

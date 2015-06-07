@@ -29,13 +29,13 @@ void Bullet::bulletSetup(){
         case NORMAL:
             width = 0.1;
             height = 0.1;
-            speed = 8;
+            speed = 6;
             dmg = 10;
             break;
         case EXPLOSIVE:
             width = 0.15;
             height = 0.15;
-            speed = 0.08;
+            speed = 6;
             dmg = 10;
             break;
         case DUAL:

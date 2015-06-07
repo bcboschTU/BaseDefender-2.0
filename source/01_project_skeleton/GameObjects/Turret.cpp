@@ -22,9 +22,10 @@ Turret::Turret(std::string _name,
     rangeBegin = _rangeBegin;
     rangeEnd = _rangeEnd;
     weaponType = _weaponType;
-    fireRate = 0.1;
-    range = 5;
+    fireRate = 0.05;
+    range = 80;
     lastTime = glfwGetTime();
+    
 }
 
 Mesh Turret::getMesh(){
@@ -57,7 +58,7 @@ void Turret::levelUp(){
 void Turret::shoot(float dirXPos, float dirYPos){
     float currentTime = glfwGetTime();
     float deltaTime = float(currentTime - lastTime);
-    
+   
     if(deltaTime > fireRate){
         //calculate angle:
         float xdif = getXPos() - (dirXPos*1000);
@@ -65,17 +66,20 @@ void Turret::shoot(float dirXPos, float dirYPos){
         
         float angle = (atan2(ydif, xdif) * 180.0 / PI) + 180;
         setAngle(angle);
-        
-        Bullet bullet = Bullet(getXPos(), getYPos(), angle, weaponType,getName());
+    
+        Bullet bullet = Bullet(getXPos(), getYPos(), angle, weaponType,getName());                      
         bullets.push_back(bullet);
+        
         
         lastTime = currentTime;
     }
+    
+    
 }
 
 std::vector<Bullet>* Turret::getBullets(){
     updateBullets();
-    
+
     return &bullets;
 }
 
@@ -101,7 +105,7 @@ void Turret::setTarget(std::vector<Enemie> *enemies){
     
     if (closest != -1) {
         Enemie *enemie = &enemies->at(closest);
-        shoot(enemie->getXPos(), enemie->getYPos());
+        shoot(enemie->getXPos(), enemie->getYPos());        
     }
     
 }
@@ -110,15 +114,18 @@ void Turret::updateBullets(){
     for(int i = 0; i< bullets.size(); i++){
         Bullet *bullet = &bullets[i];
         bullet->updateBullet();
+        
         if(bullet->getDestroyed()){
             removeBullet(i);
         }
-        
     }
+    
 }
 
 void Turret::removeBullet(int index){
+    
     bullets.erase(bullets.begin() + index);
+    
 }
 
 float Turret::calculateDistance(float x1, float x2, float y1, float y2){

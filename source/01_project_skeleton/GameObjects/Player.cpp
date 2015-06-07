@@ -19,7 +19,7 @@ Player::Player(std::string _name,
     fireRatePrimary = 0.1;
     fireRateSecondary = 0.1;
     primaryWeaponType = NORMAL;
-    secondaryWeaponType = NUKE;
+    secondaryWeaponType = EXPLOSIVE;
     lastTimePrimary = glfwGetTime();
     lastTimeSecondary = glfwGetTime();
     agility = 0.05;
@@ -87,6 +87,7 @@ void Player::shootPrimary(float dirXPos, float dirYPos){
         float angle = getAngle() + 90;
         
         Bullet bullet = Bullet(getXPos(), getYPos(), angle, primaryWeaponType,getName());
+        bullet.updateModelMatrix(getXPos(),getYPos(),angle);
         bullets.push_back(bullet);
         
         lastTimePrimary = currentTime;
@@ -99,11 +100,12 @@ void Player::shootSecondary(float dirXPos, float dirYPos){
     
     if(deltaTime > fireRateSecondary){
         //calculate angle:
-        float xdif = getXPos() - (dirXPos*1000);
-        float ydif = getYPos() - (dirYPos*1000);
+        //float xdif = getXPos() - (dirXPos*1000);
+        //float ydif = getYPos() - (dirYPos*1000);
         
-        float angle = (atan2(ydif, xdif) * 180.0 / PI) + 90;
-        setAngle(angle);
+        //float angle = (atan2(ydif, xdif) * 180.0 / PI) + 90;
+        //setAngle(angle);
+        float angle = getAngle() + 90;
         
         Bullet bullet = Bullet(getXPos(), getYPos(), angle, secondaryWeaponType,getName());
         bullets.push_back(bullet);
