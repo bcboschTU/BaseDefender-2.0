@@ -61,8 +61,8 @@ void Turret::shoot(float dirXPos, float dirYPos){
    
     if(deltaTime > fireRate){
         //calculate angle:
-        float xdif = getXPos() - (dirXPos*1000);
-        float ydif = getYPos() - (dirYPos*1000);
+        float xdif = getXPos() - (dirXPos);
+        float ydif = getYPos() - (dirYPos);
         
         float angle = (atan2(ydif, xdif) * 180.0 / PI) + 180;
         setAngle(angle);
@@ -140,6 +140,7 @@ void Turret::updateModelMatrix(float _xpos, float _ypos, float _rot){
     Mesh meshTemp;
     glm::vec3 temp = glm::vec3(_xpos,_ypos, -200);
     meshTemp.translate(temp);
+    meshTemp.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     _rot = _rot /180 *PI;
     meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
     mesh = meshTemp;

@@ -24,10 +24,10 @@ Explosion::Explosion(float _xPos, float _yPos, ExplosionType _type){
 void Explosion::explosionSetup(){
     switch (type) {
         case SMALL:
-            width = 0.1;
-            height = 0.1;
-            widthMax = 0.2;
-            heightMax = 0.2;
+            width = 0.2;
+            height = 0.2;
+            widthMax = 2;
+            heightMax = 2;
             offSetMin = -0.1;
             offSetPlus = 0.1;
             amountOfExplosions = 1;
@@ -83,10 +83,10 @@ bool Explosion::getDrawAble(){
 
 void Explosion::updateExplosion(){
     if(width < widthMax){
-        width  = width + 0.5;
+        width  = width + 0.1;
     }
     if(height < heightMax){
-        height = height + 0.5;
+        height = height + 0.1;
     }
     updateModelMatrix(xPos, yPos, 0);
 }
