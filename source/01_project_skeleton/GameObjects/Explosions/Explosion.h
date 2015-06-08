@@ -33,6 +33,10 @@ public:
     void checkIfAlive();
     bool getDestroyed();
     float generateRandomOffset(float x, float y);
+    
+    //update model Matrix
+    void updateModelMatrix(float _xpos, float _ypos, float _rot);
+    bool getDrawAble();
 private:
     float xPos;
     float yPos;

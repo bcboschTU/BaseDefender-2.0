@@ -238,16 +238,17 @@ void Level::drawLevel(){
     }
     bulletMesh.disableRender();    
     
-    /*
+    
     explosionMesh.enableRender();
     for (int i = 0; i<explosions.size(); i++) {
         Explosion *explosion = &explosions[i];
-        Mesh tempMesh = explosion->getMesh();
-        drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        bool drawable = explosion->getDrawAble();
+        if(drawable){
+            Mesh tempMesh = explosion->getMesh();
+            drawMesh(explosionMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        }
     }
     explosionMesh.disableRender();
-     */
-    
 }
 
 void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffect, glm::mat4 _Model) {
@@ -270,7 +271,7 @@ void Level::setupMeshes(){
     std::string enemystr_100_50 = "blox.obj";
     std::string enemystr_50_0 = "sphere.obj";
     std::string bulletstr = "blox.obj";
-    std::string explosionstr = "sphere.obj";
+    std::string explosionstr = "blox.obj";
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
