@@ -203,15 +203,26 @@ void Level::drawLevel(){
     playerMesh.disableRender();
     
     
-    enemyMesh.enableRender();
+    enemyMesh_100_50.enableRender();
     for (int i = 0; i<enemies.size(); i++) {
         Enemie * enemie = &enemies[i];
-        if(!(enemie->getHp() <= 0)){
+        if(enemie->getHp() > 25){
             Mesh tempMesh = enemie->getMesh();
-            drawMesh(enemyMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+            drawMesh(enemyMesh_100_50, &camera, lightingEffect, tempMesh.getModelMatrix());
         }
     }
-    enemyMesh.disableRender();
+    enemyMesh_100_50.disableRender();
+    
+    enemyMesh_50_0.enableRender();
+    for (int i = 0; i<enemies.size(); i++) {
+        Enemie * enemie = &enemies[i];
+        if(enemie->getHp() > 0 && enemie->getHp() < 25){
+            Mesh tempMesh = enemie->getMesh();
+            drawMesh(enemyMesh_50_0, &camera, lightingEffect, tempMesh.getModelMatrix());
+        }
+    }
+    enemyMesh_50_0.disableRender();
+    
     
     
     //TODO HIER ZIT NOG EEN ERROR!!
@@ -220,12 +231,10 @@ void Level::drawLevel(){
     for (int i = 0; i<bullets.size(); i++) {
         Bullet *bullet = bullets[i];
         bool drawable = bullet->getDrawAble();
-        printf("shoot1\n");
         if(drawable){
             Mesh tempMesh = bullet->getMesh();
             drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
         }
-        printf("shoot2\n");
     }
     bulletMesh.disableRender();    
     
@@ -258,7 +267,8 @@ void Level::setupMeshes(){
     std::string playerStr = "SU-34_Fullback.obj";
     std::string baseStr = "blox.obj";
     std::string turretstr = "B-2_Spirit.obj";
-    std::string enemystr = "blox.obj";
+    std::string enemystr_100_50 = "blox.obj";
+    std::string enemystr_50_0 = "sphere.obj";
     std::string bulletstr = "blox.obj";
     std::string explosionstr = "sphere.obj";
     glGenVertexArrays(1, &VertexArrayID);
@@ -281,10 +291,16 @@ void Level::setupMeshes(){
     turretMesh.loadModel(model);
     turretMesh.bindBuffers();
     
-    enemyMesh =  Mesh();
-    model = enemystr.c_str();
-    enemyMesh.loadModel(model);
-    enemyMesh.bindBuffers();
+    
+    enemyMesh_100_50 =  Mesh();
+    model = enemystr_100_50.c_str();
+    enemyMesh_100_50.loadModel(model);
+    enemyMesh_100_50.bindBuffers();
+    
+    enemyMesh_50_0 =  Mesh();
+    model = enemystr_50_0.c_str();
+    enemyMesh_50_0.loadModel(model);
+    enemyMesh_50_0.bindBuffers();
     
     bulletMesh =  Mesh();
     model = bulletstr.c_str();

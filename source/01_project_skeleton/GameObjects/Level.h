@@ -121,7 +121,8 @@ private:
     Mesh bulletMesh;
     Mesh turretMesh;
     Mesh baseMesh;
-    Mesh enemyMesh;
+    Mesh enemyMesh_100_50;
+    Mesh enemyMesh_50_0;
     
     GLuint programID;
     GLuint MatrixID;
