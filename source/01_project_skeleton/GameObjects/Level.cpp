@@ -14,6 +14,7 @@ Level::Level(){
     
 }
 
+//level constructor
 Level::Level(int _type, int _width, int _height){
     type = _type;
     loadLevel();
@@ -26,6 +27,9 @@ Level::Level(int _type, int _width, int _height){
     height =_height;
 }
 
+
+// init parameters of the level
+//init positions of each mesh
 void Level::loadLevel(){
     score = 0;
     multiplierBaseScore = 0;
@@ -74,6 +78,7 @@ void Level::loadLevel(){
     turret11.setMesh(turret11tempMesh);
     turrets.push_back(turret11);
     
+     
     Turret turret12 = Turret("Turret2Base1", 100, -11, -11, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
     Mesh turret12tempMesh;
     turret12tempMesh.translate(glm::vec3(-11,-11,-200));
@@ -105,6 +110,7 @@ void Level::loadLevel(){
 
 
 // update the scene based on the time elapsed since last update
+// free flight camera controlls
 void Level::updateCamera(float secondsElapsed, GLFWwindow* window) {
     //rotate the cube
     const GLfloat degreesPerSecond = 180.0f;
@@ -148,14 +154,19 @@ void Level::updateCamera(float secondsElapsed, GLFWwindow* window) {
     gScrollY = 0;
 }
 
+// mouse scroll function
 void Level::OnScroll(GLFWwindow* window, double deltaX, double deltaY) {
     gScrollY += deltaY;
 }
 
+
+//return camera object
 Camera Level::getCamera(){
     return camera;
 }
 
+
+//render all the meshes on there positions.
 void Level::drawLevel(){
     
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -224,9 +235,6 @@ void Level::drawLevel(){
     enemyMesh_50_0.disableRender();
     
     
-    
-    //TODO HIER ZIT NOG EEN ERROR!!
-    //waarschijnlijk in getMesh();
     bulletMesh.enableRender();
     for (int i = 0; i<bullets.size(); i++) {
         Bullet *bullet = bullets[i];
@@ -251,6 +259,8 @@ void Level::drawLevel(){
     explosionMesh.disableRender();
 }
 
+
+// Gives the shader program the matrixes to compute the right position and lighting
 void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffect, glm::mat4 _Model) {
     Projection = camera->projection();
     View = camera->view();
@@ -264,6 +274,7 @@ void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffec
     Rederer(&mesh);
 }
 
+//loading of the meshes for each of the objects types
 void Level::setupMeshes(){
     std::string playerStr = "SU-34_Fullback.obj";
     std::string baseStr = "blox.obj";
@@ -314,6 +325,7 @@ void Level::setupMeshes(){
     explosionMesh.bindBuffers();
 }
 
+//delete the textures from memory
 void Level::cleanup(){
     glDeleteProgram(programID);
     glDeleteVertexArrays(1, &VertexArrayID);
@@ -323,6 +335,8 @@ void Level::cleanup(){
     //glDeleteTextures(1, &SpecularTexture);
 }
 
+
+// loading of the textures for each mesh type
 void Level::loadTextures(){
     DiffuseTexture = loadBMP_custom("B-2_Spirit_P01.bmp");
     //DiffuseTexture = loadBMP_custom("metal.bmp");
@@ -333,6 +347,8 @@ void Level::loadTextures(){
     glUniform1i(DiffuseTextureID, 0);
 }
 
+
+// positions of the lights.
 void Level::initLightingEffect(){
     lightingEffect = NULL;
     
@@ -351,12 +367,15 @@ void Level::initLightingEffect(){
     
     lightingEffect->Enable();
     
+    
+    //switching function for textures
     lightingEffect->SetTextureUnit(0);
     
     
     return true;
 }
 
+// update light positions for each frame
 void Level::updateLighting(){
     lightingEffect->Enable();
     
@@ -393,9 +412,7 @@ void Level::updateLighting(){
 }
 
 
-
-
-
+// updates the level objects each frame.
 void Level::updateLevel(){
     checkIfGameOver();
     //clear all the bullets from last frame
@@ -444,6 +461,7 @@ void Level::updateLevel(){
     }
 }
 
+// get the bullets from all the players and turrets, stores it in one vector
 void Level::getBullets(){
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
@@ -465,6 +483,9 @@ void Level::getBullets(){
    
 }
 
+
+//per bullet is calculated if it hits an enemy
+//TODO: if enemies also shoot, calculate hit
 void Level::checkIfBulletsHit(){
     for (int i = 0; i<players.size(); i++) {
         //Player * player = &players[i];
@@ -494,11 +515,13 @@ void Level::checkIfBulletsHit(){
     
 }
 
+// no idea.. old code maybe -> TODO: check if called
 void Level::checkIfBulletsHitEnemy(int begin, int end){
     
 }
 
 
+// calculates if the player/turret/base is hit by an enemy
 void Level::checkIfEnemieHit(){
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
@@ -532,6 +555,7 @@ void Level::checkIfEnemieHit(){
     }
 }
 
+// level round management
 void Level::checkRoundUpdate(){
     if(roundStartShowText){
         double currentTime = glfwGetTime();
@@ -550,6 +574,7 @@ void Level::checkRoundUpdate(){
     }
 }
 
+//multiple for no hit streak
 void Level::checkMultiplerScore(){
     if(score - multiplierBaseScore > (100 * multiplier)){
         multiplierBaseScore = score;
@@ -557,7 +582,7 @@ void Level::checkMultiplerScore(){
     }
 }
 
-
+//update the vector that holds all the enemies, if enemy is dead, delete from vector
 void Level::updateEnemieVector(){
     //check if enemie is alive, if not erase
     for (int i = 0; i<enemies.size(); i++) {
@@ -573,11 +598,16 @@ void Level::updateEnemieVector(){
     }
 }
 
+
+//returns the player on pos i
 Player* Level::getPlayer(int i){
     return &players[i];
 }
 
 
+// gives a randon value between a and b, if bool is true -> values between 100 and -100 are excluded
+// TODO: replace between by 2 values
+// TODO: transfer function to util class
 float Level::rand_FloatRange(float a, float b, bool between){
     float randomValue = ((b-a)*((float)rand()/RAND_MAX))+a;
     if (between) {
@@ -593,6 +623,8 @@ float Level::rand_FloatRange(float a, float b, bool between){
     }
 }
 
+
+// generates the enemies for each round
 void Level::generateEnemies(){
     if(!roundStartShowText){
         double currentTime = glfwGetTime();
@@ -612,7 +644,7 @@ void Level::generateEnemies(){
     }
 }
 
-
+// sets the game on pause + resets the time if unpaused
 void Level::pauseGame(){
     double currentTime = glfwGetTime();
     float deltaTime = float(currentTime - lastTimePause);
@@ -626,6 +658,7 @@ void Level::pauseGame(){
     }
 }
 
+// checks if an friendly unit is dead, if dead reset level
 void Level::checkIfGameOver(){
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
@@ -642,6 +675,8 @@ void Level::checkIfGameOver(){
     }
 }
 
+
+//clears all the vectors and the loads the level again
 void Level::resetLevel(){
     players.clear();
     bullets.clear();
@@ -653,12 +688,14 @@ void Level::resetLevel(){
     loadLevel();
 }
 
+
+// function to render a 2d string on screen
 void Level::renderString(float x, float y, void *font, const std::string &string)
 {
     glColor3f(1.0f, 1.0f, 1.0f);
     glRasterPos2f(x, y);
     for (int n=0; n<string.size(); ++n) {
-        //        glutBitmapCharacter(font, string[n]);
+        //glutBitmapCharacter(font, string[n]);
     }
 }
 

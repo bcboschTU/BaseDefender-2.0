@@ -40,6 +40,9 @@ public:
     void updateBullets();
     void removeBullet(int index);
     
+    
+    //update model Matrix
+    void updateModelMatrix(float _xpos, float _ypos, float _rot);
 private:
     std::vector<Bullet> bullets;
     WeaponType weaponType;

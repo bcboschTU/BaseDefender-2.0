@@ -108,6 +108,8 @@ void Turret::setTarget(std::vector<Enemie> *enemies){
         shoot(enemie->getXPos(), enemie->getYPos());        
     }
     
+    
+    updateModelMatrix(getXPos(), getYPos(), getAngle()-90);
 }
 
 void Turret::updateBullets(){
@@ -132,4 +134,14 @@ float Turret::calculateDistance(float x1, float x2, float y1, float y2){
     float dx = x2 - x1;
     float dy = y2 - y1;
     return sqrt(dx*dx + dy*dy);
+}
+
+void Turret::updateModelMatrix(float _xpos, float _ypos, float _rot){
+    Mesh meshTemp;
+    glm::vec3 temp = glm::vec3(_xpos,_ypos, -200);
+    meshTemp.translate(temp);
+    _rot = _rot /180 *PI;
+    meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    mesh = meshTemp;
+    
 }
