@@ -44,6 +44,7 @@
 		D39EE1281B24822E00FD1813 /* blox.obj in Resources */ = {isa = PBXBuildFile; fileRef = D39EE1271B24822E00FD1813 /* blox.obj */; };
 		D3F46D271B284E7C00B265F2 /* Su-34_Fullback_P01.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D3F46D261B284E7C00B265F2 /* Su-34_Fullback_P01.bmp */; };
 		D3F46D2B1B2861CD00B265F2 /* bullet.obj in Resources */ = {isa = PBXBuildFile; fileRef = D3F46D2A1B2861CD00B265F2 /* bullet.obj */; };
+		D3F46D2F1B28847500B265F2 /* turret.obj in Resources */ = {isa = PBXBuildFile; fileRef = D3F46D2E1B28847500B265F2 /* turret.obj */; };
 		E2639951190D148400B6251A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2639950190D148400B6251A /* Cocoa.framework */; };
 		E2639AE3190D156500B6251A /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E2639ADC190D156500B6251A /* main.cpp */; };
 		E2639AE8190D169200B6251A /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2639AE7190D169200B6251A /* OpenGL.framework */; };
@@ -116,6 +117,7 @@
 		D39EE1271B24822E00FD1813 /* blox.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = blox.obj; sourceTree = "<group>"; };
 		D3F46D261B284E7C00B265F2 /* Su-34_Fullback_P01.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = "Su-34_Fullback_P01.bmp"; sourceTree = "<group>"; };
 		D3F46D2A1B2861CD00B265F2 /* bullet.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bullet.obj; sourceTree = "<group>"; };
+		D3F46D2E1B28847500B265F2 /* turret.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = turret.obj; sourceTree = "<group>"; };
 		E263994D190D148400B6251A /* Base Defender.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Base Defender.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2639950190D148400B6251A /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		E2639ADC190D156500B6251A /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 		D399F4801AC1AA2600FE2DE9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D3F46D2E1B28847500B265F2 /* turret.obj */,
 				D399F4A71AC2B79C00FE2DE9 /* sphere.obj */,
 				D399F4811AC1AA3700FE2DE9 /* B-2_Spirit.obj */,
 				D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */,
@@ -430,6 +433,7 @@
 				D3F46D2B1B2861CD00B265F2 /* bullet.obj in Resources */,
 				D31081361AB766E50079E6AC /* shader.vs in Resources */,
 				D399F4841AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp in Resources */,
+				D3F46D2F1B28847500B265F2 /* turret.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

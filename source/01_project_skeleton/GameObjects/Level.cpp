@@ -72,14 +72,14 @@ void Level::loadLevel(){
     Turret turret11 = Turret("Turret1Base1", 100, 11, 11, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
     turret11.levelUpWeapon();
     Mesh turret11tempMesh;
-    turret11tempMesh.translate(glm::vec3(11,11,-200));
-    turret11tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret11tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
+    //turret11tempMesh.translate(glm::vec3(11,11,-200));
+    //turret11tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
+    //rot = 270 * (M_PI/180);
+    //turret11tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret11.setMesh(turret11tempMesh);
     turrets.push_back(turret11);
     
-     
+     /*
     Turret turret12 = Turret("Turret2Base1", 100, -11, -11, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
     Mesh turret12tempMesh;
     turret12tempMesh.translate(glm::vec3(-11,-11,-200));
@@ -107,6 +107,7 @@ void Level::loadLevel(){
     turret14tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     turret14.setMesh(turret14tempMesh);
     turrets.push_back(turret14);
+      */
 }
 
 
@@ -283,9 +284,9 @@ void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffec
 void Level::setupMeshes(){
     std::string playerStr = "SU-34_Fullback.obj";
     std::string baseStr = "sphere.obj";
-    std::string turretstr = "B-2_Spirit.obj";
-    std::string enemystr_100_50 = "blox.obj";
-    std::string enemystr_50_0 = "sphere.obj";
+    std::string turretstr = "turret.obj";
+    std::string enemystr_100_50 = "B-2_Spirit.obj";
+    std::string enemystr_50_0 = "blox.obj";
     std::string bulletstr = "bullet.obj";
     std::string explosionstr = "sphere.obj";
     glGenVertexArrays(1, &VertexArrayID);

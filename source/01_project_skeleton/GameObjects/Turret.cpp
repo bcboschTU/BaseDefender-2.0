@@ -34,6 +34,7 @@ Mesh Turret::getMesh(){
 
 void Turret::setMesh(Mesh _mesh){
     mesh = _mesh;
+    updateModelMatrix(getXPos(), getYPos(), getAngle()-90);
 }
 
 void Turret::updateTurret(){
@@ -141,8 +142,14 @@ void Turret::updateModelMatrix(float _xpos, float _ypos, float _rot){
     glm::vec3 temp = glm::vec3(_xpos,_ypos, -200);
     meshTemp.translate(temp);
     meshTemp.scale(glm::vec3(0.2f, 0.2f, 0.2f));
+    
+    _rot = _rot + 180;
     _rot = _rot /180 *PI;
     meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    
+    float _rot2 = 90/180 *PI;
+    meshTemp.rotate(glm::vec3(0.f, 1.f, 0.f), _rot2);
+    
     mesh = meshTemp;
     
 }
