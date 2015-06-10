@@ -286,7 +286,7 @@ void Level::setupMeshes(){
     std::string turretstr = "B-2_Spirit.obj";
     std::string enemystr_100_50 = "blox.obj";
     std::string enemystr_50_0 = "sphere.obj";
-    std::string bulletstr = "blox.obj";
+    std::string bulletstr = "bullet.obj";
     std::string explosionstr = "blox.obj";
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);

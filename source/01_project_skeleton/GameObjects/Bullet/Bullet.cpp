@@ -105,7 +105,7 @@ void Bullet::updateBullet(){
         
         xPos = xPosNew + xdif*speed;
         yPos = yPosNew + ydif*speed;
-        updateModelMatrix(xPos, yPos, 0);
+        updateModelMatrix(xPos, yPos, angle);
     }
 }
 
@@ -177,8 +177,10 @@ void Bullet::updateModelMatrix(float _xpos, float _ypos, float _rot){
     Mesh meshTemp;
     glm::vec3 temp = glm::vec3(_xpos,_ypos, -200);
     meshTemp.translate(temp);
+    _rot = _rot + 90;
     _rot = _rot /180 *PI;
     meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    meshTemp.scale(glm::vec3(3.0f, 3.0f, 3.0f));
     mesh = meshTemp;
     
 }
