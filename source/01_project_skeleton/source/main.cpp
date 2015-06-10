@@ -26,7 +26,7 @@
 #include "GameState.h"
 
 
-const glm::vec2 SCREEN_SIZE(1024, 768);
+const glm::vec2 SCREEN_SIZE(1100, 700);
 
 GLFWwindow* window;
 
@@ -50,7 +50,7 @@ int cameraMode = 1;
 void initApp(){
     level = Level(0, SCREEN_SIZE[0],SCREEN_SIZE[1]);
     gamestate.setGameState(1);
-    gameController.setPosition(level.getCamera().position());
+    //gameController.setPosition(level.getCamera().position());
 }
 
 

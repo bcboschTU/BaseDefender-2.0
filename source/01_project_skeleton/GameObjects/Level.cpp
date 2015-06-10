@@ -41,8 +41,9 @@ void Level::loadLevel(){
     roundStartShowTextTime = 2.0;
     
     setupMeshes();
-    loadTextures();
     initLightingEffect();
+    loadTextures();
+    
     
     
     Player player1 = Player("Player1", 200, 30, 10, 4, 4, 0, 1);
@@ -186,6 +187,7 @@ void Level::drawLevel(){
     
     
     //turrets rendering
+    lightingEffect->SetTextId(1);
     turretMesh.enableRender();
     for (int i = 0; i<turrets.size(); i++) {
         Turret * turret = &turrets[i];
@@ -204,7 +206,9 @@ void Level::drawLevel(){
     baseMesh.disableRender();
     
     
+    
     //player rendering
+    lightingEffect->SetTextId(0);
     playerMesh.enableRender();
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
@@ -214,6 +218,7 @@ void Level::drawLevel(){
     playerMesh.disableRender();
     
     
+    lightingEffect->SetTextId(2);
     enemyMesh_100_50.enableRender();
     for (int i = 0; i<enemies.size(); i++) {
         Enemie * enemie = &enemies[i];
@@ -330,7 +335,7 @@ void Level::cleanup(){
     glDeleteProgram(programID);
     glDeleteVertexArrays(1, &VertexArrayID);
     
-    glDeleteTextures(1, &DiffuseTexture);
+    glDeleteTextures(1, &DiffuseTexturePlayer);
     //glDeleteTextures(1, &NormalTexture);
     //glDeleteTextures(1, &SpecularTexture);
 }
@@ -338,13 +343,32 @@ void Level::cleanup(){
 
 // loading of the textures for each mesh type
 void Level::loadTextures(){
-    DiffuseTexture = loadBMP_custom("B-2_Spirit_P01.bmp");
-    //DiffuseTexture = loadBMP_custom("metal.bmp");
-    DiffuseTextureID  = glGetUniformLocation(programID, "myTextureSampler");
     
+    DiffuseTexturePlayer = loadBMP_custom("Su-34_Fullback_P01.bmp");
+    DiffuseTextureTurret = loadBMP_custom("B-2_Spirit_P01.bmp");
+    DiffuseTextureEnemie = loadBMP_custom("city.bmp");
+    
+    lightingEffect->addTexture(DiffuseTexturePlayer, 0);
+    lightingEffect->addTexture(DiffuseTextureTurret, 1);
+    lightingEffect->addTexture(DiffuseTextureEnemie, 2);
+    
+    //DiffuseTexture = loadBMP_custom("metal.bmp");
+    
+    /*
+    DiffuseTexturePlayerID  = glGetUniformLocation(programID, "myTextureSampler");
+    
+    glUniform1i(DiffuseTexturePlayerID, 0);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, DiffuseTexture);
-    glUniform1i(DiffuseTextureID, 0);
+    glBindTexture(GL_TEXTURE_2D, DiffuseTexturePlayer);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    
+    glUniform1i(DiffuseTexturePlayerID, 1);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, DiffuseTextureEnemie);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    
+    */
+    
 }
 
 

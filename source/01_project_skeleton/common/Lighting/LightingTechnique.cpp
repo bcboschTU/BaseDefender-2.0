@@ -35,7 +35,18 @@ bool LightingTechnique::Init()
     viewMatrixID = GetUniformLocation("V");
     modelMatrixID = GetUniformLocation("M");
     
-    m_samplerLocation = GetUniformLocation("myTextureSampler");
+    m_samplerLocation0 = GetUniformLocation("myTextureSampler0");
+    m_samplerLocation1 = GetUniformLocation("myTextureSampler1");
+    m_samplerLocation2 = GetUniformLocation("myTextureSampler2");
+    m_samplerLocation3 = GetUniformLocation("myTextureSampler3");
+    m_samplerLocation4 = GetUniformLocation("myTextureSampler4");
+    m_samplerLocation5 = GetUniformLocation("myTextureSampler5");
+    m_samplerLocation6 = GetUniformLocation("myTextureSampler6");
+    m_samplerLocation7 = GetUniformLocation("myTextureSampler7");
+    m_samplerLocation8 = GetUniformLocation("myTextureSampler8");
+    m_samplerLocation9 = GetUniformLocation("myTextureSampler9");
+    
+    texID = GetUniformLocation("texid");
     
     m_dirLightLocation.Color = GetUniformLocation("gDirectionalLight.Base.Color");
     m_dirLightLocation.AmbientIntensity = GetUniformLocation("gDirectionalLight.Base.AmbientIntensity");
@@ -128,7 +139,9 @@ bool LightingTechnique::Init()
         matrixID == INVALID_UNIFORM_LOCATION ||
         viewMatrixID == INVALID_UNIFORM_LOCATION ||
         modelMatrixID == INVALID_UNIFORM_LOCATION ||
-        m_samplerLocation == INVALID_UNIFORM_LOCATION ||
+        m_samplerLocation0 == INVALID_UNIFORM_LOCATION ||
+        m_samplerLocation1 == INVALID_UNIFORM_LOCATION ||
+        m_samplerLocation2 == INVALID_UNIFORM_LOCATION ||
         m_dirLightLocation.Color == INVALID_UNIFORM_LOCATION ||
         m_dirLightLocation.DiffuseIntensity == INVALID_UNIFORM_LOCATION ||
         m_dirLightLocation.Direction == INVALID_UNIFORM_LOCATION ||
@@ -158,10 +171,19 @@ void LightingTechnique::SetModeldMatrix(const glm::mat4& ModelMatrix)
     glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, &ModelMatrix[0][0]);
 }
 
+void LightingTechnique::SetTextId(int i){
+    glUniform1i(texID, i);
+}
+
 
 void LightingTechnique::SetTextureUnit(unsigned int TextureUnit)
 {
-    glUniform1i(m_samplerLocation, TextureUnit);
+    //if(TextureUnit == 0)
+    //    glActiveTexture(GL_TEXTURE0);
+    //if(TextureUnit == 1)
+    //    glActiveTexture(GL_TEXTURE1);
+    //glActiveTexture(GL_TEXTURE0 + TextureUnit);
+    //glUniform1i(m_samplerLocation0, TextureUnit);
 }
 
 
@@ -183,6 +205,61 @@ void LightingTechnique::SetMatSpecularIntensity(float Intensity)
 void LightingTechnique::SetMatSpecularPower(float Power)
 {
     glUniform1f(m_matSpecularPowerLocation, Power);
+}
+
+void LightingTechnique::addTexture(GLuint texture, unsigned int index){
+    if(index == 0){
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation0, 0);
+    }
+    if(index == 1){
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation1, 1);
+    }
+    if(index == 2){
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 2);
+    }
+    if(index == 3){
+        glActiveTexture(GL_TEXTURE3);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 3);
+    }
+    if(index == 4){
+        glActiveTexture(GL_TEXTURE4);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 4);
+    }
+    if(index == 5){
+        glActiveTexture(GL_TEXTURE5);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 5);
+    }
+    if(index == 6){
+        glActiveTexture(GL_TEXTURE6);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 6);
+    }
+    if(index == 7){
+        glActiveTexture(GL_TEXTURE7);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 7);
+    }
+    if(index == 8){
+        glActiveTexture(GL_TEXTURE8);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 8);
+    }
+    if(index == 9){
+        glActiveTexture(GL_TEXTURE9);
+        glBindTexture(GL_TEXTURE_2D, texture);
+        glUniform1i(m_samplerLocation2, 9);
+    }
+    
+    
 }
 
 void LightingTechnique::SetPointLights(unsigned int NumLights, const PointLight* pLights)

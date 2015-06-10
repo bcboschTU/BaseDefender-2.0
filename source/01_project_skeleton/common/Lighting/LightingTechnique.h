@@ -81,6 +81,7 @@ public:
     void SetMatrix(const glm::mat4& MVP);
     void SetViewMatrix(const glm::mat4& ViewMatrix);
     void SetModeldMatrix(const glm::mat4& ModelMatrix);
+    void SetTextId(int i);
     
     void SetTextureUnit(unsigned int TextureUnit);
     void SetDirectionalLight(const DirectionalLight& Light);
@@ -89,12 +90,24 @@ public:
     void SetMatSpecularIntensity(float Intensity);
     void SetMatSpecularPower(float Power);
     
+    void addTexture(GLuint texture, unsigned int index);
+    
 private:
     
     GLuint matrixID;
     GLuint viewMatrixID;
     GLuint modelMatrixID;
-    GLuint m_samplerLocation;
+    GLuint texID;
+    GLuint m_samplerLocation0;
+    GLuint m_samplerLocation1;
+    GLuint m_samplerLocation2;
+    GLuint m_samplerLocation3;
+    GLuint m_samplerLocation4;
+    GLuint m_samplerLocation5;
+    GLuint m_samplerLocation6;
+    GLuint m_samplerLocation7;
+    GLuint m_samplerLocation8;
+    GLuint m_samplerLocation9;
     GLuint m_eyeWorldPosLocation;
     GLuint m_matSpecularIntensityLocation;
     GLuint m_matSpecularPowerLocation;

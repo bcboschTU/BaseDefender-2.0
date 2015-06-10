@@ -56,10 +56,20 @@ uniform SpotLight gSpotLights[MAX_SPOT_LIGHTS];
 uniform float gMatSpecularIntensity;
 uniform float gSpecularPower;
 //texture
-uniform sampler2D myTextureSampler;
+uniform sampler2D myTextureSampler0;
+uniform sampler2D myTextureSampler1;
+uniform sampler2D myTextureSampler2;
+uniform sampler2D myTextureSampler3;
+uniform sampler2D myTextureSampler4;
+uniform sampler2D myTextureSampler5;
+uniform sampler2D myTextureSampler6;
+uniform sampler2D myTextureSampler7;
+uniform sampler2D myTextureSampler8;
+uniform sampler2D myTextureSampler9;
 
 //matrixes
 uniform mat4 V;
+uniform int texid;
 
 vec4 CalcLightInternal(BaseLight Light, vec3 l, vec3 n)
 {
@@ -141,5 +151,34 @@ void main()
         TotalLight += CalcSpotLight(gSpotLights[i], n2);
     }
     
-    FragColor = texture(myTextureSampler, UV) * TotalLight;
+    if(texid == 0){
+        FragColor = texture(myTextureSampler0, UV) * TotalLight;
+    }
+    else if(texid == 1){
+        FragColor = texture(myTextureSampler1, UV) * TotalLight;
+    }
+    else if(texid == 2){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
+    else if(texid == 3){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
+    else if(texid == 4){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
+    else if(texid == 5){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
+    else if(texid == 6){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
+    else if(texid == 7){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
+    else if(texid == 8){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
+    else if(texid == 9){
+        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+    }
 }

@@ -84,7 +84,6 @@ public:
     void OnScroll(GLFWwindow* window, double deltaX, double deltaY);
     Camera getCamera();
 private:
-    
     std::vector<Player> players;
     std::vector<Bullet*> bullets;
     std::vector<Base> bases;
@@ -129,10 +128,14 @@ private:
     GLuint ViewMatrixID;
     GLuint ModelMatrixID;
     
-    GLuint DiffuseTexture;
-    GLuint DiffuseTextureID;
-    GLuint NormalTexture;
-    GLuint NormalTextureID;
+    GLuint DiffuseTexturePlayer;
+    GLuint DiffuseTextureEnemie;
+    GLuint DiffuseTextureTurret;
+    
+    
+    
+    //GLuint NormalTexture;
+    //GLuint NormalTextureID;
     
     //buffers
     GLuint VertexArrayID;

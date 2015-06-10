@@ -45,6 +45,13 @@ private:
     int height = 700;
     
     bool _inputBool = true;
+    
+    float _horizontalAngle;
+    float _verticalAngle;
+    float _fieldOfView;
+    float _nearPlane;
+    float _farPlane;
+    float _viewportAspectRatio;
 };
 
 #endif /* defined(__opengl_series__Camera2__) */

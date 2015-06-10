@@ -13,8 +13,14 @@ float zoomSpeed = .2f;
 GameControlles::GameControlles() :
 _position(0.0f, 0.0f, 4.0f),
 _minZoom(0.05),
-_maxZoom(4),
-_inputBool(true)
+_maxZoom(6),
+_inputBool(true),
+_horizontalAngle(0.0f),
+_verticalAngle(0.0f),
+_fieldOfView(45.0f),
+_nearPlane(0.01f),
+_farPlane(1000.0f),
+_viewportAspectRatio(4.0f/3.0f)
 {}
 
 const glm::vec3& GameControlles::getPosition() const {
@@ -139,6 +145,7 @@ glm::vec3 GameControlles::getMouseWorldPos(GLFWwindow* window){
     viewMatrix = glm::scale(viewMatrix, glm::vec3(_position.z, _position.z, 1));
     viewMatrix = glm::translate(viewMatrix,glm::vec3(_position.x, _position.y, 0));
     glm::mat4 projectionMatrix = glm::ortho<float>(-1, 1, -1 * (GLfloat) height / (GLfloat) width, (GLfloat) height/ (GLfloat) width, -1, 1);
+    
     
     glm::vec3 win = glm::vec3(winX,winY,winZ);
     glm::vec3 v = glm::unProject(win, viewMatrix, projectionMatrix, viewport);
