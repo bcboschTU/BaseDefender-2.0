@@ -62,7 +62,7 @@ void Level::loadLevel(){
     Base base1 = Base("Base1", 500, 0, 0, 0.8, 0.8, 0, 1);
     Mesh base1tempMesh;
     base1tempMesh.translate(glm::vec3(0,0,-200));
-    base1tempMesh.scale(glm::vec3(10.0f, 10.0f, 10.0f));
+    base1tempMesh.scale(glm::vec3(12.0f, 12.0f, 12.0f));
     rot = 0 * (M_PI/180);
     base1tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
     base1.setMesh(base1tempMesh);
@@ -282,12 +282,12 @@ void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffec
 //loading of the meshes for each of the objects types
 void Level::setupMeshes(){
     std::string playerStr = "SU-34_Fullback.obj";
-    std::string baseStr = "blox.obj";
+    std::string baseStr = "sphere.obj";
     std::string turretstr = "B-2_Spirit.obj";
     std::string enemystr_100_50 = "blox.obj";
     std::string enemystr_50_0 = "sphere.obj";
     std::string bulletstr = "bullet.obj";
-    std::string explosionstr = "blox.obj";
+    std::string explosionstr = "sphere.obj";
     glGenVertexArrays(1, &VertexArrayID);
     glBindVertexArray(VertexArrayID);
     
@@ -408,7 +408,7 @@ void Level::updateLighting(){
     PointLight pl[20];
     pl[0].DiffuseIntensity = 2.0f;
     pl[0].Color = glm::vec3(1.0f, 0.0f, 0.0f);
-    pl[0].Position = glm::vec3(-3.0f, 1.0f, 1.0);
+    pl[0].Position = glm::vec3(-30.0f, 10.0f, -190.0);
     pl[0].Attenuation.Linear = 0.1f;
     
     lightingEffect->SetPointLights(1, pl);
@@ -422,13 +422,15 @@ void Level::updateLighting(){
     sl[0].Attenuation.Linear = 0.1f;
     sl[0].Cutoff = 10.f;
     
+    /*
     sl[1].DiffuseIntensity = 2.9f;
     sl[1].Color = glm::vec3(1.0f, 0.0f, 0.0f);
     sl[1].Position = glm::vec3(0.0f, 1.0f, 0.0f);
     sl[1].Direction = glm::vec3(0.0f, 0.0f, -1.0f);
     sl[1].Attenuation.Linear = 0.1f;
     sl[1].Cutoff = 20.0f;
-    lightingEffect->SetSpotLights(2, sl);
+     */
+    lightingEffect->SetSpotLights(1, sl);
     
     
     lightingEffect->SetMatSpecularIntensity(2.0f);

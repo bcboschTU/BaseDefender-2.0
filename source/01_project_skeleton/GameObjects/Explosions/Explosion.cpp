@@ -26,18 +26,18 @@ void Explosion::explosionSetup(){
         case SMALL:
             width = 0.2;
             height = 0.2;
-            widthMax = 2;
-            heightMax = 2;
+            widthMax = 1;
+            heightMax = 1;
             offSetMin = -0.1;
             offSetPlus = 0.1;
             amountOfExplosions = 1;
             lifetime = 0.35;
             break;
         case MEDIUM:
-            width = 0.05;
-            height = 0.05;
-            widthMax = 0.2;
-            heightMax = 0.2;
+            width = 0.2;
+            height = 0.2;
+            widthMax = 5;
+            heightMax = 5;
             offSetMin = -0.1;
             offSetPlus = 0.1;
             amountOfExplosions = 5;
@@ -83,10 +83,10 @@ bool Explosion::getDrawAble(){
 
 void Explosion::updateExplosion(){
     if(width < widthMax){
-        width  = width + 0.1;
+        width  = width + 0.3;
     }
     if(height < heightMax){
-        height = height + 0.1;
+        height = height + 0.3;
     }
     updateModelMatrix(xPos, yPos, 0);
 }

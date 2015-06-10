@@ -91,6 +91,7 @@ void AppMain() {
             
         }
         else{
+            glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
             level.updateCamera((float)(thisTime - lastTime), window);
             if(!level.getCamera().getInputTrue()){
                 cameraMode = 1;

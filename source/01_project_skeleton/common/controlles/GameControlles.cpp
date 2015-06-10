@@ -84,7 +84,7 @@ void GameControlles::computeInputsGame(GLFWwindow* window,Level *level,GameState
     if (glfwGetKey(window, GLFW_KEY_D ) == GLFW_PRESS){
         newXPos += 1 * deltaTime * translateSpeed;
     }
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE ) == GLFW_PRESS){
+    if (glfwGetKey(window, GLFW_KEY_G ) == GLFW_PRESS){
         level->pauseGame();
     }
     if (glfwGetKey(window, GLFW_KEY_P ) == GLFW_PRESS){
