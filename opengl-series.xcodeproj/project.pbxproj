@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BC5B4A91B29850700990AFD /* player.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8BC5B4A81B29850700990AFD /* player.obj */; };
 		D31081351AB766E50079E6AC /* shader.fs in Resources */ = {isa = PBXBuildFile; fileRef = D31081331AB766E50079E6AC /* shader.fs */; };
 		D31081361AB766E50079E6AC /* shader.vs in Resources */ = {isa = PBXBuildFile; fileRef = D31081341AB766E50079E6AC /* shader.vs */; };
 		D3120A9A1B21DC16009247B3 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120A981B21DC16009247B3 /* Level.cpp */; };
@@ -56,6 +57,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8BC5B4A81B29850700990AFD /* player.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = player.obj; sourceTree = "<group>"; };
 		D31081331AB766E50079E6AC /* shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 		D31081341AB766E50079E6AC /* shader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
 		D3120A981B21DC16009247B3 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Level.cpp; path = GameObjects/Level.cpp; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 		D399F4801AC1AA2600FE2DE9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8BC5B4A81B29850700990AFD /* player.obj */,
 				D3F46D2E1B28847500B265F2 /* turret.obj */,
 				D399F4A71AC2B79C00FE2DE9 /* sphere.obj */,
 				D399F4811AC1AA3700FE2DE9 /* B-2_Spirit.obj */,
@@ -426,6 +429,7 @@
 				D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */,
 				D399F4661AC0260100FE2DE9 /* lighting.fs in Resources */,
 				D399F4A81AC2B79C00FE2DE9 /* sphere.obj in Resources */,
+				8BC5B4A91B29850700990AFD /* player.obj in Resources */,
 				D399F4821AC1AA3700FE2DE9 /* B-2_Spirit.obj in Resources */,
 				D39EE1281B24822E00FD1813 /* blox.obj in Resources */,
 				D399F4531AC013D900FE2DE9 /* city.bmp in Resources */,

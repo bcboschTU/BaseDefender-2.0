@@ -282,7 +282,7 @@ void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffec
 
 //loading of the meshes for each of the objects types
 void Level::setupMeshes(){
-    std::string playerStr = "SU-34_Fullback.obj";
+    std::string playerStr = "player.obj";
     std::string baseStr = "sphere.obj";
     std::string turretstr = "turret.obj";
     std::string enemystr_100_50 = "B-2_Spirit.obj";
