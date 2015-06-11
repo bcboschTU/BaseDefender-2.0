@@ -81,32 +81,51 @@ void Level::loadLevelFromFile(const char *filename) {
     float _xPos, _yPos, _width, _height, _angle;
     
     while(file >> word) {
-        if(word.compare("player") == 0){
+        if(word.compare("level") == 0){
+            std::string _roundStartShowTextString;
+            int _score, _multiplierBaseScore, _multiplier, _round;
+            bool _roundStartShowText;
+            float _roundStartShowTextTime;
+            
+            file >> _score >> _multiplierBaseScore >> _multiplier >> _round >> _roundStartShowTextString >> _roundStartShowTextTime;
+            
+            _roundStartShowText = (_roundStartShowTextString.compare("true") == 0) ? true : false;
+            
+            printf("======== Level =========\n");
+            printf("score        = %i\n", _score);
+            printf("multiplierB  = %i\n", _multiplierBaseScore);
+            printf("multiplier   = %i\n", _multiplier);
+            printf("round        = %i\n", _round);
+            printf("showText     = %s\n", _roundStartShowTextString.c_str());
+            printf("showTextTime = %f\n", _roundStartShowTextTime);
+            printf("========================\n");
+            
+        } else if(word.compare("player") == 0){
             file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
             
             printf("======== Player ========\n");
-            printf("name       = %s\n", _name.c_str());
-            printf("hp         = %i\n", _hp);
-            printf("xPos       = %f\n", _xPos);
-            printf("yPos       = %f\n", _yPos);
-            printf("width      = %f\n", _width);
-            printf("height     = %f\n", _height);
-            printf("angle      = %f\n", _angle);
-            printf("level      = %i\n", _level);
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
             printf("========================\n");
 
         } else if(word.compare("base") == 0) {
             file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
             
             printf("========= Base =========\n");
-            printf("name       = %s\n", _name.c_str());
-            printf("hp         = %i\n", _hp);
-            printf("xPos       = %f\n", _xPos);
-            printf("yPos       = %f\n", _yPos);
-            printf("width      = %f\n", _width);
-            printf("height     = %f\n", _height);
-            printf("angle      = %f\n", _angle);
-            printf("level      = %i\n", _level);
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
             printf("=======================\n");
             
         } else if(word.compare("turret") == 0) {
@@ -128,31 +147,31 @@ void Level::loadLevelFromFile(const char *filename) {
             }
             
             printf("======== Turret ========\n");
-            printf("name       = %s\n", _name.c_str());
-            printf("hp         = %i\n", _hp);
-            printf("xPos       = %f\n", _xPos);
-            printf("yPos       = %f\n", _yPos);
-            printf("width      = %f\n", _width);
-            printf("height     = %f\n", _height);
-            printf("angle      = %f\n", _angle);
-            printf("level      = %i\n", _level);
-            printf("rangeBegin = %f\n", _rangeBegin);
-            printf("rangeEnd   = %f\n", _rangeEnd);
-            printf("weaponType = %s (%i)\n", _weaponType.c_str(), _type);
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
+            printf("rangeBegin  = %f\n", _rangeBegin);
+            printf("rangeEnd    = %f\n", _rangeEnd);
+            printf("weaponType  = %s (%i)\n", _weaponType.c_str(), _type);
             printf("=======================\n");
             
         } else if(word.compare("enemie") == 0){
             file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
             
             printf("======== Enemie ========\n");
-            printf("name       = %s\n", _name.c_str());
-            printf("hp         = %i\n", _hp);
-            printf("xPos       = %f\n", _xPos);
-            printf("yPos       = %f\n", _yPos);
-            printf("width      = %f\n", _width);
-            printf("height     = %f\n", _height);
-            printf("angle      = %f\n", _angle);
-            printf("level      = %i\n", _level);
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
             printf("========================\n");
             
         }
