@@ -29,7 +29,6 @@ Level::Level(int _type, int _width, int _height){
 Level::Level(int _type, int _width, int _height, const char *filename){
     type = _type;
     loadLevelFromFile(filename);
-    loadLevel(); // TODO: remove when finished
     pause = false;
     lastTimeLevel = glfwGetTime();
     lastTimePause = glfwGetTime();
@@ -56,7 +55,7 @@ void Level::loadLevel(){
     loadTextures();
     
     
-    
+
     Player player1 = Player("Player1", 200, 30, 10, 4, 4, 0, 1);
     players.push_back(player1);
     
@@ -100,6 +99,15 @@ void Level::loadLevelFromFile(const char *filename) {
             printf("showTextTime = %f\n", _roundStartShowTextTime);
             printf("========================\n");
             
+            score = _score;
+            multiplierBaseScore = _multiplierBaseScore;
+            multiplier = _multiplier;
+            round = _round;
+            roundStartShowText = _roundStartShowText;
+            roundStartShowTextTimer = glfwGetTime();
+            roundStartShowTextTime = _roundStartShowTextTime;
+            roundStart(round);
+            
         } else if(word.compare("player") == 0){
             file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
             
@@ -113,6 +121,9 @@ void Level::loadLevelFromFile(const char *filename) {
             printf("angle       = %f\n", _angle);
             printf("level       = %i\n", _level);
             printf("========================\n");
+            
+            Player player = Player(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level);
+            players.push_back(player);
 
         } else if(word.compare("base") == 0) {
             file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
@@ -127,6 +138,9 @@ void Level::loadLevelFromFile(const char *filename) {
             printf("angle       = %f\n", _angle);
             printf("level       = %i\n", _level);
             printf("=======================\n");
+            
+            Base base = Base(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level);
+            bases.push_back(base);
             
         } else if(word.compare("turret") == 0) {
             std::string _weaponType;
@@ -160,6 +174,9 @@ void Level::loadLevelFromFile(const char *filename) {
             printf("weaponType  = %s (%i)\n", _weaponType.c_str(), _type);
             printf("=======================\n");
             
+            Turret turret = Turret(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level, _rangeBegin, _rangeEnd, _type);
+            turrets.push_back(turret);
+            
         } else if(word.compare("enemie") == 0){
             file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
             
@@ -174,10 +191,16 @@ void Level::loadLevelFromFile(const char *filename) {
             printf("level       = %i\n", _level);
             printf("========================\n");
             
+            Enemie enemie = Enemie(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level);
+            enemies.push_back(enemie);
         }
     }
     
     printf("Loading done.\n");
+    
+    setupMeshes();
+    initLightingEffect();
+    loadTextures();
 }
 
 
