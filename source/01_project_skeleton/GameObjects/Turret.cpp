@@ -143,13 +143,13 @@ void Turret::updateModelMatrix(float _xpos, float _ypos, float _rot){
     meshTemp.translate(temp);
     meshTemp.scale(glm::vec3(0.2f, 0.2f, 0.2f));
     
-    _rot = _rot + 180;
-    _rot = _rot /180 *PI;
-    meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    float std_rot = 90.f / 180.f * PI;
+    meshTemp.rotate(glm::vec3(1.f, 0.f, 0.f), std_rot);
+    std_rot = -90.f / 180.f * PI;
+    meshTemp.rotate(glm::vec3(0.f, 1.0f, 0.f), std_rot);
     
-    float _rot2 = 90/180 *PI;
-    meshTemp.rotate(glm::vec3(0.f, 1.f, 0.f), _rot2);
-    
+    _rot = _rot /180.f *PI;
+    meshTemp.rotate(glm::vec3(0.f, 1.f, 0.f), _rot);
     mesh = meshTemp;
     
 }

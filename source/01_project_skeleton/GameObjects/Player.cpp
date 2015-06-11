@@ -177,10 +177,19 @@ bool Player::getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidt
 
 void Player::updateModelMatrix(float _xpos, float _ypos, float _rot){
     Mesh meshTemp;
+    // Translate player position
     glm::vec3 temp = glm::vec3(_xpos,_ypos, -200);
     meshTemp.translate(temp);
-    _rot = _rot /180 *PI;
-    meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
+    
+    // Apply standard rotation
+    float std_rot = 90.f/180.f *PI;
+    meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), std_rot);
+    std_rot = 90.f / 180.f * PI;
+    meshTemp.rotate(glm::vec3(1.f, 0.f, 0.f), std_rot);
+    
+    // Apply rotation caused by player
+    _rot = _rot /180.f *PI;
+    meshTemp.rotate(glm::vec3(0.f, 1.f, 0.f), _rot);
     mesh = meshTemp;
     
 }
