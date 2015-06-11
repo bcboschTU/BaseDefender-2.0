@@ -39,7 +39,6 @@ public:
     //setup
     Level(int type, int width, int height);
     Level(int type, int width, int height, const char* file);
-    void loadLevel();
     void loadLevelFromFile(const char* filename);
     
     

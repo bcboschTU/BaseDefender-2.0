@@ -15,17 +15,6 @@ Level::Level(){
 }
 
 //level constructor
-Level::Level(int _type, int _width, int _height){
-    type = _type;
-    loadLevel();
-    pause = false;
-    lastTimeLevel = glfwGetTime();
-    lastTimePause = glfwGetTime();
-    
-    width = _width;
-    height =_height;
-}
-
 Level::Level(int _type, int _width, int _height, const char *filename){
     type = _type;
     loadLevelFromFile(filename);
@@ -36,39 +25,6 @@ Level::Level(int _type, int _width, int _height, const char *filename){
     width = _width;
     height =_height;
 }
-
-
-// init parameters of the level
-//init positions of each mesh
-void Level::loadLevel(){
-    score = 0;
-    multiplierBaseScore = 0;
-    multiplier = 1;
-    round = 1;
-    roundStart(1);
-    roundStartShowText = true;
-    roundStartShowTextTimer = glfwGetTime();
-    roundStartShowTextTime = 2.0;
-    
-    setupMeshes();
-    initLightingEffect();
-    loadTextures();
-    
-    
-
-    Player player1 = Player("Player1", 200, 30, 10, 4, 4, 0, 1);
-    players.push_back(player1);
-    
-    
-    //base1 init
-    Base base1 = Base("Base1", 500, 0, 0, 0.8, 0.8, 0, 1);
-    bases.push_back(base1);
-    
-    
-    Turret turret11 = Turret("Turret1Base1", 100, 11, 11, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
-    turrets.push_back(turret11);
-}
-
 
 void Level::loadLevelFromFile(const char *filename) {
     printf("Loading Level file %s...\n", filename);
@@ -805,7 +761,7 @@ void Level::resetLevel(){
     enemies.clear();
     explosions.clear();
     //    cleanUp();
-    loadLevel();
+    loadLevelFromFile("level1.lvl");
 }
 
 
