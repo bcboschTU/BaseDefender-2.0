@@ -38,7 +38,8 @@ public:
     
     //setup
     Level(int type, int width, int height);
-    void loadLevel();
+    Level(int type, int width, int height, const char* file);
+    void loadLevelFromFile(const char* filename);
     
     
     //graphics

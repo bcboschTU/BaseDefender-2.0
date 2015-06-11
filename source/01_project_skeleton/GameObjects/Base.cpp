@@ -16,6 +16,12 @@ Base::Base(std::string _name,
            float _height,
            float _angle,
            int _level):GameObject(_name,_hp,_xPos,_yPos,_width,_height,_angle,_level){
+    
+    Mesh meshTemp;
+    glm::vec3 temp = glm::vec3(_xPos,_yPos, -200);
+    meshTemp.translate(temp);
+    meshTemp.scale(glm::vec3(12.0f, 12.0f, 12.0f));
+    setMesh(meshTemp);
 }
 
 Mesh Base::getMesh(){

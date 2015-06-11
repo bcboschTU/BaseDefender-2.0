@@ -48,7 +48,7 @@ GameState gamestate;
 int cameraMode = 1;
 
 void initApp(){
-    level = Level(0, SCREEN_SIZE[0],SCREEN_SIZE[1]);
+    level = Level(0, SCREEN_SIZE[0],SCREEN_SIZE[1],"level1.lvl");
     gamestate.setGameState(1);
     //gameController.setPosition(level.getCamera().position());
 }
@@ -77,8 +77,6 @@ void AppMain() {
     double lastTime = glfwGetTime();
     do{
         double thisTime = glfwGetTime();
-        
-
 
         if(cameraMode == 1){
             gameController.computeInputsMouse(window, &level, &gamestate);        //TODO:input for game

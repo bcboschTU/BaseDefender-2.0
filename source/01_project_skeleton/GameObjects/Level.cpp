@@ -6,7 +6,7 @@
 //
 //
 
-
+#include <fstream>
 
 #include "Level.h"
 
@@ -15,99 +15,148 @@ Level::Level(){
 }
 
 //level constructor
-Level::Level(int _type, int _width, int _height){
+Level::Level(int _type, int _width, int _height, const char *filename){
     type = _type;
-    loadLevel();
+    loadLevelFromFile(filename);
     pause = false;
     lastTimeLevel = glfwGetTime();
     lastTimePause = glfwGetTime();
-    
     
     width = _width;
     height =_height;
 }
 
+void Level::loadLevelFromFile(const char *filename) {
+    printf("Loading Level file %s...\n", filename);
+    
+    std::ifstream file(filename);
+    std::string word, _name;
+    
+    int _hp, _level;
+    float _xPos, _yPos, _width, _height, _angle;
+    
+    while(file >> word) {
+        if(word.compare("level") == 0){
+            std::string _roundStartShowTextString;
+            int _score, _multiplierBaseScore, _multiplier, _round;
+            bool _roundStartShowText;
+            float _roundStartShowTextTime;
+            
+            file >> _score >> _multiplierBaseScore >> _multiplier >> _round >> _roundStartShowTextString >> _roundStartShowTextTime;
+            
+            _roundStartShowText = (_roundStartShowTextString.compare("true") == 0) ? true : false;
+            
+            printf("======== Level =========\n");
+            printf("score        = %i\n", _score);
+            printf("multiplierB  = %i\n", _multiplierBaseScore);
+            printf("multiplier   = %i\n", _multiplier);
+            printf("round        = %i\n", _round);
+            printf("showText     = %s\n", _roundStartShowTextString.c_str());
+            printf("showTextTime = %f\n", _roundStartShowTextTime);
+            printf("========================\n");
+            
+            score = _score;
+            multiplierBaseScore = _multiplierBaseScore;
+            multiplier = _multiplier;
+            round = _round;
+            roundStartShowText = _roundStartShowText;
+            roundStartShowTextTimer = glfwGetTime();
+            roundStartShowTextTime = _roundStartShowTextTime;
+            roundStart(round);
+            
+        } else if(word.compare("player") == 0){
+            file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
+            
+            printf("======== Player ========\n");
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
+            printf("========================\n");
+            
+            Player player = Player(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level);
+            players.push_back(player);
 
-// init parameters of the level
-//init positions of each mesh
-void Level::loadLevel(){
-    score = 0;
-    multiplierBaseScore = 0;
-    multiplier = 1;
-    round = 1;
-    roundStart(1);
-    roundStartShowText = true;
-    roundStartShowTextTimer = glfwGetTime();
-    roundStartShowTextTime = 2.0;
+        } else if(word.compare("base") == 0) {
+            file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
+            
+            printf("========= Base =========\n");
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
+            printf("=======================\n");
+            
+            Base base = Base(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level);
+            bases.push_back(base);
+            
+        } else if(word.compare("turret") == 0) {
+            std::string _weaponType;
+            float _rangeBegin, _rangeEnd;
+            file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level >> _rangeBegin >> _rangeEnd >> _weaponType;
+            
+            WeaponType _type;
+            if(_weaponType.compare("NORMAL") == 0) {
+                _type = NORMAL;
+            } else if(_weaponType.compare("EXPLOSIVE") == 0) {
+                _type = EXPLOSIVE;
+            } else if(_weaponType.compare("DUAL") == 0) {
+                _type = DUAL;
+            } else if(_weaponType.compare("ROCKET") == 0) {
+                _type = ROCKET;
+            } else if(_weaponType.compare("NUKE") == 0) {
+                _type = NUKE;
+            }
+            
+            printf("======== Turret ========\n");
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
+            printf("rangeBegin  = %f\n", _rangeBegin);
+            printf("rangeEnd    = %f\n", _rangeEnd);
+            printf("weaponType  = %s (%i)\n", _weaponType.c_str(), _type);
+            printf("=======================\n");
+            
+            Turret turret = Turret(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level, _rangeBegin, _rangeEnd, _type);
+            turrets.push_back(turret);
+            
+        } else if(word.compare("enemie") == 0){
+            file >> _name >> _hp >> _xPos >> _yPos >> _width >> _height >> _angle >> _level;
+            
+            printf("======== Enemie ========\n");
+            printf("name        = %s\n", _name.c_str());
+            printf("hp          = %i\n", _hp);
+            printf("xPos        = %f\n", _xPos);
+            printf("yPos        = %f\n", _yPos);
+            printf("width       = %f\n", _width);
+            printf("height      = %f\n", _height);
+            printf("angle       = %f\n", _angle);
+            printf("level       = %i\n", _level);
+            printf("========================\n");
+            
+            Enemie enemie = Enemie(_name, _hp, _xPos, _yPos, _width, _height, _angle, _level);
+            enemies.push_back(enemie);
+        }
+    }
+    
+    printf("Loading done.\n");
     
     setupMeshes();
     initLightingEffect();
     loadTextures();
-    
-    
-    
-    Player player1 = Player("Player1", 200, 30, 10, 4, 4, 0, 1);
-    
-    //player init
-    Mesh playertempMesh;
-    playertempMesh.translate(glm::vec3(30 , 10,-200));
-    playertempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
-    float rot = 0 * (M_PI/180);
-    playertempMesh.rotate(glm::vec3(0.f, 0.f, 1.f),rot);
-    player1.setMesh(playertempMesh);
-    players.push_back(player1);
-    
-    
-    //base1 init
-    Base base1 = Base("Base1", 500, 0, 0, 0.8, 0.8, 0, 1);
-    Mesh base1tempMesh;
-    base1tempMesh.translate(glm::vec3(0,0,-200));
-    base1tempMesh.scale(glm::vec3(12.0f, 12.0f, 12.0f));
-    rot = 0 * (M_PI/180);
-    base1tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    base1.setMesh(base1tempMesh);
-    bases.push_back(base1);
-    
-    
-    Turret turret11 = Turret("Turret1Base1", 100, 11, 11, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
-    turret11.levelUpWeapon();
-    Mesh turret11tempMesh;
-    //turret11tempMesh.translate(glm::vec3(11,11,-200));
-    //turret11tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    //rot = 270 * (M_PI/180);
-    //turret11tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret11.setMesh(turret11tempMesh);
-    turrets.push_back(turret11);
-    
-     /*
-    Turret turret12 = Turret("Turret2Base1", 100, -11, -11, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
-    Mesh turret12tempMesh;
-    turret12tempMesh.translate(glm::vec3(-11,-11,-200));
-    turret12tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret12tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret12.setMesh(turret12tempMesh);
-    turrets.push_back(turret12);
-    
-    
-    Turret turret13 = Turret("Turret3Base1", 100, -11, 11, 0.15, 0.15, 135, 1, 100, 170, NORMAL);
-    Mesh turret13tempMesh;
-    turret13tempMesh.translate(glm::vec3(-11,11,-200));
-    turret13tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret13tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret13.setMesh(turret13tempMesh);
-    turrets.push_back(turret13);
-    
-    Turret turret14 = Turret("Turret4Base1", 100, 11, -11, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
-    Mesh turret14tempMesh;
-    turret14tempMesh.translate(glm::vec3(11,-11,-200));
-    turret14tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret14tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret14.setMesh(turret14tempMesh);
-    turrets.push_back(turret14);
-      */
 }
 
 
@@ -712,7 +761,7 @@ void Level::resetLevel(){
     enemies.clear();
     explosions.clear();
     //    cleanUp();
-    loadLevel();
+    loadLevelFromFile("level1.lvl");
 }
 
 
