@@ -24,6 +24,7 @@
 #include "Level.h"
 #include "GameControlles.h"
 #include "GameState.h"
+#include "text2D.hpp"
 
 
 const glm::vec2 SCREEN_SIZE(1100, 700);
@@ -48,14 +49,22 @@ GameState gamestate;
 int cameraMode = 1;
 
 void initApp(){
+    initText2D( "Holstein.DDS" );
+    
     level = Level(0, SCREEN_SIZE[0],SCREEN_SIZE[1],"level1.lvl");
     gamestate.setGameState(1);
+    
     //gameController.setPosition(level.getCamera().position());
 }
 
 
 void drawLevel(){
     level.drawLevel();
+    
+    char text[256];
+    sprintf(text,"%.2f sec", glfwGetTime() );
+    printText2D(text, 10, 500, 60);
+    
     glfwSwapBuffers(window);
     glfwPollEvents();
 }

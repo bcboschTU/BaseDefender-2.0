@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		8BC5B4A91B29850700990AFD /* player.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8BC5B4A81B29850700990AFD /* player.obj */; };
+		CD4D86581B29C97A00CA2F81 /* text2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4D86561B29C97A00CA2F81 /* text2D.cpp */; };
+		CD4D865A1B29CAD000CA2F81 /* TextVertexShader.vs in Resources */ = {isa = PBXBuildFile; fileRef = CD4D86591B29CAD000CA2F81 /* TextVertexShader.vs */; };
+		CD4D865C1B29CB1E00CA2F81 /* TextVertexShader.fs in Resources */ = {isa = PBXBuildFile; fileRef = CD4D865B1B29CB1E00CA2F81 /* TextVertexShader.fs */; };
+		CD4D866F1B29DD7B00CA2F81 /* Holstein.dds in Resources */ = {isa = PBXBuildFile; fileRef = CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */; };
+		CD4D86701B29DD7B00CA2F81 /* uvmap.dds in Resources */ = {isa = PBXBuildFile; fileRef = CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */; };
 		CD7B70CE1B2318AC00D0979A /* level1.lvl in Resources */ = {isa = PBXBuildFile; fileRef = CD7B70CD1B2318AC00D0979A /* level1.lvl */; };
 		D31081351AB766E50079E6AC /* shader.fs in Resources */ = {isa = PBXBuildFile; fileRef = D31081331AB766E50079E6AC /* shader.fs */; };
 		D31081361AB766E50079E6AC /* shader.vs in Resources */ = {isa = PBXBuildFile; fileRef = D31081341AB766E50079E6AC /* shader.vs */; };
@@ -59,6 +64,12 @@
 
 /* Begin PBXFileReference section */
 		8BC5B4A81B29850700990AFD /* player.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = player.obj; sourceTree = "<group>"; };
+		CD4D86561B29C97A00CA2F81 /* text2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text2D.cpp; sourceTree = "<group>"; };
+		CD4D86571B29C97A00CA2F81 /* text2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = text2D.hpp; sourceTree = "<group>"; };
+		CD4D86591B29CAD000CA2F81 /* TextVertexShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextVertexShader.vs; sourceTree = "<group>"; };
+		CD4D865B1B29CB1E00CA2F81 /* TextVertexShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextVertexShader.fs; sourceTree = "<group>"; };
+		CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = Holstein.dds; sourceTree = "<group>"; };
+		CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = uvmap.dds; sourceTree = "<group>"; };
 		CD7B70CD1B2318AC00D0979A /* level1.lvl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.lvl; sourceTree = "<group>"; };
 		D31081331AB766E50079E6AC /* shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 		D31081341AB766E50079E6AC /* shader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
@@ -150,6 +161,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CD4D86551B29C94800CA2F81 /* text2d */ = {
+			isa = PBXGroup;
+			children = (
+				CD4D86561B29C97A00CA2F81 /* text2D.cpp */,
+				CD4D86571B29C97A00CA2F81 /* text2D.hpp */,
+			);
+			name = text2d;
+			sourceTree = "<group>";
+		};
 		CD7B70CC1B23188600D0979A /* Levels */ = {
 			isa = PBXGroup;
 			children = (
@@ -161,6 +181,7 @@
 		D31081371AB76CEE0079E6AC /* common */ = {
 			isa = PBXGroup;
 			children = (
+				CD4D86551B29C94800CA2F81 /* text2d */,
 				D399F4941AC1B25000FE2DE9 /* Mesh */,
 				D399F48D1AC1B22600FE2DE9 /* Lighting */,
 				D399F4891AC1B11900FE2DE9 /* Backend */,
@@ -225,6 +246,8 @@
 				D31081341AB766E50079E6AC /* shader.vs */,
 				D399F4641AC0260100FE2DE9 /* lighting.fs */,
 				D399F4651AC0260100FE2DE9 /* lighting.vs */,
+				CD4D86591B29CAD000CA2F81 /* TextVertexShader.vs */,
+				CD4D865B1B29CB1E00CA2F81 /* TextVertexShader.fs */,
 			);
 			name = shaders;
 			sourceTree = "<group>";
@@ -232,6 +255,8 @@
 		D399F4511AC0139600FE2DE9 /* textures */ = {
 			isa = PBXGroup;
 			children = (
+				CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */,
+				CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */,
 				D399F4831AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp */,
 				D3F46D261B284E7C00B265F2 /* Su-34_Fullback_P01.bmp */,
 				D399F4521AC013D900FE2DE9 /* city.bmp */,
@@ -438,14 +463,18 @@
 				D399F4671AC0260100FE2DE9 /* lighting.vs in Resources */,
 				D3F46D271B284E7C00B265F2 /* Su-34_Fullback_P01.bmp in Resources */,
 				D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */,
+				CD4D865C1B29CB1E00CA2F81 /* TextVertexShader.fs in Resources */,
 				D399F4661AC0260100FE2DE9 /* lighting.fs in Resources */,
 				D399F4A81AC2B79C00FE2DE9 /* sphere.obj in Resources */,
+				CD4D865A1B29CAD000CA2F81 /* TextVertexShader.vs in Resources */,
 				8BC5B4A91B29850700990AFD /* player.obj in Resources */,
 				D399F4821AC1AA3700FE2DE9 /* B-2_Spirit.obj in Resources */,
+				CD4D866F1B29DD7B00CA2F81 /* Holstein.dds in Resources */,
 				D39EE1281B24822E00FD1813 /* blox.obj in Resources */,
 				D399F4531AC013D900FE2DE9 /* city.bmp in Resources */,
 				D31081351AB766E50079E6AC /* shader.fs in Resources */,
 				D3F46D2B1B2861CD00B265F2 /* bullet.obj in Resources */,
+				CD4D86701B29DD7B00CA2F81 /* uvmap.dds in Resources */,
 				D31081361AB766E50079E6AC /* shader.vs in Resources */,
 				D399F4841AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp in Resources */,
 				D3F46D2F1B28847500B265F2 /* turret.obj in Resources */,
@@ -486,6 +515,7 @@
 				E2639AE3190D156500B6251A /* main.cpp in Sources */,
 				D3120A9D1B21DC5C009247B3 /* Player.cpp in Sources */,
 				D399F47E1AC1A94900FE2DE9 /* tangentspace.cpp in Sources */,
+				CD4D86581B29C97A00CA2F81 /* text2D.cpp in Sources */,
 				E29C2ADA19FCA22D00A6FCD2 /* platform_osx.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
