@@ -58,67 +58,16 @@ void Level::loadLevel(){
     
     
     Player player1 = Player("Player1", 200, 30, 10, 4, 4, 0, 1);
-    
-    //player init
-    Mesh playertempMesh;
-    playertempMesh.translate(glm::vec3(30 , 10,-200));
-    playertempMesh.scale(glm::vec3(1.0f, 1.0f, 1.0f));
-    float rot = 0 * (M_PI/180);
-    playertempMesh.rotate(glm::vec3(0.f, 0.f, 1.f),rot);
-    player1.setMesh(playertempMesh);
     players.push_back(player1);
     
     
     //base1 init
     Base base1 = Base("Base1", 500, 0, 0, 0.8, 0.8, 0, 1);
-    Mesh base1tempMesh;
-    base1tempMesh.translate(glm::vec3(0,0,-200));
-    base1tempMesh.scale(glm::vec3(12.0f, 12.0f, 12.0f));
-    rot = 0 * (M_PI/180);
-    base1tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    base1.setMesh(base1tempMesh);
     bases.push_back(base1);
     
     
     Turret turret11 = Turret("Turret1Base1", 100, 11, 11, 0.15, 0.15, 45, 1, 10, 80, NORMAL);
-    turret11.levelUpWeapon();
-    Mesh turret11tempMesh;
-    //turret11tempMesh.translate(glm::vec3(11,11,-200));
-    //turret11tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    //rot = 270 * (M_PI/180);
-    //turret11tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret11.setMesh(turret11tempMesh);
     turrets.push_back(turret11);
-    
-     /*
-    Turret turret12 = Turret("Turret2Base1", 100, -11, -11, 0.15, 0.15, 225, 1, 190, 260, NORMAL);
-    Mesh turret12tempMesh;
-    turret12tempMesh.translate(glm::vec3(-11,-11,-200));
-    turret12tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret12tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret12.setMesh(turret12tempMesh);
-    turrets.push_back(turret12);
-    
-    
-    Turret turret13 = Turret("Turret3Base1", 100, -11, 11, 0.15, 0.15, 135, 1, 100, 170, NORMAL);
-    Mesh turret13tempMesh;
-    turret13tempMesh.translate(glm::vec3(-11,11,-200));
-    turret13tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret13tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret13.setMesh(turret13tempMesh);
-    turrets.push_back(turret13);
-    
-    Turret turret14 = Turret("Turret4Base1", 100, 11, -11, 0.15, 0.15, 315, 1, 280, 350, NORMAL);
-    Mesh turret14tempMesh;
-    turret14tempMesh.translate(glm::vec3(11,-11,-200));
-    turret14tempMesh.scale(glm::vec3(0.2f, 0.2f, 0.2f));
-    rot = 0 * (M_PI/180);
-    turret14tempMesh.rotate(glm::vec3(1.f, 0.f, 0.f),rot);
-    turret14.setMesh(turret14tempMesh);
-    turrets.push_back(turret14);
-      */
 }
 
 
