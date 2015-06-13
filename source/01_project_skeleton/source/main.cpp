@@ -60,10 +60,7 @@ void initApp(){
 
 void drawLevel(){
     level.drawLevel();
-    
-    char text[256];
-    sprintf(text,"%.2f sec", glfwGetTime() );
-    printText2D(text, 10, 500, 60);
+    level.drawHUD();
     
     glfwSwapBuffers(window);
     glfwPollEvents();

@@ -44,6 +44,7 @@ public:
     
     //graphics
     void drawLevel();
+    void drawHUD();
     void drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffect, glm::mat4 _Model);
     void setupMeshes();
     void loadTextures();
@@ -67,7 +68,6 @@ public:
     void pauseGame();
     void checkIfGameOver();
     void resetLevel();
-    void renderString(float x, float y, void *font, const std::string &string);
     void generateExplosionBullet(float _xPos, float _yPos, WeaponType _weaponType);
     void generateExplosion(float _xPos, float _yPos, ExplosionType _explosionType);
     void updateExplosions();

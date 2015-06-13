@@ -9,6 +9,8 @@
 #include <fstream>
 
 #include "Level.h"
+#include "text2D.hpp"
+
 
 Level::Level(){
     
@@ -312,6 +314,34 @@ void Level::drawLevel(){
         }
     }
     explosionMesh.disableRender();
+}
+
+
+void Level::drawHUD() {
+    int fontSize = 14;
+    
+    std::string baseString = "base1 Health   : " + std::to_string(bases[0].getHp());
+    printText2D(baseString.c_str(), 5, 20, fontSize);
+    
+    
+    std::string healthString = "player1 Health : " + std::to_string(players[0].getHp());
+    printText2D(healthString.c_str(), 5, 40, fontSize);
+    
+    
+    std::string scoreString = "Score          : " + std::to_string(score);
+    printText2D(scoreString.c_str(), 5, 60, fontSize);
+    
+    
+    std::string multiplierString = "Multiplier     : " + std::to_string(multiplier);
+    printText2D(multiplierString.c_str(), 5, 80, fontSize);
+    
+    std::string roundString = "Round          : " + std::to_string(round);
+    printText2D(roundString.c_str(), 5, 100, fontSize);
+    
+    if(roundStartShowText){
+        std::string roundString = "ROUND START: " + std::to_string(round);
+        printText2D(roundString.c_str(), width/2 - 80, height/4, fontSize);
+    }
 }
 
 
@@ -762,17 +792,6 @@ void Level::resetLevel(){
     explosions.clear();
     //    cleanUp();
     loadLevelFromFile("level1.lvl");
-}
-
-
-// function to render a 2d string on screen
-void Level::renderString(float x, float y, void *font, const std::string &string)
-{
-    glColor3f(1.0f, 1.0f, 1.0f);
-    glRasterPos2f(x, y);
-    for (int n=0; n<string.size(); ++n) {
-        //glutBitmapCharacter(font, string[n]);
-    }
 }
 
 void Level::generateExplosionBullet(float _xPos, float _yPos, WeaponType _weaponType){
