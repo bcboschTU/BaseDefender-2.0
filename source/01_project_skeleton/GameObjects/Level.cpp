@@ -312,7 +312,9 @@ void Level::drawLevel(){
         bool drawable = explosion->getDrawAble();
         if(drawable){
             Mesh tempMesh = explosion->getMesh();
-            drawMesh(explosionMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+            if(checkModelMatrix(tempMesh.getModelMatrix())){
+                drawMesh(explosionMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+            }
         }
     }
     explosionMesh.disableRender();
