@@ -239,7 +239,7 @@ void Level::drawLevel(){
     
     
     //turrets rendering
-    lightingEffect->SetTextId(1);
+    lightingEffect->SetTextId(2);
     turretMesh.enableRender();
     for (int i = 0; i<turrets.size(); i++) {
         Turret * turret = &turrets[i];
@@ -260,7 +260,7 @@ void Level::drawLevel(){
     
     
     //player rendering
-    lightingEffect->SetTextId(0);
+    lightingEffect->SetTextId(3);
     playerMesh.enableRender();
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
@@ -364,7 +364,8 @@ void Level::setupMeshes(){
     std::string playerStr = "player.obj";
     std::string baseStr = "sphere.obj";
     std::string turretstr = "turret.obj";
-    std::string enemystr_100_50 = "B-2_Spirit.obj";
+    //std::string enemystr_100_50 = "B-2_Spirit.obj";
+    std::string enemystr_100_50 = "blox.obj";
     std::string enemystr_50_0 = "blox.obj";
     std::string bulletstr = "bullet.obj";
     std::string explosionstr = "sphere.obj";
@@ -426,11 +427,13 @@ void Level::loadTextures(){
     
     DiffuseTexturePlayer = loadBMP_custom("Su-34_Fullback_P01.bmp");
     DiffuseTextureTurret = loadBMP_custom("B-2_Spirit_P01.bmp");
-    DiffuseTextureEnemie = loadBMP_custom("city.bmp");
+    DiffuseTextureEnemie100_50 = loadBMP_custom("B-2_Spirit_P01.bmp");
+    DiffuseTextureEnemie50_0 = loadBMP_custom("city.bmp");
     
-    lightingEffect->addTexture(DiffuseTexturePlayer, 0);
-    lightingEffect->addTexture(DiffuseTextureTurret, 1);
-    lightingEffect->addTexture(DiffuseTextureEnemie, 2);
+    lightingEffect->addTexture(DiffuseTexturePlayer, 1);
+    lightingEffect->addTexture(DiffuseTextureTurret, 2);
+    lightingEffect->addTexture(DiffuseTextureEnemie100_50, 3);
+    lightingEffect->addTexture(DiffuseTextureEnemie50_0, 4);
     
     //DiffuseTexture = loadBMP_custom("metal.bmp");
     
@@ -510,7 +513,7 @@ void Level::updateLighting(){
     sl[1].Attenuation.Linear = 0.1f;
     sl[1].Cutoff = 20.0f;
      */
-    lightingEffect->SetSpotLights(1, sl);
+    lightingEffect->SetSpotLights(0, sl);
     
     
     lightingEffect->SetMatSpecularIntensity(2.0f);

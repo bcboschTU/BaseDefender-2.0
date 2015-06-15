@@ -226,37 +226,37 @@ void LightingTechnique::addTexture(GLuint texture, unsigned int index){
     if(index == 3){
         glActiveTexture(GL_TEXTURE3);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(m_samplerLocation2, 3);
+        glUniform1i(m_samplerLocation3, 3);
     }
     if(index == 4){
         glActiveTexture(GL_TEXTURE4);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(m_samplerLocation2, 4);
+        glUniform1i(m_samplerLocation4, 4);
     }
     if(index == 5){
         glActiveTexture(GL_TEXTURE5);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(m_samplerLocation2, 5);
+        glUniform1i(m_samplerLocation5, 5);
     }
     if(index == 6){
         glActiveTexture(GL_TEXTURE6);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(m_samplerLocation2, 6);
+        glUniform1i(m_samplerLocation6, 6);
     }
     if(index == 7){
         glActiveTexture(GL_TEXTURE7);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(m_samplerLocation2, 7);
+        glUniform1i(m_samplerLocation7, 7);
     }
     if(index == 8){
         glActiveTexture(GL_TEXTURE8);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(m_samplerLocation2, 8);
+        glUniform1i(m_samplerLocation8, 8);
     }
     if(index == 9){
         glActiveTexture(GL_TEXTURE9);
         glBindTexture(GL_TEXTURE_2D, texture);
-        glUniform1i(m_samplerLocation2, 9);
+        glUniform1i(m_samplerLocation9, 9);
     }
     
     

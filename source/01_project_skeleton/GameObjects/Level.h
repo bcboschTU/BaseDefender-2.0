@@ -130,7 +130,8 @@ private:
     GLuint ModelMatrixID;
     
     GLuint DiffuseTexturePlayer;
-    GLuint DiffuseTextureEnemie;
+    GLuint DiffuseTextureEnemie100_50;
+    GLuint DiffuseTextureEnemie50_0;
     GLuint DiffuseTextureTurret;
     
     

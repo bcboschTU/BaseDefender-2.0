@@ -2,3 +2,5 @@ level 0 0 1 1 true 2.0
 player Player1 200 30 10 4 4 0 1
 base Base1 500 0 0 0.8 0.8 0 1
 turret Turret1Base1 100 11 11 0.15 0.15 45 1 10 80 NORMAL
+turret Turret2Base1 100 -11 -11 0.15 0.15 225 1 190 260 NORMAL
+turret Turret3Base1 100 11 -11 0.15 0.15 320 1 280 350 NORMAL
