@@ -77,6 +77,7 @@ public:
     
     void roundStart(int round);
     
+    bool checkModelMatrix(glm::mat4 _Model);
     
     
     

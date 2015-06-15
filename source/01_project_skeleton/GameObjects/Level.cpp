@@ -276,7 +276,9 @@ void Level::drawLevel(){
         Enemie * enemie = &enemies[i];
         if(enemie->getHp() > 25){
             Mesh tempMesh = enemie->getMesh();
-            drawMesh(enemyMesh_100_50, &camera, lightingEffect, tempMesh.getModelMatrix());
+            if(checkModelMatrix(tempMesh.getModelMatrix())){
+                drawMesh(enemyMesh_100_50, &camera, lightingEffect, tempMesh.getModelMatrix());
+            }
         }
     }
     enemyMesh_100_50.disableRender();
@@ -316,6 +318,15 @@ void Level::drawLevel(){
     explosionMesh.disableRender();
 }
 
+
+bool Level::checkModelMatrix(glm::mat4 _Model){
+    float temp = 1.5 - _Model[2][2];
+    if(abs(temp) < 0.1){
+        return true;
+    }
+    printf("\n%f",_Model[2][2]);
+    return false;
+}
 
 void Level::drawHUD() {
     int fontSize = 14;
@@ -532,11 +543,16 @@ void Level::updateLevel(){
     //quadtree.empty();
     //get all bullets:
     
+    
     //update the turrets targets
     for (int i = 0; i< turrets.size(); i++){
         Turret *turret = &turrets[i];
         turret->setTarget(&enemies);
     }
+    
+
+    
+    
     
     getBullets();
     
@@ -563,11 +579,12 @@ void Level::updateLevel(){
         enemie->updateEnemie();
     }
     
-    
     for(int i = 0; i<explosions.size(); i++){
         Explosion * explosion = &explosions[i];
         explosion->updateExplosion();
     }
+    
+    
 }
 
 // get the bullets from all the players and turrets, stores it in one vector
