@@ -265,7 +265,9 @@ void Level::drawLevel(){
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
         Mesh tempMesh = player->getMesh();
-        drawMesh(playerMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        if(checkModelMatrix(tempMesh.getModelMatrix())){
+            drawMesh(playerMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        }
     }
     playerMesh.disableRender();
     
@@ -288,7 +290,9 @@ void Level::drawLevel(){
         Enemie * enemie = &enemies[i];
         if(enemie->getHp() > 0 && enemie->getHp() < 25){
             Mesh tempMesh = enemie->getMesh();
-            drawMesh(enemyMesh_50_0, &camera, lightingEffect, tempMesh.getModelMatrix());
+            if(checkModelMatrix(tempMesh.getModelMatrix())){
+                drawMesh(enemyMesh_50_0, &camera, lightingEffect, tempMesh.getModelMatrix());
+            }
         }
     }
     enemyMesh_50_0.disableRender();
@@ -300,7 +304,9 @@ void Level::drawLevel(){
         bool drawable = bullet->getDrawAble();
         if(drawable){
             Mesh tempMesh = bullet->getMesh();
-            drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+            if(checkModelMatrix(tempMesh.getModelMatrix())){
+                drawMesh(bulletMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+            }
         }
     }
     bulletMesh.disableRender();    
