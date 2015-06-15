@@ -87,12 +87,12 @@ void Bullet::updateBullet(){
     
     
     if(exploding && bulletType == EXPLOSIVE){
-        width += 0.03;
-        height += 0.03;
+        width += 0.3;
+        height += 0.3;
     }
     else if(exploding && bulletType == NUKE){
-        width += 0.06;
-        height += 0.06;
+        width += 0.6;
+        height += 0.6;
     }
     else{
         //update xpos and ypos;
