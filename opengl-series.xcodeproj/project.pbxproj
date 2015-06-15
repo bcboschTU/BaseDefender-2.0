@@ -14,7 +14,6 @@
 		CD4D866F1B29DD7B00CA2F81 /* Holstein.dds in Resources */ = {isa = PBXBuildFile; fileRef = CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */; };
 		CD4D86701B29DD7B00CA2F81 /* uvmap.dds in Resources */ = {isa = PBXBuildFile; fileRef = CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */; };
 		CD7B70CE1B2318AC00D0979A /* level1.lvl in Resources */ = {isa = PBXBuildFile; fileRef = CD7B70CD1B2318AC00D0979A /* level1.lvl */; };
-		CDDE5AB01B2F093F00E44DFD /* grass.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CDDE5AAF1B2F093F00E44DFD /* grass.jpg */; };
 		D31081351AB766E50079E6AC /* shader.fs in Resources */ = {isa = PBXBuildFile; fileRef = D31081331AB766E50079E6AC /* shader.fs */; };
 		D31081361AB766E50079E6AC /* shader.vs in Resources */ = {isa = PBXBuildFile; fileRef = D31081341AB766E50079E6AC /* shader.vs */; };
 		D3120A9A1B21DC16009247B3 /* Level.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120A981B21DC16009247B3 /* Level.cpp */; };
@@ -25,6 +24,8 @@
 		D3120AAA1B21E93E009247B3 /* Turret.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120AA81B21E93E009247B3 /* Turret.cpp */; };
 		D3120AAD1B21E98A009247B3 /* Enemie.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120AAB1B21E98A009247B3 /* Enemie.cpp */; };
 		D3120AB11B21ED45009247B3 /* Explosion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D3120AAF1B21ED45009247B3 /* Explosion.cpp */; };
+		D33681481B2EEDC50090623F /* Terrain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D33681461B2EEDC50090623F /* Terrain.cpp */; };
+		D336814C1B2F0C740090623F /* grass.bmp in Resources */ = {isa = PBXBuildFile; fileRef = D336814B1B2F0C740090623F /* grass.bmp */; };
 		D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */ = {isa = PBXBuildFile; fileRef = D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */; };
 		D33BC1401B246768003683B6 /* GameControlles.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D33BC13E1B246768003683B6 /* GameControlles.cpp */; };
 		D33BC1431B2467FE003683B6 /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D33BC1411B2467FE003683B6 /* GameState.cpp */; };
@@ -72,7 +73,6 @@
 		CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = Holstein.dds; sourceTree = "<group>"; };
 		CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = uvmap.dds; sourceTree = "<group>"; };
 		CD7B70CD1B2318AC00D0979A /* level1.lvl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.lvl; sourceTree = "<group>"; };
-		CDDE5AAF1B2F093F00E44DFD /* grass.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grass.jpg; sourceTree = "<group>"; };
 		D31081331AB766E50079E6AC /* shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 		D31081341AB766E50079E6AC /* shader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
 		D3120A981B21DC16009247B3 /* Level.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Level.cpp; path = GameObjects/Level.cpp; sourceTree = "<group>"; };
@@ -91,6 +91,9 @@
 		D3120AAC1B21E98A009247B3 /* Enemie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Enemie.h; path = GameObjects/Enemie.h; sourceTree = "<group>"; };
 		D3120AAF1B21ED45009247B3 /* Explosion.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Explosion.cpp; path = GameObjects/Explosions/Explosion.cpp; sourceTree = "<group>"; };
 		D3120AB01B21ED45009247B3 /* Explosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Explosion.h; path = GameObjects/Explosions/Explosion.h; sourceTree = "<group>"; };
+		D33681461B2EEDC50090623F /* Terrain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Terrain.cpp; path = GameObjects/Terrain.cpp; sourceTree = "<group>"; };
+		D33681471B2EEDC50090623F /* Terrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Terrain.h; path = GameObjects/Terrain.h; sourceTree = "<group>"; };
+		D336814B1B2F0C740090623F /* grass.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = grass.bmp; sourceTree = "<group>"; };
 		D33BC13A1B22ECB4003683B6 /* Su-34_Fullback.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Su-34_Fullback.obj"; sourceTree = "<group>"; };
 		D33BC13E1B246768003683B6 /* GameControlles.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GameControlles.cpp; path = common/controlles/GameControlles.cpp; sourceTree = "<group>"; };
 		D33BC13F1B246768003683B6 /* GameControlles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameControlles.h; path = common/controlles/GameControlles.h; sourceTree = "<group>"; };
@@ -217,6 +220,8 @@
 				D3120AA91B21E93E009247B3 /* Turret.h */,
 				D3120AAB1B21E98A009247B3 /* Enemie.cpp */,
 				D3120AAC1B21E98A009247B3 /* Enemie.h */,
+				D33681461B2EEDC50090623F /* Terrain.cpp */,
+				D33681471B2EEDC50090623F /* Terrain.h */,
 				D3120A981B21DC16009247B3 /* Level.cpp */,
 				D3120A991B21DC16009247B3 /* Level.h */,
 			);
@@ -257,7 +262,7 @@
 		D399F4511AC0139600FE2DE9 /* textures */ = {
 			isa = PBXGroup;
 			children = (
-				CDDE5AAF1B2F093F00E44DFD /* grass.jpg */,
+				D336814B1B2F0C740090623F /* grass.bmp */,
 				CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */,
 				CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */,
 				D399F4831AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp */,
@@ -462,7 +467,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CDDE5AB01B2F093F00E44DFD /* grass.jpg in Resources */,
 				D399F4AA1AC2BAE500FE2DE9 /* metal.bmp in Resources */,
 				D399F4671AC0260100FE2DE9 /* lighting.vs in Resources */,
 				D3F46D271B284E7C00B265F2 /* Su-34_Fullback_P01.bmp in Resources */,
@@ -478,6 +482,7 @@
 				D399F4531AC013D900FE2DE9 /* city.bmp in Resources */,
 				D31081351AB766E50079E6AC /* shader.fs in Resources */,
 				D3F46D2B1B2861CD00B265F2 /* bullet.obj in Resources */,
+				D336814C1B2F0C740090623F /* grass.bmp in Resources */,
 				CD4D86701B29DD7B00CA2F81 /* uvmap.dds in Resources */,
 				D31081361AB766E50079E6AC /* shader.vs in Resources */,
 				D399F4841AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp in Resources */,
@@ -519,6 +524,7 @@
 				E2639AE3190D156500B6251A /* main.cpp in Sources */,
 				D3120A9D1B21DC5C009247B3 /* Player.cpp in Sources */,
 				D399F47E1AC1A94900FE2DE9 /* tangentspace.cpp in Sources */,
+				D33681481B2EEDC50090623F /* Terrain.cpp in Sources */,
 				CD4D86581B29C97A00CA2F81 /* text2D.cpp in Sources */,
 				E29C2ADA19FCA22D00A6FCD2 /* platform_osx.mm in Sources */,
 			);

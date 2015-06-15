@@ -24,6 +24,7 @@ class Mesh{
 public:
     Mesh();
     void loadModel(const char* modelName);
+    void loadModelTerrain(std::vector<float> vertices,std::vector<float>uvs,std::vector<float>normals,std::vector<unsigned int> faces);
     void bindBuffers();
     void enableRender();
     void disableRender();

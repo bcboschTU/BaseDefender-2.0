@@ -27,6 +27,7 @@
 #include "texture.hpp"
 #include "Mesh.h"
 #include "Camera.hpp"
+#include "Terrain.h"
 
 
 
@@ -124,6 +125,7 @@ private:
     Mesh baseMesh;
     Mesh enemyMesh_100_50;
     Mesh enemyMesh_50_0;
+    Mesh terrainMesh;
     
     GLuint programID;
     GLuint MatrixID;
@@ -134,6 +136,7 @@ private:
     GLuint DiffuseTextureEnemie100_50;
     GLuint DiffuseTextureEnemie50_0;
     GLuint DiffuseTextureTurret;
+    GLuint DiffuseTextureTerrain;
     
     
     

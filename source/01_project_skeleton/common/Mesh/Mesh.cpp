@@ -32,6 +32,73 @@ void Mesh::loadModel(const char* modelName){
     std::cout<< "indexVBO_TBN load done: " << glfwGetTime() << "\n";
 }
 
+void Mesh::loadModelTerrain(std::vector<float> _vertices,std::vector<float> _uvs,std::vector<float> _normals,std::vector<unsigned int> _faces){
+    
+
+    
+    for(int i = 0; i < _faces.size(); i++){
+        glm::vec3 temp = glm::vec3(_vertices[3*_faces[i]], _vertices[3*_faces[i]+1],_vertices[3*_faces[i]+2]);
+        //glm::vec3 temp = glm::vec3(_vertices[i], _vertices[i+1],_vertices[i+2]);
+//        printf(" %u", _faces[i]);
+//        printf(" %u", _faces[i+1]);
+//        printf(" %u\n", _faces[i+2]);
+        
+        vertices.push_back(temp);
+    }
+    
+    
+    float smallestX = INFINITY;
+    float smallestY = INFINITY;
+    float biggestX = -INFINITY;
+    float biggestY = -INFINITY;
+    
+    for(int i = 0; i < _uvs.size(); i = i + 2){
+        if(_uvs[i]<smallestX)
+            smallestX = _uvs[i];
+        if(_uvs[i+1]<smallestY)
+            smallestY = _uvs[i+1];
+        
+        if(_uvs[i]>biggestX)
+            biggestX = _uvs[i];
+        if(_uvs[i+1]>biggestY)
+            biggestY = _uvs[i+1];
+    }
+    
+    for(int i = 0; i < _uvs.size(); i = i + 2){
+        _uvs[i] = (_uvs[i] - smallestX)/(biggestX - smallestX);
+        _uvs[i+1] = (_uvs[i+1] - smallestY)/(biggestY - smallestY);
+        
+        printf("  %f",_uvs[i]);
+        printf("  %f\n",_uvs[i+1]);
+    }
+    
+    
+    for(int i = 0; i<_faces.size(); i++){
+        glm::vec2 temp = glm::vec2(_uvs[2*_faces[i]], _uvs[2*_faces[i]+1]);
+        uvs.push_back(temp);
+    }
+    
+    for(int i = 0; i < _faces.size(); i++){
+        glm::vec3 temp = glm::vec3(_normals[3*_faces[i]], _normals[3*_faces[i]+1], _normals[3* _faces[i]+2]);
+        normals.push_back(temp);
+    }
+    
+    
+    std::cout<< "obj load done: " << glfwGetTime() << "\n";
+    computeTangentBasis(
+                        vertices, uvs, normals, // input
+                        tangents, bitangents    // output
+                        );
+    std::cout<< "computeTangentBasis load done: " << glfwGetTime() << "\n";
+    indexVBO_TBN(
+                 vertices, uvs, normals, tangents, bitangents,
+                 indices, indexed_vertices, indexed_uvs, indexed_normals, indexed_tangents, indexed_bitangents
+                 );
+    std::cout<< "indexVBO_TBN load done: " << glfwGetTime() << "\n";
+    
+}
+
+
 void Mesh::bindBuffers(){
     glGenBuffers(1, &vertexbuffer);
     glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);

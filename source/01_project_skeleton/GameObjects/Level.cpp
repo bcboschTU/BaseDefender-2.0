@@ -324,6 +324,13 @@ void Level::drawLevel(){
         }
     }
     explosionMesh.disableRender();
+    
+    
+    
+    lightingEffect->SetTextId(5);
+    terrainMesh.enableRender();
+    drawMesh(terrainMesh, &camera, lightingEffect, terrainMesh.getModelMatrix());
+    explosionMesh.disableRender();
 }
 
 
@@ -429,6 +436,15 @@ void Level::setupMeshes(){
     model = explosionstr.c_str();
     explosionMesh.loadModel(model);
     explosionMesh.bindBuffers();
+    
+    
+    terrainMesh = Mesh();
+    Terrain terrain;
+    terrain.generateObject();
+    terrainMesh.loadModelTerrain(terrain.getVertices(),terrain.getUv(),terrain.getNormals(),terrain.getFaces());
+    terrainMesh.setModelMatrix(glm::mat4(1.0f));
+    terrainMesh.bindBuffers();
+    
 }
 
 //delete the textures from memory
@@ -444,16 +460,17 @@ void Level::cleanup(){
 
 // loading of the textures for each mesh type
 void Level::loadTextures(){
-    
     DiffuseTexturePlayer = loadBMP_custom("Su-34_Fullback_P01.bmp");
     DiffuseTextureTurret = loadBMP_custom("B-2_Spirit_P01.bmp");
     DiffuseTextureEnemie100_50 = loadBMP_custom("B-2_Spirit_P01.bmp");
     DiffuseTextureEnemie50_0 = loadBMP_custom("city.bmp");
+    DiffuseTextureTerrain = loadBMP_custom("grass.bmp");
     
     lightingEffect->addTexture(DiffuseTexturePlayer, 1);
     lightingEffect->addTexture(DiffuseTextureTurret, 2);
     lightingEffect->addTexture(DiffuseTextureEnemie100_50, 3);
     lightingEffect->addTexture(DiffuseTextureEnemie50_0, 4);
+    lightingEffect->addTexture(DiffuseTextureTerrain, 5);
     
     //DiffuseTexture = loadBMP_custom("metal.bmp");
     
@@ -519,25 +536,25 @@ void Level::updateLighting(){
     SpotLight sl[5];
     
     float radians = glm::radians(players[0].getAngle() + 90);
-    sl[0].DiffuseIntensity = 10.0f;
+    sl[0].DiffuseIntensity = 30.0f;
     sl[0].Color = glm::vec3(0.0f, 1.0f, 0.0f);
     sl[0].Position = glm::vec3(players[0].getXPos(), players[0].getYPos(), -200);
     sl[0].Direction = glm::vec3(cos(radians), sin(radians), 0);
     sl[0].Attenuation.Linear = 0.1f;
-    sl[0].Cutoff = 5.0f;
+    sl[0].Cutoff = 15.0f;
     
     for(int i = 1; i <= turrets.size(); i++) {
-        radians = glm::radians(turrets[i].getAngle());
+        radians = glm::radians(turrets[i-1].getAngle());
         
-        sl[i].DiffuseIntensity = 10.0f;
+        sl[i].DiffuseIntensity = 30.0f;
         sl[i].Color = glm::vec3(1.0f, 0.0f, 0.0f);
-        sl[i].Position = glm::vec3(turrets[i].getXPos(), turrets[i].getYPos(), -200);
+        sl[i].Position = glm::vec3(turrets[i-1].getXPos(), turrets[i-1].getYPos(), -200);
         sl[i].Direction = glm::vec3(cos(radians), sin(radians), 0);
         sl[i].Attenuation.Linear = 0.1f;
-        sl[i].Cutoff = 5.0f;
+        sl[i].Cutoff = 15.0f;
     }
 
-    lightingEffect->SetSpotLights(4, sl);
+    lightingEffect->SetSpotLights(5, sl);
     
     lightingEffect->SetMatSpecularIntensity(2.0f);
     lightingEffect->SetMatSpecularPower(128);

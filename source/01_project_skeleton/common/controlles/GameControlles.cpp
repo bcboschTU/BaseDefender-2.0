@@ -145,7 +145,7 @@ glm::vec3 GameControlles::getMouseWorldPos(GLFWwindow* window){
     glm::mat4 viewMatrix = glm::mat4(1.0f); //View matrix is translated 5 units back.
     //viewMatrix = glm::scale(viewMatrix, glm::vec3(_position.z, _position.z, 1));
     
-    viewMatrix = glm::scale(viewMatrix, glm::vec3(8 , 8 , 1));
+    viewMatrix = glm::scale(viewMatrix, glm::vec3(9 , 9 , 1));
     viewMatrix = glm::translate(viewMatrix,glm::vec3(_position.x, _position.y, 0));
     
     

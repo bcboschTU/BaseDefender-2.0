@@ -161,24 +161,24 @@ void main()
         FragColor = texture(myTextureSampler2, UV) * TotalLight;
     }
     else if(texid == 3){
-        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+        FragColor = texture(myTextureSampler3, UV) * TotalLight;
     }
     else if(texid == 4){
-        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+        FragColor = texture(myTextureSampler4, UV) * TotalLight;
     }
     else if(texid == 5){
-        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+        FragColor = texture(myTextureSampler5, UV) * TotalLight;
     }
     else if(texid == 6){
-        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+        FragColor = texture(myTextureSampler6, UV) * TotalLight;
     }
     else if(texid == 7){
-        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+        FragColor = texture(myTextureSampler7, UV) * TotalLight;
     }
     else if(texid == 8){
-        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+        FragColor = texture(myTextureSampler8, UV) * TotalLight;
     }
     else if(texid == 9){
-        FragColor = texture(myTextureSampler2, UV) * TotalLight;
+        FragColor = texture(myTextureSampler9, UV) * TotalLight;
     }
 }
