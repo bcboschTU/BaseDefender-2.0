@@ -135,15 +135,20 @@ glm::vec3 GameControlles::getMouseWorldPos(GLFWwindow* window){
     double mouseXPos, mouseYPos;
     glfwGetCursorPos(window, &mouseXPos, &mouseYPos);
     GLint viewportL[4];
-    glGetIntegerv( GL_VIEWPORT, viewportL );
+    glGetIntegerv( GL_VIEWPORT, viewportL);
     
     winX = (float)mouseXPos;
     winY = (float)viewportL[3] - (float)mouseYPos;
-    winZ = 0;
+    winZ = -200;
+    
     glm::vec4 viewport = glm::vec4(viewportL[0], viewportL[1], viewportL[2], viewportL[3]);
     glm::mat4 viewMatrix = glm::mat4(1.0f); //View matrix is translated 5 units back.
-    viewMatrix = glm::scale(viewMatrix, glm::vec3(_position.z, _position.z, 1));
+    //viewMatrix = glm::scale(viewMatrix, glm::vec3(_position.z, _position.z, 1));
+    
+    viewMatrix = glm::scale(viewMatrix, glm::vec3(8 , 8 , 1));
     viewMatrix = glm::translate(viewMatrix,glm::vec3(_position.x, _position.y, 0));
+    
+    
     glm::mat4 projectionMatrix = glm::ortho<float>(-1, 1, -1 * (GLfloat) height / (GLfloat) width, (GLfloat) height/ (GLfloat) width, -1, 1);
     
     
@@ -160,5 +165,3 @@ bool GameControlles::getInputTrue(){
 void GameControlles::setInputTrue(bool input){
     _inputBool = input;
 }
-
-

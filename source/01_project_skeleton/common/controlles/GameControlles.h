@@ -37,6 +37,7 @@ public:
     bool getInputTrue();
     void setInputTrue(bool input);
     
+    
 private:
     glm::vec3 _position;
     float _minZoom;
