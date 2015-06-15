@@ -322,11 +322,12 @@ void Level::drawLevel(){
 
 
 bool Level::checkModelMatrix(glm::mat4 _Model){
-    float temp = 1.5 - _Model[2][2];
+
+    float temp = 200 + _Model[3][2];
     if(abs(temp) < 0.1){
         return true;
     }
-    printf("\n%f",_Model[2][2]);
+    
     return false;
 }
 
