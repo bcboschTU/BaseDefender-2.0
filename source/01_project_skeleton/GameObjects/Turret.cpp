@@ -28,6 +28,17 @@ Turret::Turret(std::string _name,
     
 }
 
+float Turret::getXPos(){
+    return GameObject::getXPos();
+}
+float Turret::getYPos(){
+    return GameObject::getYPos();
+}
+float Turret::getAngle(){
+    return GameObject::getAngle();
+}
+
+
 Mesh Turret::getMesh(){
     return mesh;
 }

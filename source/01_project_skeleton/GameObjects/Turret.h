@@ -40,6 +40,12 @@ public:
     void updateBullets();
     void removeBullet(int index);
     
+    //getter & setters
+    float getXPos();
+    float getYPos();
+    float getAngle();
+    int getHp();
+    void setNewPos(float newXPos, float newYPos);
     
     //update model Matrix
     void updateModelMatrix(float _xpos, float _ypos, float _rot);

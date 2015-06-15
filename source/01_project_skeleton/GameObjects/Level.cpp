@@ -517,24 +517,19 @@ void Level::updateLighting(){
     lightingEffect->SetPointLights(1, pl);
     
     
-    SpotLight sl[2];
-    sl[0].DiffuseIntensity = 2.0f;
-    sl[0].Color = glm::vec3(1.0f, 1.0f, 1.0f);
-    sl[0].Position = camera.position();
-    sl[0].Direction = camera.getTarget();
-    sl[0].Attenuation.Linear = 0.1f;
-    sl[0].Cutoff = 10.f;
-    
-    /*
-    sl[1].DiffuseIntensity = 2.9f;
-    sl[1].Color = glm::vec3(1.0f, 0.0f, 0.0f);
-    sl[1].Position = glm::vec3(0.0f, 1.0f, 0.0f);
-    sl[1].Direction = glm::vec3(0.0f, 0.0f, -1.0f);
-    sl[1].Attenuation.Linear = 0.1f;
-    sl[1].Cutoff = 20.0f;
-     */
-    lightingEffect->SetSpotLights(0, sl);
-    
+    SpotLight sl[4];
+    for(int i = 0; i < turrets.size(); i++) {
+        float radians = glm::radians(turrets[i].getAngle());
+        
+        sl[i].DiffuseIntensity = 10.0f;
+        sl[i].Color = glm::vec3(1.0f, 0.0f, 0.0f);
+        sl[i].Position = glm::vec3(turrets[i].getXPos(), turrets[i].getYPos(), -200);
+        sl[i].Direction = glm::vec3(cos(radians), sin(radians), 0);
+        sl[i].Attenuation.Linear = 0.1f;
+        sl[i].Cutoff = 5.0f;
+    }
+
+    lightingEffect->SetSpotLights(4, sl);
     
     lightingEffect->SetMatSpecularIntensity(2.0f);
     lightingEffect->SetMatSpecularPower(128);
