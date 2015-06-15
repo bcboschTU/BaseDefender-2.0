@@ -516,10 +516,18 @@ void Level::updateLighting(){
     
     lightingEffect->SetPointLights(1, pl);
     
+    SpotLight sl[5];
     
-    SpotLight sl[4];
-    for(int i = 0; i < turrets.size(); i++) {
-        float radians = glm::radians(turrets[i].getAngle());
+    float radians = glm::radians(players[0].getAngle() + 90);
+    sl[0].DiffuseIntensity = 10.0f;
+    sl[0].Color = glm::vec3(0.0f, 1.0f, 0.0f);
+    sl[0].Position = glm::vec3(players[0].getXPos(), players[0].getYPos(), -200);
+    sl[0].Direction = glm::vec3(cos(radians), sin(radians), 0);
+    sl[0].Attenuation.Linear = 0.1f;
+    sl[0].Cutoff = 5.0f;
+    
+    for(int i = 1; i <= turrets.size(); i++) {
+        radians = glm::radians(turrets[i].getAngle());
         
         sl[i].DiffuseIntensity = 10.0f;
         sl[i].Color = glm::vec3(1.0f, 0.0f, 0.0f);

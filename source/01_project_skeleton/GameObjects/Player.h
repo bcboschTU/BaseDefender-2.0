@@ -39,6 +39,7 @@ public:
     float getYPos();
     int getHp();
     void setNewPos(float newXPos, float newYPos);
+    float getAngle();
     
     //remove bullet
     void updateBullets();

@@ -149,6 +149,10 @@ void Player::setNewPos(float newXPos, float newYPos){
     nextYpos = newYPos;
 }
 
+float Player::getAngle() {
+    return GameObject::getAngle();
+}
+
 void Player::updateBullets(){
     for(int i = 0; i< bullets.size(); i++){
         Bullet *bullet = &bullets[i];
