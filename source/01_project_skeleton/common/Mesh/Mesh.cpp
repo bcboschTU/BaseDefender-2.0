@@ -67,9 +67,6 @@ void Mesh::loadModelTerrain(std::vector<float> _vertices,std::vector<float> _uvs
     for(int i = 0; i < _uvs.size(); i = i + 2){
         _uvs[i] = (_uvs[i] - smallestX)/(biggestX - smallestX);
         _uvs[i+1] = (_uvs[i+1] - smallestY)/(biggestY - smallestY);
-        
-        printf("  %f",_uvs[i]);
-        printf("  %f\n",_uvs[i+1]);
     }
     
     

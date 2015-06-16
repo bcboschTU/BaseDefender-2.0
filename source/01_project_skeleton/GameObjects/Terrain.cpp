@@ -83,8 +83,8 @@ void Terrain::generateObject(){
             SurfaceVertices3f[vertexCount+1]=(float)j / height;
             //float randomX = (i + (rand() * i));
             //float randomY = (j + (rand() * j));
-            float heightX = rand_FloatRange(0.05,5,false);
-            float heightY = rand_FloatRange(0.05,5,false);
+            float heightX = rand_FloatRange(0.01,5,false);
+            float heightY = rand_FloatRange(0.01,5,false);
             SurfaceVertices3f[vertexCount+2]= (-cosf(0.1*(float)i)/heightX - sinf(0.1*(float)j)/heightY) -203;
             //SurfaceVertices3f[vertexCount+2]= -203;
             

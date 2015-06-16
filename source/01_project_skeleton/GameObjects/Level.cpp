@@ -498,7 +498,7 @@ void Level::initLightingEffect(){
     
     directionalLight.Color = glm::vec3(1.0f, 1.0f, 1.0f);
     directionalLight.AmbientIntensity = 0.19f;
-    directionalLight.DiffuseIntensity = 0.75f;
+    directionalLight.DiffuseIntensity = 0.45f;
     directionalLight.Direction = glm::vec3(1.0f, 0.0, 1.0);
     
     std::cout <<lightingEffect->Init();
