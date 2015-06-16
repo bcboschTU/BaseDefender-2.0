@@ -17,6 +17,8 @@ Base::Base(std::string _name,
            float _angle,
            int _level):GameObject(_name,_hp,_xPos,_yPos,_width,_height,_angle,_level){
     
+    lightDirection = 0;
+    
     Mesh meshTemp;
     glm::vec3 temp = glm::vec3(_xPos,_yPos, -200.f);
     meshTemp.translate(temp);
@@ -52,6 +54,20 @@ float Base::getYPos(){
 
 int Base::getHp(){
     return GameObject::getHp();
+}
+
+void Base::updateBase() {
+    lightDirection += 1.5f;
+    
+    while(lightDirection < 0)
+        lightDirection += 360;
+    
+    while(lightDirection > 360)
+        lightDirection -= 360;
+}
+
+float Base::getLightDirection() {
+    return lightDirection;
 }
 
 void Base::updateModelMatrix(float _xpos, float _ypos, float _rot){

@@ -560,29 +560,38 @@ void Level::updateLighting(){
         
         lightingEffect->SetPointLights(1, pl);
     }
-    SpotLight sl[5];
     
+    SpotLight sl[6];
     
     float radians = glm::radians(players[0].getAngle() + 90);
-    sl[0].DiffuseIntensity = 30.0f;
+    sl[0].DiffuseIntensity = 15.0f;
     sl[0].Color = glm::vec3(0.0f, 1.0f, 0.0f);
     sl[0].Position = glm::vec3(players[0].getXPos(), players[0].getYPos(), -200);
     sl[0].Direction = glm::vec3(cos(radians), sin(radians), 0);
     sl[0].Attenuation.Linear = 0.1f;
     sl[0].Cutoff = 15.0f;
     
-    for(int i = 1; i <= turrets.size(); i++) {
-        radians = glm::radians(turrets[i-1].getAngle());
+    radians = glm::radians(bases[0].getLightDirection());
+    sl[1].DiffuseIntensity = 15.0f;
+    sl[1].Color = glm::vec3(1.0f, 0.65f, 0.0f);
+    sl[1].Position = glm::vec3(bases[0].getXPos(), bases[0].getYPos(), -180);
+    sl[1].Direction = glm::vec3(cos(radians), sin(radians), -0.5f);
+    sl[1].Attenuation.Linear = 0.1f;
+    sl[1].Cutoff = 50.0f;
+    
+    
+    for(int i = 0; i < turrets.size(); i++) {
+        radians = glm::radians(turrets[i].getAngle());
         
-        sl[i].DiffuseIntensity = 30.0f;
-        sl[i].Color = glm::vec3(1.0f, 0.0f, 0.0f);
-        sl[i].Position = glm::vec3(turrets[i-1].getXPos(), turrets[i-1].getYPos(), -200);
-        sl[i].Direction = glm::vec3(cos(radians), sin(radians), 0);
-        sl[i].Attenuation.Linear = 0.1f;
-        sl[i].Cutoff = 15.0f;
+        sl[i+2].DiffuseIntensity = 45.0f;
+        sl[i+2].Color = glm::vec3(1.0f, 0.0f, 0.0f);
+        sl[i+2].Position = glm::vec3(turrets[i].getXPos(), turrets[i].getYPos(), -200);
+        sl[i+2].Direction = glm::vec3(cos(radians), sin(radians), 0);
+        sl[i+2].Attenuation.Linear = 0.1f;
+        sl[i+2].Cutoff = 15.0f;
     }
 
-    lightingEffect->SetSpotLights(5, sl);
+    lightingEffect->SetSpotLights(6, sl);
     
     lightingEffect->SetMatSpecularIntensity(2.0f);
     lightingEffect->SetMatSpecularPower(128);
@@ -623,6 +632,12 @@ void Level::updateLevel(){
     for (int i = 0; i<players.size(); i++) {
         Player * player = &players[i];
         player->updatePlayer();
+    }
+    
+    // update base
+    for(int i = 0; i<bases.size(); i++) {
+        Base* base = &bases[i];
+        base->updateBase();
     }
     
     //update enemie

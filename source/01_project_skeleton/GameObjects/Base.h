@@ -30,10 +30,13 @@ public:
     float getYPos();
     int getHp();
     bool getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidth, int dmg);
+    void updateBase();
+    float getLightDirection();
+
 private:
     Mesh mesh;
+    float lightDirection;
     void updateModelMatrix(float _xpos, float _ypos, float _rot);
-    
 };
 
 #endif /* defined(__BaseDefender__Base__) */
