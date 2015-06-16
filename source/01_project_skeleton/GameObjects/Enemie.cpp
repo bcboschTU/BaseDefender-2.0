@@ -231,7 +231,7 @@ void Enemie::updateModelMatrix(float _xpos, float _ypos, float _rot){
     meshTemp.translate(temp);
     _rot = _rot /180 *PI;
     meshTemp.rotate(glm::vec3(0.f, 0.f, 1.f), _rot);
-    meshTemp.scale(glm::vec3(1.5f, 1.5f, 1.5f));
+    meshTemp.scale(glm::vec3(width, height, 0.5*(width+height)));
     mesh = meshTemp;
     
 }

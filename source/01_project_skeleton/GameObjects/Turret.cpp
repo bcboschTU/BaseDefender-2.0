@@ -22,7 +22,7 @@ Turret::Turret(std::string _name,
     rangeBegin = _rangeBegin;
     rangeEnd = _rangeEnd;
     weaponType = _weaponType;
-    fireRate = 0.3;
+    fireRate = 0.1;
     range = 80;
     lastTime = glfwGetTime();
     

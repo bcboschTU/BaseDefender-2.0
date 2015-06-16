@@ -37,6 +37,8 @@ Level::Level(int _type, int _width, int _height, const char *filename){
     pointLightDiscoColors.push_back(blue);
     pointLightDiscoColors.push_back(purple);
     pointLightDiscoColors.push_back(yellow);
+    
+    bossEnemie = false;
 }
 
 void Level::loadLevelFromFile(const char *filename) {
@@ -827,10 +829,18 @@ void Level::generateEnemies(){
             for(int i = 0; i< enemySpawnLoop; i++){
                 float xPos = rand_FloatRange(-140,140, true);
                 float yPos = rand_FloatRange(-140,140, false);
-                Enemie enemie = Enemie("enemie", 50, xPos, yPos, 5, 5, 0, 1);
-                enemie.setTargetPlayer(&players[0]);
-                //enemie.setTargetBase(&bases[0]);
-                enemies.push_back(enemie);
+                if(bossEnemie) {
+                    Enemie enemie = Enemie("enemie", 400, xPos, yPos, 7, 7, 0, 1);
+                    enemie.setTargetPlayer(&players[0]);
+                    //enemie.setTargetBase(&bases[0]);
+                    enemies.push_back(enemie);
+                    bossEnemie = false;
+                } else {
+                    Enemie enemie = Enemie("enemie", 50, xPos, yPos, 1.5, 1.5, 0, 1);
+                    enemie.setTargetPlayer(&players[0]);
+                    //enemie.setTargetBase(&bases[0]);
+                    enemies.push_back(enemie);
+                }
                 lastTimeLevel = currentTime;
                 enemyAmount--;
             }
@@ -928,7 +938,9 @@ void Level::roundStart(int _round){
     terrainMesh1.setModelMatrix(glm::mat4(1.0f));
     terrainMesh1.bindBuffers();
     
-    
+    if(_round % 5 == 0) {
+        bossEnemie = true;
+    }
 }
 void Level::setDiscoMode(){
     double currentTime = glfwGetTime();

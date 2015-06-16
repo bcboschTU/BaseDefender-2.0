@@ -118,6 +118,8 @@ private:
     int width;
     int height;
     
+    bool bossEnemie;
+    
     
     Mesh playerMesh;
     Mesh explosionMesh;
