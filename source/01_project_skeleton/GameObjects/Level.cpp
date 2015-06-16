@@ -403,7 +403,7 @@ void Level::setupMeshes(){
     std::string turretstr = "turret.obj";
     //std::string enemystr_100_50 = "B-2_Spirit.obj";
     std::string enemystr_100_50 = "enemy.obj";
-    std::string enemystr_50_0 = "enemy.obj";
+    std::string enemystr_50_0 = "enemy_damaged.obj";
     std::string bulletstr = "bullet.obj";
     std::string explosionstr = "sphere.obj";
     glGenVertexArrays(1, &VertexArrayID);

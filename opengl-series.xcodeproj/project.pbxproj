@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B21B2081B305B5400C235A1 /* enemy.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8B21B2071B305B5400C235A1 /* enemy.obj */; };
 		8B21B2101B305EF800C235A1 /* base.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8B21B20F1B305EF800C235A1 /* base.obj */; };
+		8B21B2161B30637C00C235A1 /* enemy_damaged.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8B21B2151B30637C00C235A1 /* enemy_damaged.obj */; };
 		8BC5B4A91B29850700990AFD /* player.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8BC5B4A81B29850700990AFD /* player.obj */; };
 		CD4D86581B29C97A00CA2F81 /* text2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4D86561B29C97A00CA2F81 /* text2D.cpp */; };
 		CD4D865A1B29CAD000CA2F81 /* TextVertexShader.vs in Resources */ = {isa = PBXBuildFile; fileRef = CD4D86591B29CAD000CA2F81 /* TextVertexShader.vs */; };
@@ -69,6 +70,7 @@
 /* Begin PBXFileReference section */
 		8B21B2071B305B5400C235A1 /* enemy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enemy.obj; sourceTree = "<group>"; };
 		8B21B20F1B305EF800C235A1 /* base.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = base.obj; sourceTree = "<group>"; };
+		8B21B2151B30637C00C235A1 /* enemy_damaged.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enemy_damaged.obj; sourceTree = "<group>"; };
 		8BC5B4A81B29850700990AFD /* player.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = player.obj; sourceTree = "<group>"; };
 		CD4D86561B29C97A00CA2F81 /* text2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text2D.cpp; sourceTree = "<group>"; };
 		CD4D86571B29C97A00CA2F81 /* text2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = text2D.hpp; sourceTree = "<group>"; };
@@ -280,6 +282,7 @@
 		D399F4801AC1AA2600FE2DE9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8B21B2151B30637C00C235A1 /* enemy_damaged.obj */,
 				8B21B20F1B305EF800C235A1 /* base.obj */,
 				8B21B2071B305B5400C235A1 /* enemy.obj */,
 				8BC5B4A81B29850700990AFD /* player.obj */,
@@ -475,6 +478,7 @@
 			files = (
 				D399F4AA1AC2BAE500FE2DE9 /* metal.bmp in Resources */,
 				D399F4671AC0260100FE2DE9 /* lighting.vs in Resources */,
+				8B21B2161B30637C00C235A1 /* enemy_damaged.obj in Resources */,
 				D3F46D271B284E7C00B265F2 /* Su-34_Fullback_P01.bmp in Resources */,
 				D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */,
 				CD4D865C1B29CB1E00CA2F81 /* TextVertexShader.fs in Resources */,
