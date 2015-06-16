@@ -80,7 +80,8 @@ public:
     
     bool checkModelMatrix(glm::mat4 _Model);
     
-    
+    void setDiscoMode();
+    vector<glm::vec3> generateLightPos(int _num);
     
     //camera temp
     void updateCamera(float secondsElapsed,GLFWwindow* window);
@@ -161,6 +162,12 @@ private:
     glm::mat4 Model;
     glm::mat4 MVP;
     glm::mat3 ModelView3x3Matrix;
+    
+    bool discoMode;
+    float discoFlikkerTime;
+    float discoPressed;
+    vector<glm::vec3> pointLightPosDisco;
+    vector<glm::vec3> pointLightDiscoColors;
 };
 
 

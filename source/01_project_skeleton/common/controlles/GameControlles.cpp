@@ -90,6 +90,9 @@ void GameControlles::computeInputsGame(GLFWwindow* window,Level *level,GameState
     if (glfwGetKey(window, GLFW_KEY_P ) == GLFW_PRESS){
         _inputBool = !_inputBool;
     }
+    if (glfwGetKey(window, GLFW_KEY_M ) == GLFW_PRESS){
+        level->setDiscoMode();
+    }
     
     
     player->setNewPos(newXPos, newYPos);

@@ -26,6 +26,17 @@ Level::Level(int _type, int _width, int _height, const char *filename){
     
     width = _width;
     height =_height;
+    discoMode = false;
+    glm::vec3 red = glm::vec3(1.0,0.0,0.0);
+    glm::vec3 green = glm::vec3(0.0,1.0,0.0);
+    glm::vec3 blue = glm::vec3(0.0,0.0,1.0);
+    glm::vec3 purple = glm::vec3(1.0,0.0,1.0);
+    glm::vec3 yellow = glm::vec3(1.0,1.0,0.0);
+    pointLightDiscoColors.push_back(red);
+    pointLightDiscoColors.push_back(green);
+    pointLightDiscoColors.push_back(blue);
+    pointLightDiscoColors.push_back(purple);
+    pointLightDiscoColors.push_back(yellow);
 }
 
 void Level::loadLevelFromFile(const char *filename) {
@@ -523,15 +534,34 @@ void Level::updateLighting(){
     
     lightingEffect->SetDirectionalLight(directionalLight);
     
-    PointLight pl[20];
-    pl[0].DiffuseIntensity = 2.0f;
-    pl[0].Color = glm::vec3(1.0f, 0.0f, 0.0f);
-    pl[0].Position = glm::vec3(-30.0f, 10.0f, -190.0);
-    pl[0].Attenuation.Linear = 0.1f;
-    
-    lightingEffect->SetPointLights(1, pl);
-    
+    if(discoMode){
+        PointLight pl[20];
+        double currentTime = glfwGetTime();
+        float deltaTime = float(currentTime - discoFlikkerTime);
+        if(deltaTime > 1.0){
+            pointLightPosDisco = generateLightPos(20);
+            discoFlikkerTime = glfwGetTime();
+        }
+        for(int i = 0; i< pointLightPosDisco.size(); i++){
+            pl[i].DiffuseIntensity = 4.0f;
+            int r = (int)rand_FloatRange(0.0, 6.0, false);
+            pl[i].Color = pointLightDiscoColors[r];
+            pl[i].Position = pointLightPosDisco[i];
+            pl[i].Attenuation.Linear = 0.1f;
+        }
+        lightingEffect->SetPointLights(20, pl);
+    }
+    else{
+        PointLight pl[20];
+        pl[0].DiffuseIntensity = 2.0f;
+        pl[0].Color = glm::vec3(1.0f, 0.0f, 0.0f);
+        pl[0].Position = glm::vec3(-30.0f, 10.0f, -190.0);
+        pl[0].Attenuation.Linear = 0.1f;
+        
+        lightingEffect->SetPointLights(1, pl);
+    }
     SpotLight sl[5];
+    
     
     float radians = glm::radians(players[0].getAngle() + 90);
     sl[0].DiffuseIntensity = 30.0f;
@@ -576,10 +606,6 @@ void Level::updateLevel(){
         Turret *turret = &turrets[i];
         turret->setTarget(&enemies);
     }
-    
-
-    
-    
     
     getBullets();
     
@@ -885,4 +911,22 @@ void Level::roundStart(int _round){
     
     
 }
+void Level::setDiscoMode(){
+    double currentTime = glfwGetTime();
+    float deltaTime = float(currentTime - discoPressed);
+    if(deltaTime > 0.2){
+        discoMode = !discoMode;
+        discoPressed = currentTime;
+    }
+}
 
+vector<glm::vec3> Level::generateLightPos(int num){
+    vector<glm::vec3> positions;
+    for(int i = 0; i< num; i++){
+        float x = rand_FloatRange(-130,130,false);
+        float y = rand_FloatRange(-130,130,false);
+        glm::vec3 tempPos = glm::vec3(x,y,-190.0f);
+        positions.push_back(tempPos);
+    }
+    return positions;
+}
