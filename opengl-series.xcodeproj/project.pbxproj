@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B21B2081B305B5400C235A1 /* enemy.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8B21B2071B305B5400C235A1 /* enemy.obj */; };
+		8B21B2101B305EF800C235A1 /* base.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8B21B20F1B305EF800C235A1 /* base.obj */; };
 		8BC5B4A91B29850700990AFD /* player.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8BC5B4A81B29850700990AFD /* player.obj */; };
 		CD4D86581B29C97A00CA2F81 /* text2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD4D86561B29C97A00CA2F81 /* text2D.cpp */; };
 		CD4D865A1B29CAD000CA2F81 /* TextVertexShader.vs in Resources */ = {isa = PBXBuildFile; fileRef = CD4D86591B29CAD000CA2F81 /* TextVertexShader.vs */; };
 		CD4D865C1B29CB1E00CA2F81 /* TextVertexShader.fs in Resources */ = {isa = PBXBuildFile; fileRef = CD4D865B1B29CB1E00CA2F81 /* TextVertexShader.fs */; };
 		CD4D866F1B29DD7B00CA2F81 /* Holstein.dds in Resources */ = {isa = PBXBuildFile; fileRef = CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */; };
 		CD4D86701B29DD7B00CA2F81 /* uvmap.dds in Resources */ = {isa = PBXBuildFile; fileRef = CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */; };
-		8BFBE7601B2F230C00C8A8AF /* base.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8BFBE75F1B2F230C00C8A8AF /* base.obj */; };
 		CD7B70CE1B2318AC00D0979A /* level1.lvl in Resources */ = {isa = PBXBuildFile; fileRef = CD7B70CD1B2318AC00D0979A /* level1.lvl */; };
 		D31081351AB766E50079E6AC /* shader.fs in Resources */ = {isa = PBXBuildFile; fileRef = D31081331AB766E50079E6AC /* shader.fs */; };
 		D31081361AB766E50079E6AC /* shader.vs in Resources */ = {isa = PBXBuildFile; fileRef = D31081341AB766E50079E6AC /* shader.vs */; };
@@ -66,6 +67,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B21B2071B305B5400C235A1 /* enemy.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = enemy.obj; sourceTree = "<group>"; };
+		8B21B20F1B305EF800C235A1 /* base.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = base.obj; sourceTree = "<group>"; };
 		8BC5B4A81B29850700990AFD /* player.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = player.obj; sourceTree = "<group>"; };
 		CD4D86561B29C97A00CA2F81 /* text2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = text2D.cpp; sourceTree = "<group>"; };
 		CD4D86571B29C97A00CA2F81 /* text2D.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = text2D.hpp; sourceTree = "<group>"; };
@@ -73,7 +76,6 @@
 		CD4D865B1B29CB1E00CA2F81 /* TextVertexShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = TextVertexShader.fs; sourceTree = "<group>"; };
 		CD4D866D1B29DD7B00CA2F81 /* Holstein.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = Holstein.dds; sourceTree = "<group>"; };
 		CD4D866E1B29DD7B00CA2F81 /* uvmap.dds */ = {isa = PBXFileReference; lastKnownFileType = file; path = uvmap.dds; sourceTree = "<group>"; };
-		8BFBE75F1B2F230C00C8A8AF /* base.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = base.obj; sourceTree = "<group>"; };
 		CD7B70CD1B2318AC00D0979A /* level1.lvl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = level1.lvl; sourceTree = "<group>"; };
 		D31081331AB766E50079E6AC /* shader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.fs; sourceTree = "<group>"; };
 		D31081341AB766E50079E6AC /* shader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = shader.vs; sourceTree = "<group>"; };
@@ -278,7 +280,8 @@
 		D399F4801AC1AA2600FE2DE9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				8BFBE75F1B2F230C00C8A8AF /* base.obj */,
+				8B21B20F1B305EF800C235A1 /* base.obj */,
+				8B21B2071B305B5400C235A1 /* enemy.obj */,
 				8BC5B4A81B29850700990AFD /* player.obj */,
 				D3F46D2E1B28847500B265F2 /* turret.obj */,
 				D399F4A71AC2B79C00FE2DE9 /* sphere.obj */,
@@ -471,13 +474,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D399F4AA1AC2BAE500FE2DE9 /* metal.bmp in Resources */,
-				8BFBE7601B2F230C00C8A8AF /* base.obj in Resources */,
 				D399F4671AC0260100FE2DE9 /* lighting.vs in Resources */,
 				D3F46D271B284E7C00B265F2 /* Su-34_Fullback_P01.bmp in Resources */,
 				D33BC13B1B22ECB4003683B6 /* Su-34_Fullback.obj in Resources */,
 				CD4D865C1B29CB1E00CA2F81 /* TextVertexShader.fs in Resources */,
 				D399F4661AC0260100FE2DE9 /* lighting.fs in Resources */,
 				D399F4A81AC2B79C00FE2DE9 /* sphere.obj in Resources */,
+				8B21B2101B305EF800C235A1 /* base.obj in Resources */,
 				CD4D865A1B29CAD000CA2F81 /* TextVertexShader.vs in Resources */,
 				8BC5B4A91B29850700990AFD /* player.obj in Resources */,
 				D399F4821AC1AA3700FE2DE9 /* B-2_Spirit.obj in Resources */,
@@ -492,6 +495,7 @@
 				D399F4841AC1AA6F00FE2DE9 /* B-2_Spirit_P01.bmp in Resources */,
 				D3F46D2F1B28847500B265F2 /* turret.obj in Resources */,
 				CD7B70CE1B2318AC00D0979A /* level1.lvl in Resources */,
+				8B21B2081B305B5400C235A1 /* enemy.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

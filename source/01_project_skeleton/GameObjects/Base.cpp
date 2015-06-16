@@ -18,11 +18,8 @@ Base::Base(std::string _name,
            int _level):GameObject(_name,_hp,_xPos,_yPos,_width,_height,_angle,_level){
     
     Mesh meshTemp;
-    glm::vec3 temp = glm::vec3(_xPos-10.f,_yPos-42.f, -220.f);
+    glm::vec3 temp = glm::vec3(_xPos,_yPos, -200.f);
     meshTemp.translate(temp);
-    
-    float std_rot = 90.f / 180.f * PI;
-    meshTemp.rotate(glm::vec3(1.f, 0.f, 0.f), std_rot);
 
     meshTemp.scale(glm::vec3(14.0f, 14.0f, 14.0f));
     setMesh(meshTemp);
