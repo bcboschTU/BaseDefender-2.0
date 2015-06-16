@@ -886,6 +886,10 @@ void Level::generateExplosionBullet(float _xPos, float _yPos, WeaponType _weapon
     if (_weaponType == NORMAL) {
         generateExplosion(_xPos,_yPos,SMALL);
     }
+    if (_weaponType == NUKE) {
+        generateExplosion(_xPos,_yPos,GRAND);
+    }
+    
 }
 
 void Level::generateExplosion(float _xPos, float _yPos, ExplosionType _type){

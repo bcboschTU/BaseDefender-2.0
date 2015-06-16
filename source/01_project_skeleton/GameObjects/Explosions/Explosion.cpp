@@ -46,12 +46,12 @@ void Explosion::explosionSetup(){
         case GRAND:
             width = 0.5;
             height = 0.5;
-            widthMax = 4;
-            heightMax = 4;
+            widthMax = 30;
+            heightMax = 30;
             offSetMin = -0.2;
             offSetPlus = 0.2;
-            amountOfExplosions = 20;
-            lifetime = 0.6;
+            amountOfExplosions = 1;
+            lifetime = 2.0;
             break;
         default:
             break;

@@ -19,7 +19,7 @@ Player::Player(std::string _name,
     fireRatePrimary = 0.1;
     fireRateSecondary = 0.1;
     primaryWeaponType = NORMAL;
-    secondaryWeaponType = EXPLOSIVE;
+    secondaryWeaponType = NUKE;
     lastTimePrimary = glfwGetTime();
     lastTimeSecondary = glfwGetTime();
     agility = 0.05;

@@ -53,10 +53,10 @@ void Bullet::bulletSetup(){
         case NUKE:
             width = 0.1;
             height = 0.1;
-            speed = 0.008;
+            speed = 3;
             dmg = 60;
-            lifetime = lifetime*5;
-            explodingTime = explodingTime*2;
+            lifetime = lifetime*10;
+            explodingTime = explodingTime*4;
             break;
         default:
             break;
