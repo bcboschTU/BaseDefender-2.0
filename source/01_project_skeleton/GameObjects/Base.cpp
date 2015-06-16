@@ -18,9 +18,13 @@ Base::Base(std::string _name,
            int _level):GameObject(_name,_hp,_xPos,_yPos,_width,_height,_angle,_level){
     
     Mesh meshTemp;
-    glm::vec3 temp = glm::vec3(_xPos,_yPos, -200);
+    glm::vec3 temp = glm::vec3(_xPos-10.f,_yPos-42.f, -220.f);
     meshTemp.translate(temp);
-    meshTemp.scale(glm::vec3(12.0f, 12.0f, 12.0f));
+    
+    float std_rot = 90.f / 180.f * PI;
+    meshTemp.rotate(glm::vec3(1.f, 0.f, 0.f), std_rot);
+
+    meshTemp.scale(glm::vec3(14.0f, 14.0f, 14.0f));
     setMesh(meshTemp);
 }
 
@@ -51,4 +55,11 @@ float Base::getYPos(){
 
 int Base::getHp(){
     return GameObject::getHp();
+}
+
+void Base::updateModelMatrix(float _xpos, float _ypos, float _rot){
+    Mesh meshTemp;
+    
+    mesh = meshTemp;
+    
 }

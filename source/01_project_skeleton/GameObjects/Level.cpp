@@ -252,8 +252,7 @@ void Level::drawLevel(){
     baseMesh.enableRender();
     for (int i = 0; i< bases.size(); i++) {
         Base * base = &bases[i];
-        Mesh tempMesh = base->getMesh();
-        drawMesh(baseMesh, &camera, lightingEffect, tempMesh.getModelMatrix());
+        drawMesh(baseMesh, &camera, lightingEffect, base->getMesh().getModelMatrix());
     }
     baseMesh.disableRender();
     
@@ -389,7 +388,7 @@ void Level::drawMesh(Mesh mesh, Camera* camera, LightingTechnique *lightingEffec
 //loading of the meshes for each of the objects types
 void Level::setupMeshes(){
     std::string playerStr = "player.obj";
-    std::string baseStr = "sphere.obj";
+    std::string baseStr = "base.obj";
     std::string turretstr = "turret.obj";
     //std::string enemystr_100_50 = "B-2_Spirit.obj";
     std::string enemystr_100_50 = "blox.obj";

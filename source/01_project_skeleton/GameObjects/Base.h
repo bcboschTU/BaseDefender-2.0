@@ -32,6 +32,7 @@ public:
     bool getHitByEnemie(float enemieXPos, float enemieYPos, float enemieWidth, int dmg);
 private:
     Mesh mesh;
+    void updateModelMatrix(float _xpos, float _ypos, float _rot);
     
 };
 
