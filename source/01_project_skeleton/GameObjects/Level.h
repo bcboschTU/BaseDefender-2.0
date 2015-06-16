@@ -125,7 +125,11 @@ private:
     Mesh baseMesh;
     Mesh enemyMesh_100_50;
     Mesh enemyMesh_50_0;
-    Mesh terrainMesh;
+    Mesh terrainMesh1;
+    Mesh terrainMesh2;
+    Mesh terrainMesh3;
+    Mesh terrainMesh4;
+    Mesh terrainMesh5;
     
     GLuint programID;
     GLuint MatrixID;
@@ -137,8 +141,6 @@ private:
     GLuint DiffuseTextureEnemie50_0;
     GLuint DiffuseTextureTurret;
     GLuint DiffuseTextureTerrain;
-    
-    
     
     //GLuint NormalTexture;
     //GLuint NormalTextureID;

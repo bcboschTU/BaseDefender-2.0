@@ -328,8 +328,8 @@ void Level::drawLevel(){
     
     
     lightingEffect->SetTextId(5);
-    terrainMesh.enableRender();
-    drawMesh(terrainMesh, &camera, lightingEffect, terrainMesh.getModelMatrix());
+    terrainMesh1.enableRender();
+    drawMesh(terrainMesh1, &camera, lightingEffect, terrainMesh1.getModelMatrix());
     explosionMesh.disableRender();
 }
 
@@ -438,13 +438,12 @@ void Level::setupMeshes(){
     explosionMesh.bindBuffers();
     
     
-    terrainMesh = Mesh();
+    terrainMesh1 = Mesh();
     Terrain terrain;
     terrain.generateObject();
-    terrainMesh.loadModelTerrain(terrain.getVertices(),terrain.getUv(),terrain.getNormals(),terrain.getFaces());
-    terrainMesh.setModelMatrix(glm::mat4(1.0f));
-    terrainMesh.bindBuffers();
-    
+    terrainMesh1.loadModelTerrain(terrain.getVertices(),terrain.getUv(),terrain.getNormals(),terrain.getFaces());
+    terrainMesh1.setModelMatrix(glm::mat4(1.0f));
+    terrainMesh1.bindBuffers();
 }
 
 //delete the textures from memory
@@ -877,6 +876,13 @@ void Level::roundStart(int _round){
     int rate = (int)sqrt(_round);
     enemySpawnRate = 0.4 - (round/100)*2;
     enemySpawnLoop = 2 * rate;
+    
+    terrainMesh1 = Mesh();
+    Terrain terrain;
+    terrain.generateObject();
+    terrainMesh1.loadModelTerrain(terrain.getVertices(),terrain.getUv(),terrain.getNormals(),terrain.getFaces());
+    terrainMesh1.setModelMatrix(glm::mat4(1.0f));
+    terrainMesh1.bindBuffers();
     
     
 }
