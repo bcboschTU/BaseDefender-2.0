@@ -915,11 +915,11 @@ void Level::setHeight(int _height){
 }
 
 void Level::roundStart(int _round){
-    int amountOfEnemy = 6;
+    int amountOfEnemy = 60;
     enemyAmount = amountOfEnemy * _round;
     int rate = (int)sqrt(_round);
-    enemySpawnRate = 0.4 - (round/100)*2;
-    enemySpawnLoop = 2 * rate;
+    enemySpawnRate = 2.4 - (round/100)*2;
+    enemySpawnLoop = 20 * rate;
     
     terrainMesh1 = Mesh();
     Terrain terrain;
