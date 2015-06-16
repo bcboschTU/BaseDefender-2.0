@@ -16,7 +16,7 @@ Bullet::Bullet(float _xPos, float _yPos, float _angle, WeaponType _bulletType, s
     bulletType = _bulletType;
     owner = _owner;
     lifeStart = glfwGetTime();
-    lifetime = 2.0;
+    lifetime = 0.8;
     destroyed = false;
     exploding = false;
     explodingTime = 0.6;
