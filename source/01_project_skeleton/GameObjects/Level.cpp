@@ -27,6 +27,9 @@ Level::Level(int _type, int _width, int _height, const char *filename){
     width = _width;
     height =_height;
     discoMode = false;
+    nightMode = false;
+    nightPressed = 0.f;
+    discoPressed = 0.f;
     glm::vec3 red = glm::vec3(1.0,0.0,0.0);
     glm::vec3 green = glm::vec3(0.0,1.0,0.0);
     glm::vec3 blue = glm::vec3(0.0,0.0,1.0);
@@ -511,7 +514,7 @@ void Level::initLightingEffect(){
     
     directionalLight.Color = glm::vec3(1.0f, 1.0f, 1.0f);
     directionalLight.AmbientIntensity = 0.19f;
-    directionalLight.DiffuseIntensity = 0.45f;
+    directionalLight.DiffuseIntensity = 0.8f;
     directionalLight.Direction = glm::vec3(1.0f, 0.0, 1.0);
     
     std::cout <<lightingEffect->Init();
@@ -948,6 +951,20 @@ void Level::setDiscoMode(){
     if(deltaTime > 0.2){
         discoMode = !discoMode;
         discoPressed = currentTime;
+    }
+}
+
+void Level::setNightMode(){
+    double currentTime = glfwGetTime();
+    float deltaTime = float(currentTime - nightPressed);
+    if(deltaTime > 0.2){
+        nightMode = !nightMode;
+        nightPressed = currentTime;
+    }
+    if(nightMode) {
+        directionalLight.DiffuseIntensity = 0.2f;
+    } else {
+        directionalLight.DiffuseIntensity = 0.8f;
     }
 }
 

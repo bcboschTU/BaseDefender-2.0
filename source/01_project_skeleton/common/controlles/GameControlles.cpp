@@ -93,6 +93,9 @@ void GameControlles::computeInputsGame(GLFWwindow* window,Level *level,GameState
     if (glfwGetKey(window, GLFW_KEY_M ) == GLFW_PRESS){
         level->setDiscoMode();
     }
+    if (glfwGetKey(window, GLFW_KEY_N ) == GLFW_PRESS){
+        level->setNightMode();
+    }
     
     
     player->setNewPos(newXPos, newYPos);

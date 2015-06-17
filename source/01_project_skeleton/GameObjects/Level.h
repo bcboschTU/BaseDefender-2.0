@@ -81,6 +81,7 @@ public:
     bool checkModelMatrix(glm::mat4 _Model);
     
     void setDiscoMode();
+    void setNightMode();
     vector<glm::vec3> generateLightPos(int _num);
     
     //camera temp
@@ -168,6 +169,9 @@ private:
     bool discoMode;
     float discoFlikkerTime;
     float discoPressed;
+    bool nightMode;
+    float nightPressed;
+
     vector<glm::vec3> pointLightPosDisco;
     vector<glm::vec3> pointLightDiscoColors;
 };
